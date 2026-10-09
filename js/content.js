@@ -2,7 +2,7 @@
 // MatchUp-delen är hämtad ur Självskattning mottagningsförmåga MatchUp v1.0 (rättad referens för Strategiskt ledarskap, Nej).
 window.CONTENT = {
  "boost": {
-  "version": "0.4 prototyp",
+  "version": "0.4.1 prototyp",
   "sammanfattning": {
    "rubrik": "Sammanfattning",
    "inledning": "{org} har bedömt hur redo organisationen är att hantera scenariot ”{scenario}”.",
@@ -256,7 +256,7 @@ window.CONTENT = {
      ],
      "Fortsätt": [
       "Behåll rytmen och lägg till en fast punkt: vad har vi lärt oss om nya verktyg eller arbetssätt sedan sist, och i vilket projekt?",
-      "Fortsätt pilot eller spår, säkra 5–10 % kapacitet för utveckling och reflektera över vad ni lär.",
+      "Fortsätt med piloten, och ge namngivna personer tid och mandat för utvecklingen.",
       "Fortsätt med dubbel styrning och gör kvartalsvisa kontroller så att utvecklingsmål följs upp lika systematiskt som driftmål.",
       "Fortsätt och förvalta. Planera för att de personer som bär balansen kan byta projekt eller sluta, så att förmågan inte försvinner med dem."
      ],
