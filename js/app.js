@@ -77,7 +77,7 @@
     if ((b === 'Vänta' || b === 'Nej') && ax.vilja >= 4) note = 'hogViljaNej';
     var bd = band(s.nivaer[id]);
     return { ax: ax, weakest: weakest, glapp: glapp, tilltro: tg, note: note, band: bd,
-      atgard: b ? cap(id).atgard[b][bd] : null, intern: cap(id).intern[bd], extern: cap(id).extern[bd] };
+      atgard: b ? cap(id).atgard[b][bd] + (B.beslut.tillagg && B.beslut.tillagg[b] ? ' ' + B.beslut.tillagg[b] : '') : null, intern: cap(id).intern[bd], extern: cap(id).extern[bd] };
   }
 
   /* ---------- steg ---------- */

@@ -2,7 +2,7 @@
 // MatchUp-delen är hämtad ur Självskattning mottagningsförmåga MatchUp v1.0 (rättad referens för Strategiskt ledarskap, Nej).
 window.CONTENT = {
  "boost": {
-  "version": "0.3 prototyp",
+  "version": "0.4 prototyp",
   "sammanfattning": {
    "rubrik": "Sammanfattning",
    "inledning": "{org} har bedömt hur redo organisationen är att hantera scenariot ”{scenario}”.",
@@ -58,6 +58,14 @@ window.CONTENT = {
     {
      "term": "Svagaste axeln",
      "text": "Den axel som ligger lägst visar vilken sorts hinder som är störst, och därmed vilken sorts första steg som passar. Saknas förmåga behövs lärande, saknas mandat behövs beslut och resurser, och saknas vilja behövs mening och angelägenhet."
+    },
+    {
+     "term": "Reflektion",
+     "text": "När rekommendationerna talar om reflektion avses en kort, strukturerad genomgång efter ett försök eller ett skede: Vad hade vi tänkt? Vad hände? Varför blev det så? Vad gör vi annorlunda nästa gång? Sådana genomgångar förbättrar mätbart hur väl en grupp presterar."
+    },
+    {
+     "term": "Pilotprojekt",
+     "text": "En pilot ger bara effekt om ni i förväg bestämmer vem som tar resultatet vidare och till vilket nästa projekt. Annars stannar lärdomen i piloten, vilket är det vanligaste sättet som lärande går förlorat i projektbaserade organisationer."
     }
    ]
   },
@@ -187,7 +195,11 @@ window.CONTENT = {
     "Nej": "Nej, vi avstår medvetet"
    },
    "lagViljaJa": "Ni har bestämt er för att gå vidare, men skattade viljan lågt. Det är värt att stanna vid: vad har ändrats under samtalet, eller vad krävs för att beslutet ska hålla?",
-   "hogViljaNej": "Ni skattade viljan högt men väljer att vänta eller avstå. Vad är det som håller emot? Det kan peka på mandatet snarare än viljan."
+   "hogViljaNej": "Ni skattade viljan högt men väljer att vänta eller avstå. Vad är det som håller emot? Det kan peka på mandatet snarare än viljan.",
+   "tillagg": {
+    "Vänta": "Bestäm vem som tar upp frågan igen, och vid vilket datum eller vilken händelse.",
+    "Nej": "Att avstå är ett legitimt strategiskt val när det är medvetet. Ange vad som skulle få er att ompröva beslutet."
+   }
   }
  },
  "matchup": {
@@ -227,7 +239,7 @@ window.CONTENT = {
      "Kartlägg hur resurser, mål och mätetal fördelas idag mellan drift och utveckling för att skapa gemensam förståelse.",
      "Testa enkla styrmodeller där små resurser avsätts till utveckling utan att störa drift, och följ upp lärdomarna.",
      "Bygg en återkommande rutin för att följa upp både driftmål och utvecklingsmål i ledningsgruppen och reflektera över balansen.",
-     "Dokumentera och sprid era arbetssätt som goda exempel, och dela erfarenheter i nätverk eller projekt."
+     "Utmana er egen modell: låt nya medarbetare eller en extern part granska var arbetssättet har stelnat, och dela erfarenheter i nätverk."
     ],
     "extern": [
      "Anlita facilitator för att visualisera skillnader mellan drift och utveckling och skapa gemensam förståelse.",
@@ -238,7 +250,7 @@ window.CONTENT = {
     "atgard": {
      "Ja": [
       "Skapa rutin i ledningsgruppen för att följa upp både drift- och utvecklingsmål. Lägg till reflektion om lärande.",
-      "Testa dubbel styrning i ett pilotprojekt med separata mål för drift och utveckling. Utvärdera lärdomar.",
+      "Testa dubbel styrning i ett projekt med separata mål för drift och utveckling. Bestäm i förväg vem som tar lärdomarna vidare till nästa projekt.",
       "Inför årlig uppföljning där effektivitet och förnyelse behandlas som likvärdiga mål. Dokumentera lärdomarna.",
       "Dela arbetssättet externt i nätverk eller projekt. Visa hur balansen mellan drift och utveckling stärker konkurrenskraft och lärande."
      ],
@@ -309,9 +321,9 @@ window.CONTENT = {
     ],
     "atgard": {
      "Ja": [
-      "Starta tvärfunktionella möten kring ett gemensamt tema. Fokusera på att förstå varandras perspektiv och utmaningar.",
-      "Etablera ett stående forum där olika funktioner möts regelbundet för att dela insikter och utveckla gemensamma mål.",
-      "Integrera tvärfunktionell samverkan i projektmodeller och planering. Säkerställ att lärande dokumenteras och sprids.",
+      "Samla funktionerna kring en konkret gemensam uppgift, till exempel ett problem i ett pågående projekt. Fokusera på att förstå varandras perspektiv och utmaningar.",
+      "Etablera ett stående forum där olika funktioner möts regelbundet för att dela insikter och utveckla gemensamma mål. Se till att det är tryggt att ta upp problem och misstag.",
+      "Integrera tvärfunktionell samverkan i projektmodeller och planering. Låt personer som arbetat tvärfunktionellt ta med sig arbetssättet till nästa projekt.",
       "Dela erfarenheter externt genom nätverk eller partnerskap. Visa hur tvärfunktionell samverkan skapar lärande och innovation."
      ],
      "Fortsätt": [
@@ -381,7 +393,7 @@ window.CONTENT = {
     ],
     "atgard": {
      "Ja": [
-      "Skapa utrymme i ledningsgruppen för att diskutera framtid, lärande och förändringens drivkrafter.",
+      "Avsätt tid i ledningsgruppen för att diskutera framtiden utifrån konkreta scenarier, och vad de betyder för era prioriteringar i dag.",
       "Identifiera hur utveckling bidrar till affärsmål och kommunicera kopplingen till organisationen.",
       "Etablera tydliga roller, mål och forum för att följa upp innovationsarbete i ledningen.",
       "Dela erfarenheter internt och externt om hur strategiskt ledarskap kan skapa lärande i osäkra lägen."
@@ -454,7 +466,7 @@ window.CONTENT = {
     "atgard": {
      "Ja": [
       "Skapa dialog med medarbetare om vad förnyelse betyder i deras vardag. Lyssna efter hinder och drivkrafter.",
-      "Anordna en workshop där medarbetare kan bidra med idéer kring hur ni stärker ägarskap i förändring.",
+      "Anordna en workshop där medarbetare kan bidra med idéer kring hur ni stärker ägarskap i förändring. Återkoppla synligt vad som händer med varje idé, även de som inte genomförs.",
       "Skapa en struktur för ambassadörer eller interna förebilder som sprider lärande och engagemang.",
       "Visa hur engagemanget bidrar till organisationens lärande och resultat. Dela exempel internt och externt."
      ],
@@ -526,7 +538,7 @@ window.CONTENT = {
     "atgard": {
      "Ja": [
       "Identifiera vilka data ni redan har tillgång till och vad de kan lära er om verksamheten.",
-      "Sätt upp enkel rutin för att samla och visualisera data kopplad till pågående initiativ. Diskutera vad ni lär er.",
+      "Utgå från ett konkret beslut som ska fattas och samla den data som behövs för just det. Diskutera vad ni lär er.",
       "Etablera processer för att använda data aktivt i analys, prioritering och reflektion kring resultat.",
       "Visa hur data bidrar till lärande och strategiska beslut. Dela exempel internt och i nätverk."
      ],
@@ -586,7 +598,7 @@ window.CONTENT = {
     "intern": [
      "Välj en idé och gör ett enkelt test med användare för att se vad ni lär er – inte bara om den fungerar.",
      "Skapa en rutin för att alltid testa nya idéer i liten skala innan större beslut.",
-     "Bygg ett bibliotek med erfarenheter från tidigare tester så att lärandet blir tillgång, inte minne.",
+     "Gör lärandet till en tillgång, inte ett minne: låt dem som genomfört tester berätta om dem för andra team, och låt gärna personer flytta mellan projekt så att erfarenheterna följer med.",
      "Dela era test- och lärmetoder internt och utbilda andra team i hur man lär snabbare genom test."
     ],
     "extern": [
@@ -599,7 +611,7 @@ window.CONTENT = {
      "Ja": [
       "Genomför ett enkelt test i liten skala för att se vad ni lär er – inte om idén ”fungerar”.",
       "Inför rutin att varje utvecklingsidé testas i liten skala innan beslut. Samla lärdomar i gemensamt format.",
-      "Etablera en kultur där hypotesdrivet arbetssätt används i flera delar av organisationen.",
+      "Gör hypotesdrivet arbete till rutin: bestäm före varje test vad som räknas som ett lärande resultat, och låt ledningen bemöta misslyckade tester som information, inte som fel.",
       "Dela ert arbetssätt i nätverk eller samarbeten för att bidra till gemensamt lärande om testkultur."
      ],
      "Fortsätt": [
@@ -670,7 +682,7 @@ window.CONTENT = {
     "atgard": {
      "Ja": [
       "Identifiera var nuvarande processer och styrning hindrar utveckling och lärande.",
-      "Testa parallella mål eller processer för drift och utveckling i ett pilotprojekt.",
+      "Testa i ett projekt att följa upp utvecklingsarbete med lärandemål, till exempel vilka antaganden som har prövats, i stället för med samma ekonomiska mål som driften.",
       "Inför anpassade styrprinciper för olika typer av arbete och följ upp hur det påverkar engagemang och resultat.",
       "Dela erfarenheter av hur ni kombinerar stabilitet och lärande i styrningen, internt och i nätverk."
      ],
@@ -742,7 +754,7 @@ window.CONTENT = {
     "atgard": {
      "Ja": [
       "Gör en enkel kartläggning av hur ni skapar, levererar och fångar värde idag. Diskutera antagandena bakom modellen.",
-      "Välj ett erbjudande och testa en alternativ värde- eller intäktslogik i liten skala.",
+      "Välj ett erbjudande och testa en alternativ värde- eller intäktslogik i liten skala, gärna tillsammans med en beställare eller kund som är villig att pröva.",
       "Inför återkommande reflektion i ledningsgruppen kring nya affärslogiker och lärdomar från pilotprojekt.",
       "Dela ert arbetssätt för affärsmodellinnovation i nätverk eller samarbeten för att bidra till gemensamt lärande."
      ],
@@ -814,8 +826,8 @@ window.CONTENT = {
     "atgard": {
      "Ja": [
       "Kartlägg vilken kompetens som är avgörande för utveckling och var den finns idag.",
-      "Gör en plan för intern kunskapsöverföring mellan team och funktioner.",
-      "Etablera partnerskap med externa aktörer för att stärka kompetens och innovation.",
+      "Skapa vägar för kunskap att följa med människor: rotation mellan projekt, mentorskap eller nätverk för dem som arbetar med samma frågor.",
+      "Etablera partnerskap med externa aktörer för att stärka kompetens och innovation. Se till att någon internt äger samarbetet och har kunskap nog att ta emot det ni lär er.",
       "Dela erfarenheter av hur ni utvecklar kompetens genom samverkan i nätverk och projekt."
      ],
      "Fortsätt": [
@@ -886,7 +898,7 @@ window.CONTENT = {
     "atgard": {
      "Ja": [
       "Samla erfarenheter från tidigare förändringar och prata om vad ni lärde er – inte bara vad som gick fel.",
-      "Skapa en enkel metod för små förändringar med tydliga steg, syfte och reflektion.",
+      "Skapa en enkel metod för små förändringar med tydligt syfte och reflektion, och låt dem som berörs vara med och utforma förändringen.",
       "Integrera förändringsledning i projekt- och styrmodeller. Gör reflektion och lärande till en del av processen.",
       "Dela era arbetssätt för lärande förändringsledning internt och i nätverk."
      ],
@@ -969,7 +981,7 @@ window.CONTENT = {
       "Fortsätt förvalta helhetsperspektivet; uppmuntra andra att reflektera kring systemens konsekvenser."
      ],
      "Utred": [
-      "Kartlägg vilka tekniska system som används, av vem och hur de stöder eller hindrar helhetssyn.",
+      "Kartlägg vilka tekniska system som används, av vem och hur de stöder eller hindrar helhetssyn, även i gränssnitten mot beställare, konsulter och underentreprenörer.",
       "Utred var det saknas kompetens för att förstå tekniska samband och vad som krävs för att stärka den.",
       "Utred hur samspel mellan teknik, människor och processer kan stärkas genom gemensamma rutiner.",
       "Utred hur ert arbetssätt kan spridas till samarbetspartners eller andra organisationer."
