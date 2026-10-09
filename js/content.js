@@ -2,7 +2,7 @@
 // MatchUp-delen är hämtad ur Självskattning mottagningsförmåga MatchUp v1.0 (rättad referens för Strategiskt ledarskap, Nej).
 window.CONTENT = {
  "boost": {
-  "version": "0.4.1 prototyp",
+  "version": "0.5 prototyp",
   "sammanfattning": {
    "rubrik": "Sammanfattning",
    "inledning": "{org} har bedömt hur redo organisationen är att hantera scenariot ”{scenario}”.",
@@ -37,11 +37,11 @@ window.CONTENT = {
    "las": [
     {
      "term": "Förmågor och nivåer",
-     "text": "Organisationen har skattat elva förmågor på en skala från 0 (omedveten) till 4 (transformerad). Ett halvsteg, till exempel 1,5, betyder att man landat mellan två nivåer."
+     "text": "Organisationen har skattat tolv förmågor på en skala från 0 (omedveten) till 4 (transformerad). Ett halvsteg, till exempel 1,5, betyder att man landat mellan två nivåer."
     },
     {
      "term": "Lärandeindex",
-     "text": "Medelvärdet av de elva skattningarna, från 0 till 4. Det säger hur långt organisationen har kommit i stort, men inte var de svaga punkterna finns. Läs det därför alltid tillsammans med profilens form."
+     "text": "Medelvärdet av de tolv skattningarna, från 0 till 4. Det säger hur långt organisationen har kommit i stort, men inte var de svaga punkterna finns. Läs det därför alltid tillsammans med profilens form."
     },
     {
      "term": "Profilens form",
@@ -282,13 +282,13 @@ window.CONTENT = {
    },
    {
     "id": 2,
-    "namn": "Tvärfunktionell samverkan",
-    "vad": "Förmågan att nyttja hela organisationens kompetens",
-    "syfte": "För att lösa komplexa utmaningar som kräver flera perspektiv och undvika silotänkande",
+    "namn": "Samverkan över gränser",
+    "vad": "Förmågan att nyttja kompetens över gränser, mellan funktioner och med partner i projekten",
+    "syfte": "För att lösa komplexa utmaningar som kräver flera perspektiv, inom organisationen och mellan de aktörer som tillsammans genomför projekten",
     "nivaer": [
      {
       "namn": "Omedveten",
-      "text": "Silostrukturer dominerar"
+      "text": "Silostrukturer dominerar, inom organisationen och mot partner"
      },
      {
       "namn": "Konceptuell",
@@ -296,19 +296,19 @@ window.CONTENT = {
      },
      {
       "namn": "Definierad",
-      "text": "Samverkansforum och metoder finns"
+      "text": "Samverkansforum och metoder finns, internt och i viktiga partnerskap"
      },
      {
       "namn": "Integrerad",
-      "text": "Samverkan sker naturligt i alla utvecklingsinitiativ"
+      "text": "Samverkan sker naturligt i alla utvecklingsinitiativ, även med beställare och partner"
      },
      {
       "namn": "Transformerad",
-      "text": "Organisationen är byggd för att integrera olika perspektiv löpande"
+      "text": "Organisationen är byggd för att integrera olika perspektiv löpande, också över organisationsgränser"
      }
     ],
     "intern": [
-     "Starta små tvärfunktionella arbetsgrupper för utvalda initiativ och låt dem testa nya arbetssätt.",
+     "Starta små arbetsgrupper med olika funktioner, och gärna en partner, kring ett utvalt initiativ, och låt dem testa nya arbetssätt.",
      "Skapa fasta forum där olika funktioner möts regelbundet för att utbyta insikter och gemensamt lösa problem.",
      "Koppla tvärfunktionella arbetssätt till projektmodeller och belöningssystem, och reflektera över vad som driver samarbete.",
      "Låt någon utifrån, gärna en partner i era projekt, granska var samverkan har blivit rutin utan innehåll, och utveckla arbetssättet tillsammans med partnerna."
@@ -333,7 +333,7 @@ window.CONTENT = {
       "Fortsätt, och ge nya medarbetare en tidig tvärfunktionell uppgift tillsammans med erfarna kollegor. Kulturen lärs i arbetet, inte i introduktionen."
      ],
      "Utred": [
-      "Kartlägg vilka funktioner som behöver samverka och vilka hinder som finns i dagens struktur.",
+      "Kartlägg vilka funktioner och vilka externa parter som behöver samverka, och vilka hinder som finns i dagens struktur och avtal.",
       "Utred vilka forum eller metoder som fungerar bäst för lärande mellan funktioner.",
       "Utred var samverkan fortfarande är beroende av personliga initiativ och föreslå lösningar.",
       "Utvärdera hur er modell kan spridas till andra delar av organisationen eller samarbetspartner."
@@ -642,73 +642,73 @@ window.CONTENT = {
    },
    {
     "id": 7,
-    "namn": "Process- och styrförmåga",
-    "vad": "Förmågan att styra olika typer av arbete på rätt sätt",
-    "syfte": "För att styra både drift och utveckling effektivt och undvika att innovation kvävs av standardlogik",
+    "namn": "Innovationsprocess",
+    "vad": "Förmågan att ta idéer från förslag via beslut till införande",
+    "syfte": "För att goda idéer ska prövas, prioriteras och genomföras i stället för att fastna eller försvinna",
     "nivaer": [
      {
       "namn": "Omedveten",
-      "text": "Organisationen ser utveckling och drift som motsättningar"
+      "text": "Idéer hanteras slumpvis och beror på vem som råkar höra dem"
      },
      {
       "namn": "Konceptuell",
-      "text": "Vi diskuterar behovet av balans men har inte format strukturer för det"
+      "text": "Det finns en vilja att ta tillvara idéer, men ingen tydlig väg från förslag till beslut"
      },
      {
       "namn": "Definierad",
-      "text": "Det finns principer för hur resurser ska fördelas mellan drift och innovation"
+      "text": "Det finns en process för att samla, värdera och besluta om idéer"
      },
      {
       "namn": "Integrerad",
-      "text": "Organisationen arbetar aktivt med olika styrprinciper för drift och utveckling"
+      "text": "Idéer prövas i steg, med olika krav i olika skeden, och beslut fattas i tid"
      },
      {
       "namn": "Transformerad",
-      "text": "Vi har tydlig fördelning av roller, styrning och kultur för samtidig utveckling och drift"
+      "text": "Processen är snabb och lärande, och organisationen styr en portfölj av initiativ med olika risknivå"
      }
     ],
     "intern": [
-     "Identifiera var dagens mätetal och rutiner missgynnar innovation eller lärande.",
-     "Skapa parallella mål för drift respektive utveckling i ett pilotprojekt och analysera effekterna.",
-     "Integrera utforskande/utförande-logik i ordinarie styrprocesser och följ upp vad det betyder för tempo och engagemang.",
-     "Låt en extern part pröva om er styrmodell fortfarande passar verksamheten, eller om den har blivit ett mål i sig."
+     "Följ några idéer från de senaste åren: var kom de ifrån, vem fattade beslut, och varför blev de av eller inte?",
+     "Inför en enkel väg för idéer: var de lämnas, vem som värderar dem och när beslut fattas.",
+     "Pröva idéer i steg med olika krav: tidiga steg bedöms på vad ni lär er, senare steg på affärsnytta.",
+     "Granska er portfölj av initiativ: är fördelningen mellan säkra förbättringar och osäkra satsningar den ni vill ha?"
     ],
     "extern": [
-     "Ta in hjälp för att analysera styrmodeller och föreslå dubbel logik.",
-     "Anlita stöd för att utveckla balanserad styrning som främjar lärande.",
-     "Be extern part jämföra er styrning med andra organisationer.",
-     "Bidra i branschens arbete med avtal och ersättningsformer som ger utrymme för utveckling i projekt."
+     "Ta hjälp att kartlägga hur idéer i dag tar sig fram eller fastnar i organisationen.",
+     "Anlita stöd för att utforma en enkel idé- och beslutsprocess som passar er storlek.",
+     "Ta in stöd för att införa stegvis prövning och portföljstyrning av utvecklingsinitiativ.",
+     "Låt en extern part jämföra er innovationsprocess med andra organisationers och pröva om den har blivit för tung."
     ],
     "atgard": {
      "Ja": [
-      "Identifiera var nuvarande processer och styrning hindrar utveckling och lärande.",
-      "Testa i ett projekt att följa upp utvecklingsarbete med lärandemål, till exempel vilka antaganden som har prövats, i stället för med samma ekonomiska mål som driften.",
-      "Inför anpassade styrprinciper för olika typer av arbete och följ upp hur det påverkar engagemang och resultat.",
-      "Utveckla styrningen tillsammans med beställare och partner, så att avtal och ersättningsformer ger utrymme för utveckling i projekten."
+      "Välj en idé som ligger och väntar och ta den hela vägen till ett beslut: genomför, testa eller avstå. Lär av det som tog tid.",
+      "Bestäm var idéer ska lämnas, vem som värderar dem och hur snabbt den som lämnat en idé ska få svar.",
+      "Inför stegvis prövning där kraven ökar för varje steg, och där tidiga steg bedöms på vad ni har lärt er snarare än på kalkylen.",
+      "Utveckla processen tillsammans med partner i era projekt, så att idéer som kräver flera aktörer också har en väg till beslut."
      ],
      "Fortsätt": [
-      "Fortsätt, och fråga projektledarna vilken regel eller vilket mått som oftast stoppar en bra idé.",
-      "Fortsätt med piloten, och låt projektledaren själv redovisa lärdomarna för ledningsgruppen.",
-      "Fortsätt, och följ upp utvecklingsarbete med lärandemål och driften med ekonomiska mål. Blanda inte ihop dem.",
-      "Fortsätt, och rensa regelbundet bland regler och mått. Styrsystem växer om ingen tar bort något."
+      "Fortsätt, och för en enkel lista över idéer och vad som hände med dem. Bara det gör processen synligare.",
+      "Fortsätt, och mät hur lång tid det tar från idé till beslut. Långa ledtider är en vanlig orsak till att idéer dör.",
+      "Fortsätt, och våga också besluta att avsluta initiativ som inte håller. Det frigör resurser för de bästa.",
+      "Fortsätt, och rensa regelbundet i processen. Innovationsprocesser blir tyngre med tiden om ingen tar bort steg."
      ],
      "Utred": [
-      "Kartlägg hur beslut tas och var det finns spänningar mellan effektivitet och lärande.",
-      "Utred hur ni kan skapa mer flexibla processer utan att tappa kontroll.",
-      "Utred hur erfarenheter från utvecklingsprojekt kan återföras till ordinarie styrning.",
-      "Utred hur ert styrsätt kan spridas eller inspirera andra delar av organisationen."
+      "Kartlägg hur idéer i dag tar sig fram och var de fastnar.",
+      "Utred vem som har mandat att fatta beslut om idéer på olika nivåer, och om det är tydligt för medarbetarna.",
+      "Utred hur er portfölj fördelar sig mellan små förbättringar och större satsningar, och om det stämmer med er strategi.",
+      "Utred hur processen kan förenklas utan att ni tappar kontrollen över risk och resurser."
      ],
      "Vänta": [
-      "Vänta tills nuvarande styrmodell har utvärderats, men samla observationer under tiden.",
-      "Avvakta tills pågående förändringsprojekt är avslutade, men följ upp vad de lär er.",
-      "Vänta tills pågående styrjusteringar är utvärderade, men observera effekterna på lärandet.",
-      "Vänta med bred spridning, men behåll de anpassade styrprinciper som redan fungerar."
+      "Vänta med en formell process, men se till att varje idé som lämnas får ett svar.",
+      "Avvakta med att bygga ut processen, men följ upp vilka idéer som fastnar och varför.",
+      "Vänta tills pågående initiativ har utvärderats, men avsluta inget utan en kort lärandegenomgång.",
+      "Vänta med förändringar i processen, men behåll de delar som redan fungerar."
      ],
      "Nej": [
-      "Om ni avstår, låt åtminstone utvecklingsarbete slippa de mest detaljerade driftmåtten. De mäter fel saker för utforskande arbete.",
-      "Om ni pausar arbetet, notera vilka frågor som behöver återupptas för att inte tappa rörelse framåt.",
-      "Om ni avstår från fortsatt styrutveckling, följ upp hur många utvecklingsidéer som stoppas av styrningen. Det visar priset för beslutet.",
-      "Om ni stannar här, var uppmärksamma på att styrningen åldras när verksamheten förändras."
+      "Om ni avstår, låt åtminstone ledningen gå igenom inkomna idéer en gång per halvår.",
+      "Om ni avstår, var medvetna om att idéer då når genomförande genom eldsjälar snarare än genom beslut. Det fungerar ibland, men är sårbart.",
+      "Om ni avstår från vidareutveckling, följ upp hur många idéer som aldrig får något svar. Det visar priset för beslutet.",
+      "Om ni pausar, var uppmärksamma på att en process som inte förnyas blir långsammare med tiden."
      ]
     }
    },
@@ -997,6 +997,78 @@ window.CONTENT = {
       "Om ni väljer bort arbetet, säkra att någon ansvarar för tekniska beroenden i större projekt.",
       "Om ni avstår, var uppmärksamma på att digitala initiativ utan gemensam riktning tenderar att bli öar som inte går att koppla ihop.",
       "Om ni pausar, behåll ändå en person som har överblick över era system och deras beroenden."
+     ]
+    }
+   },
+   {
+    "id": 12,
+    "namn": "Omvärldsbevakning och kunskapsinhämtning",
+    "vad": "Förmågan att upptäcka, värdera och ta in kunskap, teknik och idéer utifrån",
+    "syfte": "För att tidigt uppfatta förändringar och kunna dra nytta av forskning, ny teknik och andras erfarenheter i stället för att uppfinna allt själva",
+    "nivaer": [
+     {
+      "namn": "Omedveten",
+      "text": "Ny kunskap kommer in av en slump, om alls"
+     },
+     {
+      "namn": "Konceptuell",
+      "text": "Enskilda medarbetare håller sig uppdaterade, men det de hittar når sällan andra"
+     },
+     {
+      "namn": "Definierad",
+      "text": "Det finns ansvar och forum för att bevaka omvärlden och värdera det som hittas"
+     },
+     {
+      "namn": "Integrerad",
+      "text": "Externa insikter tas regelbundet in i strategi, projekt och beslut"
+     },
+     {
+      "namn": "Transformerad",
+      "text": "Organisationen söker aktivt och brett, samarbetar med forskning och tar till sig nytt snabbare än andra"
+     }
+    ],
+    "intern": [
+     "Kartlägg var ny kunskap kommer in i dag: vem läser, vem går på konferenser, vem har kontakt med forskning, och vad händer med det de hittar?",
+     "Utse personer som bevakar var sitt område och ge dem en stående punkt där de berättar vad de har hittat.",
+     "Koppla bevakningen till era beslut: låt varje större strategiskt eller tekniskt beslut föregås av frågan vad andra redan vet.",
+     "Pröva om ni söker tillräckligt brett. Organisationer som bara bevakar sin egen bransch ser förändringar för sent."
+    ],
+    "extern": [
+     "Ta hjälp av ett lärosäte eller en branschorganisation för att få en första överblick över vad som händer inom era viktigaste områden.",
+     "Delta i ett innovationsprogram eller forskningsprojekt för att få tillgång till ny kunskap och till människor som arbetar med den.",
+     "Bygg långsiktiga relationer med några forskargrupper, till exempel genom examensarbeten, adjungerade tjänster eller gemensamma projekt.",
+     "Sök kunskap utanför er egen bransch, där lösningar på era problem ofta redan finns."
+    ],
+    "atgard": {
+     "Ja": [
+      "Börja med en fråga som är viktig för scenariot och ta reda på vad forskning och andra organisationer redan vet om den.",
+      "Utse en eller två personer som ansvarar för bevakning inom ett avgränsat område, och ge dem tid och ett forum att berätta i.",
+      "Skapa en rutin där det som hittas värderas: vad betyder det för oss, och vem tar det vidare? Bevakning utan värdering blir bara information.",
+      "Sök medvetet utanför er egen bransch, och bjud in forskare och andra branscher att utmana era antaganden."
+     ],
+     "Fortsätt": [
+      "Fortsätt, och be dem som redan håller sig uppdaterade att dela det viktigaste de har hittat med kollegorna en gång i månaden.",
+      "Fortsätt, och följ upp hur mycket av det som hittas som leder till något: en diskussion, ett test eller ett beslut.",
+      "Fortsätt, och bredda sökandet till områden som ligger utanför det ni redan är bra på.",
+      "Fortsätt, och var uppmärksamma på att det som inte är uppfunnet hos er själva lätt värderas lägre än det borde."
+     ],
+     "Utred": [
+      "Kartlägg vilka källor till ny kunskap ni har i dag och vilka viktiga områden som ingen bevakar.",
+      "Utred varför det som enskilda hittar inte når andra: saknas forum, tid eller intresse?",
+      "Utred hur väl er bevakning har förutsett förändringar de senaste åren. Vad såg ni i tid, och vad missade ni?",
+      "Utred hur ni kan dela bevakningen med partner i era projekt, så att alla parter ser samma förändringar."
+     ],
+     "Vänta": [
+      "Vänta med en organiserad bevakning, men be var och en i ledningsgruppen att ta med en extern insikt till varje möte.",
+      "Avvakta med att formalisera ansvaret, men samla det som enskilda hittar på ett ställe där andra kan ta del av det.",
+      "Vänta med att bygga ut bevakningen, men använd Sense-scenariot för att avgöra vilka områden som är viktigast att följa.",
+      "Vänta med nya satsningar, men behåll relationerna med forskning och andra branscher. De tar lång tid att bygga upp igen."
+     ],
+     "Nej": [
+      "Om ni avstår, se till att åtminstone stora beslut om teknik och arbetssätt föregås av en kontroll av vad andra redan vet.",
+      "Om ni avstår, var medvetna om att ni då är beroende av att leverantörer och konsulter berättar om nyheter, utifrån sina egna intressen.",
+      "Om ni avstår, behåll åtminstone kontakten med branschens innovationsprogram, där mycket av den nya kunskapen samlas.",
+      "Om ni pausar, var uppmärksamma på att förändringar som ni inte ser ändå kommer, bara utan förvarning."
      ]
     }
    }

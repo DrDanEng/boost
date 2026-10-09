@@ -106,7 +106,7 @@
   function radarSVG(o) {
     var W = 860, H = 640, cx = 430, cy = 320, R = 185, n = CAPS.length, F = 'Helvetica, Arial, sans-serif';
     function pt(i, v) { var a = -Math.PI / 2 + i * 2 * Math.PI / n; return [cx + Math.cos(a) * R * v / 4, cy + Math.sin(a) * R * v / 4]; }
-    var g = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Spindeldiagram över de elva förmågorna" font-family="' + F + '">';
+    var g = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Spindeldiagram över alla förmågor" font-family="' + F + '">';
     for (var r = 1; r <= 4; r++) { var ring = []; for (var i = 0; i < n; i++) ring.push(pt(i, r).join(',')); g += '<polygon points="' + ring.join(' ') + '" fill="none" stroke="#d9d4c8" stroke-width="1"/>'; }
     for (i = 0; i < n; i++) { var e = pt(i, 4); g += '<line x1="' + cx + '" y1="' + cy + '" x2="' + e[0] + '" y2="' + e[1] + '" stroke="#e4e0d6" stroke-width="1"/>'; }
     for (r = 1; r <= 4; r++) { var lp = pt(0, r); g += '<text x="' + (lp[0] + 5) + '" y="' + (lp[1] + 4) + '" font-size="13" fill="#8a8f96">' + r + '</text>'; }
@@ -134,7 +134,7 @@
     var resume = has && has.nivaer && Object.keys(has.nivaer).length ? '<div class="card"><h3>Fortsätt där ni var</h3><p class="muted small">Det finns en påbörjad körning sparad i den här webbläsaren' + (has.meta && has.meta.foretag ? ' för ' + esc(has.meta.foretag) : '') + '.</p><button class="btn" data-act="resume">Fortsätt</button></div>' : '';
     return '<div class="eyebrow">Smart Built Boost · See</div><h1>' + esc(B.titel) + '</h1><p class="lead">' + esc(B.undertitel) + '</p>' +
       '<p>' + esc(M.intro[0]) + '</p><p>' + esc(M.intro[1]) + '</p>' +
-      '<div class="card tight"><b>Så går det till</b><ol class="steps-ol"><li>Ni anger vilket scenario från Sense bedömningen gäller.</li><li>Ni skattar organisationens nivå på elva förmågor.</li><li>Ni väljer de två eller tre förmågor som behöver stärkas mest.</li><li>För dem tar ni ställning till mandat, vilja och tilltro.</li><li>Ni fattar ett beslut per förmåga och får en rapport att ta med er.</li></ol><p class="small muted" style="margin:0">Räkna med 30 till 45 minuter. Verktyget fungerar lika bra för en ledningsgrupp vid en gemensam skärm som för en enskild person.</p></div>' +
+      '<div class="card tight"><b>Så går det till</b><ol class="steps-ol"><li>Ni anger vilket scenario från Sense bedömningen gäller.</li><li>Ni skattar organisationens nivå på tolv förmågor.</li><li>Ni väljer de två eller tre förmågor som behöver stärkas mest.</li><li>För dem tar ni ställning till mandat, vilja och tilltro.</li><li>Ni fattar ett beslut per förmåga och får en rapport att ta med er.</li></ol><p class="small muted" style="margin:0">Räkna med 30 till 45 minuter. Verktyget fungerar lika bra för en ledningsgrupp vid en gemensam skärm som för en enskild person.</p></div>' +
       '<div class="startgrid">' + resume +
       '<div class="card"><h3>Ny körning</h3><p class="muted small">Börja från början.</p><button class="btn" data-act="new">Starta</button></div>' +
       '<div class="card"><h3>Öppna en sparfil</h3><p class="muted small">Fortsätt eller titta på en tidigare körning.</p><button class="btn ghost" data-act="open">Välj fil</button></div>' +
