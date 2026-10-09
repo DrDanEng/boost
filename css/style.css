@@ -135,3 +135,9 @@ table.facil tr.spread td { background: var(--weak-soft); }
   .card { padding: 18px 16px; }
 }
 @media (min-width: 681px) { .likert-labels { display: none; } }
+
+.summary { border-left: 4px solid var(--accent); }
+.summary h3 { margin-top: 14px; }
+.recs { padding-left: 22px; margin: 0; }
+.recs li { margin-bottom: 10px; }
+.recs li::marker { font-weight: 700; color: var(--accent); }

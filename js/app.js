@@ -233,6 +233,32 @@
   function renderEgna() {
     return '<div class="eyebrow">Sista steget</div><h2>Egna förslag på åtgärder</h2><p class="muted">Vad tar ni med er härifrån? Skriv gärna vem som gör vad och när.</p><textarea data-field="egnaAtgarder" rows="7">' + esc(state.egnaAtgarder) + '</textarea>';
   }
+  function summary() {
+    var S = B.sammanfattning, p = profile(), sg = strength(), lines = [], recs = [];
+    var axName = { formaga: 'Förmåga', mandat: 'Mandat', vilja: 'Vilja' };
+    lines.push(fill(S.helhet, { index: fmt(p.index), omdome: p.omdome.namn.toLowerCase(), form: p.form }));
+    var names = state.valda.map(function (id) { return cap(id).namn.toLowerCase(); });
+    lines.push(fill(S.valda, { lista: names.length > 1 ? names.slice(0, -1).join(', ') + ' och ' + names[names.length - 1] : names[0] }));
+    var count = {};
+    state.valda.forEach(function (id) { var d = diagnosis(id); if (d) d.weakest.forEach(function (k) { if (k !== 'jamn') count[k] = (count[k] || 0) + 1; }); });
+    var top = Object.keys(count).sort(function (a, b) { return count[b] - count[a]; })[0];
+    var shared = top && count[top] >= 2;
+    if (shared) { var t = fill(S.monster, { axel: axName[top], n: count[top], m: state.valda.length }); lines.push(t + ' ' + B.svagastAxel[top].shift); }
+    else if (state.valda.length > 1) lines.push(S.spritt);
+    if (sg && state.styrkaRelevant) lines.push(fill(S.styrka, { styrka: cap(sg.id).namn }));
+    state.valda.forEach(function (id) {
+      var d = diagnosis(id); if (!d) return;
+      var lead = shared && d.weakest.indexOf(top) >= 0 ? '' : B.svagastAxel[d.weakest[0]].shift;
+      recs.push({ titel: cap(id).namn + (state.beslut[id] ? ' (' + state.beslut[id].toLowerCase() + ')' : ''), text: ((d.atgard ? d.atgard + ' ' : '') + lead).trim() });
+    });
+    if (recs.length < 3 && sg && state.styrkaRelevant) recs.push({ titel: cap(sg.id).namn + ' (styrka)', text: fill(S.recStyrka, { styrka: cap(sg.id).namn.toLowerCase(), svag: cap(weakestValda()).namn.toLowerCase() }) });
+    return { lines: lines, recs: recs.slice(0, 3) };
+  }
+  function summaryHTML() {
+    var sm = summary(), S = B.sammanfattning;
+    return '<div class="card summary"><div class="eyebrow">' + esc(S.rubrik) + '</div><p>' + sm.lines.map(esc).join(' ') + '</p><h3>' + esc(S.recRubrik) + '</h3><ol class="recs">' +
+      sm.recs.map(function (r) { return '<li><b>' + esc(r.titel) + '.</b> ' + esc(r.text) + '</li>'; }).join('') + '</ol></div>';
+  }
   function reportHTML() {
     var p = profile(), sg = strength(), m = state.meta;
     var series = [{ values: scores(), color: '#2f6b5e', fill: '#2f6b5e', dots: true }];
@@ -240,6 +266,7 @@
     var h = '<div class="eyebrow">Rapport</div><h2>' + esc(m.foretag || 'Er organisation') + '</h2><p class="muted">' + esc(m.datum) + ' · ' + (m.typ === 'grupp' ? 'Gruppbedömning' : 'Individuell bedömning') + (m.namn ? ' · ' + esc(m.namn) : '') + '</p>';
     if (m.scenarioNamn || m.scenarioText) h += '<div class="card tight"><div class="eyebrow">Scenario</div><b>' + esc(m.scenarioNamn) + '</b><p class="small" style="margin:4px 0 0">' + esc(m.scenarioText) + '</p></div>';
     h += '<div class="actions" style="margin:0 0 18px"><button class="btn" data-act="pdf">Ladda ner rapport (PDF)</button><button class="btn ghost" data-act="savefile">Spara sparfil</button><button class="btn ghost" data-act="compare">' + (view.compare ? 'Byt jämförelse' : 'Jämför med tidigare körning') + '</button></div>';
+    h += summaryHTML();
     h += '<div class="card radar-wrap"><div class="radar">' + radarSVG({ index: p.index, series: series, weak: state.valda, strong: sg && state.styrkaRelevant ? sg.id : null }) + '</div><div><div class="muted small">Lärandeindex</div><div class="index-big">' + fmt(p.index) + '</div><p style="margin:6px 0 10px"><b>' + esc(p.omdome.namn) + '.</b> ' + esc(p.omdome.text) + '</p><p class="small">' + esc(B.form.texter[p.form]) + '</p>' +
       (view.compare ? '<p class="small muted">Streckad grå kontur: körningen ' + esc(view.compare.meta.datum) + ', index ' + fmt(profile(view.compare).index) + '.</p>' : '') + '</div></div>';
     if (state.motivering) h += '<p class="small"><b>Motivering till val:</b> ' + esc(state.motivering) + '</p>';
@@ -392,6 +419,11 @@
     text((m.foretag || 'Er organisation'), { size: 15, bold: true, after: 1 });
     text(m.datum + ' · ' + (m.typ === 'grupp' ? 'Gruppbedömning' : 'Individuell bedömning') + (m.namn ? ' · ' + m.namn : ''), { size: 10, color: MUT, after: 5 });
     if (m.scenarioNamn || m.scenarioText) { label('Scenario'); if (m.scenarioNamn) text(m.scenarioNamn, { bold: true, after: 1 }); if (m.scenarioText) text(m.scenarioText, { after: 4 }); }
+    var sm = summary(), S = B.sammanfattning;
+    label(S.rubrik); text(sm.lines.join(' '), { size: 10.5, after: 3 });
+    text(S.recRubrik, { size: 11, bold: true, after: 1.5 });
+    sm.recs.forEach(function (r, i) { text((i + 1) + '. ' + r.titel + '.', { size: 10, bold: true, after: 0.5 }); text(r.text, { size: 9.5, x: L + 4, width: Wt - 4, after: 2.5 }); });
+    rule(); ensure(140);
     label('Profil');
     var series = [{ values: scores(), color: '#2f6b5e', fill: '#2f6b5e', dots: true }];
     if (view.compare) series.unshift({ values: scores(view.compare), color: '#8a8f96', fill: 'none', width: 2, dash: '6 5' });

@@ -2,7 +2,17 @@
 // MatchUp-delen är hämtad ur Självskattning mottagningsförmåga MatchUp v1.0 (rättad referens för Strategiskt ledarskap, Nej).
 window.CONTENT = {
  "boost": {
-  "version": "0.1 prototyp",
+  "version": "0.2 prototyp",
+  "sammanfattning": {
+    "rubrik": "Sammanfattning",
+    "helhet": "Lärandeindex {index}, {omdome}. Profilen är {form}.",
+    "valda": "Ni går vidare med {lista}.",
+    "monster": "Mönstret går igen: för {n} av {m} valda förmågor är {axel} den svagaste axeln. Det tyder på ett gemensamt hinder i organisationen snarare än brister i enskilda förmågor, och där bör ni börja.",
+    "spritt": "De valda förmågorna har olika svagaste axlar, så första steget ser olika ut för var och en.",
+    "styrka": "{styrka} sticker ut som en styrka som kan användas som hävstång.",
+    "recRubrik": "De viktigaste rekommendationerna",
+    "recStyrka": "Använd {styrka} som hävstång för att stärka {svag}. Fråga er samtidigt om styrkan gör er för säkra på nuvarande arbetssätt."
+  },
   "titel": "Dialogverktyget",
   "undertitel": "Självskattning av mottagningsförmåga och agency inför förändring",
   "upphov": "© Engströms Mickla AB 2026",
