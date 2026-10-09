@@ -1,7 +1,9 @@
 /* Dialogverktyget. Statisk app, all data stannar i webbläsaren. © Engströms Mickla AB 2026 */
 (function () {
   'use strict';
-  var C = window.CONTENT, B = C.boost, M = C.matchup, CAPS = M.formagor;
+  var C = window.CONTENT, B = C.boost, M = C.matchup, Q = B.kvadranter || null;
+  var CAPS = Q ? [].concat.apply([], Q.map(function (q) { return q.formagor; })).map(function (id) { return M.formagor.filter(function (c) { return c.id === id; })[0]; }) : M.formagor;
+  function quad(id) { return Q ? Q.filter(function (q) { return q.formagor.indexOf(id) >= 0; })[0] : null; }
   var KEY = 'dialogverktyget.v1';
   var app = document.getElementById('app');
   var state = load() || fresh();
@@ -18,7 +20,7 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function fmt(x, d) { if (x == null || isNaN(x)) return '–'; return (d === 0 ? String(Math.round(x * 2) / 2) : x.toFixed(d == null ? 1 : d)).replace('.', ','); }
   function fmtN(x) { return x == null ? '–' : (x % 1 === 0 ? String(x) : String(x).replace('.', ',')); }
-  function cap(id) { return CAPS[id - 1]; }
+  function cap(id) { return M.formagor.filter(function (c) { return c.id === id; })[0]; }
   function fill(t, map) { return t.replace(/\{(\w+|förmåga)\}/g, function (m, k) { return map[k] != null ? map[k] : m; }); }
   function mean(a) { return a.reduce(function (s, x) { return s + x; }, 0) / a.length; }
   function median(a) { var s = a.slice().sort(function (x, y) { return x - y; }); var n = s.length; return n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2; }
@@ -105,11 +107,17 @@
   function wrapLabel(t, n) { var w = t.split(' '), lines = [], cur = ''; w.forEach(function (x) { if ((cur + ' ' + x).trim().length > n && cur) { lines.push(cur); cur = x; } else cur = (cur + ' ' + x).trim(); }); if (cur) lines.push(cur); return lines; }
   function radarSVG(o) {
     var W = 860, H = 640, cx = 430, cy = 320, R = 185, n = CAPS.length, F = 'Helvetica, Arial, sans-serif';
-    function pt(i, v) { var a = -Math.PI / 2 + i * 2 * Math.PI / n; return [cx + Math.cos(a) * R * v / 4, cy + Math.sin(a) * R * v / 4]; }
+    var off = Q ? Math.PI / n : 0;
+    function pt(i, v) { var a = -Math.PI / 2 + off + i * 2 * Math.PI / n; return [cx + Math.cos(a) * R * v / 4, cy + Math.sin(a) * R * v / 4]; }
     var g = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Spindeldiagram över alla förmågor" font-family="' + F + '">';
     for (var r = 1; r <= 4; r++) { var ring = []; for (var i = 0; i < n; i++) ring.push(pt(i, r).join(',')); g += '<polygon points="' + ring.join(' ') + '" fill="none" stroke="#d9d4c8" stroke-width="1"/>'; }
     for (i = 0; i < n; i++) { var e = pt(i, 4); g += '<line x1="' + cx + '" y1="' + cy + '" x2="' + e[0] + '" y2="' + e[1] + '" stroke="#e4e0d6" stroke-width="1"/>'; }
     for (r = 1; r <= 4; r++) { var lp = pt(0, r); g += '<text x="' + (lp[0] + 5) + '" y="' + (lp[1] + 4) + '" font-size="13" fill="#8a8f96">' + r + '</text>'; }
+    if (Q) {
+      g += '<line x1="' + cx + '" y1="' + (cy - R - 8) + '" x2="' + cx + '" y2="' + (cy + R + 8) + '" stroke="#c9c3b6" stroke-width="1.5"/><line x1="' + (cx - R - 8) + '" y1="' + cy + '" x2="' + (cx + R + 8) + '" y2="' + cy + '" stroke="#c9c3b6" stroke-width="1.5"/>';
+      var qp = [[W - 16, 26, 'end'], [W - 16, H - 14, 'end'], [16, H - 14, 'start'], [16, 26, 'start']];
+      Q.forEach(function (q, k) { g += '<text x="' + qp[k][0] + '" y="' + qp[k][1] + '" font-size="20" font-weight="bold" letter-spacing="2" text-anchor="' + qp[k][2] + '" fill="#2f6b5e">' + esc(q.namn.toUpperCase()) + '</text>'; });
+    }
     if (o.index != null) g += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (R * o.index / 4) + '" fill="none" stroke="#2f6b5e" stroke-width="1.5" stroke-dasharray="5 4"/>';
     (o.series || []).forEach(function (s) {
       var pts = s.values.map(function (v, i) { return pt(i, v == null ? 0 : v).join(','); }).join(' ');
@@ -117,9 +125,9 @@
       if (s.dots) s.values.forEach(function (v, i) { var p = pt(i, v); var id = i + 1; var col = (o.weak || []).indexOf(id) >= 0 ? '#b8532c' : o.strong === id ? '#a57a12' : s.color; var rr = col !== s.color ? 7 : 4; g += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + rr + '" fill="' + col + '" stroke="#fff" stroke-width="1.5"/>'; });
     });
     for (i = 0; i < n; i++) {
-      var a = -Math.PI / 2 + i * 2 * Math.PI / n, lx = cx + Math.cos(a) * (R + 24), ly = cy + Math.sin(a) * (R + 24);
+      var a = -Math.PI / 2 + off + i * 2 * Math.PI / n, lx = cx + Math.cos(a) * (R + 24), ly = cy + Math.sin(a) * (R + 24);
       var anchor = Math.abs(Math.cos(a)) < 0.2 ? 'middle' : Math.cos(a) > 0 ? 'start' : 'end';
-      var lines = wrapLabel(CAPS[i].namn, 13), id = i + 1;
+      var lines = wrapLabel(CAPS[i].namn, 13), id = CAPS[i].id;
       var col = (o.weak || []).indexOf(id) >= 0 ? '#b8532c' : o.strong === id ? '#a57a12' : '#1d2733';
       var wgt = col !== '#1d2733' ? 'bold' : 'normal';
       var y0 = ly - (lines.length - 1) * 11 + (Math.sin(a) > 0.5 ? 12 : Math.sin(a) < -0.5 ? -8 : 6);
@@ -155,7 +163,7 @@
   }
   function renderCap(id) {
     var c = cap(id), v = state.nivaer[id];
-    var h = '<div class="eyebrow">Förmåga ' + id + ' av ' + CAPS.length + '</div><h2>' + esc(c.namn) + '</h2>' +
+    var h = '<div class="eyebrow">' + (quad(id) ? esc(quad(id).namn) + ' · ' : '') + 'Förmåga ' + (CAPS.indexOf(c) + 1) + ' av ' + CAPS.length + '</div>' + (quad(id) && CAPS.indexOf(c) % 3 === 0 ? '<p class="note small">' + esc(quad(id).text) + '</p>' : '') + '<h2>' + esc(c.namn) + '</h2>' +
       '<div class="capmeta"><div><b>Vad</b>' + esc(c.vad) + '</div><div><b>Syfte</b>' + esc(c.syfte) + '</div></div>' +
       '<p style="margin-top:20px"><b>Var befinner sig er organisation i dag?</b></p><div class="levels">';
     c.nivaer.forEach(function (l, i) { h += '<button class="choice" data-level="' + i + '" aria-pressed="' + (v === i) + '"><span class="num">' + i + '</span><span><b>' + esc(l.namn) + '</b><span class="desc">' + esc(l.text) + '</span></span></button>'; });

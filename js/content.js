@@ -52,6 +52,10 @@ window.CONTENT = {
      "text": "Varje eker är en förmåga, och ju längre ut desto högre nivå. Den streckade cirkeln är lärandeindexet. Punkter innanför cirkeln ligger under genomsnittet, punkter utanför över. De valda förmågorna är markerade i rött och en eventuell styrka i guld."
     },
     {
+     "term": "De fyra fälten",
+     "text": "Förmågorna är ordnade i fyra fält som följer förnyelsens förlopp, medurs från klockan tolv: Upptäcka (att se och förstå vad som händer), Välja (att sätta riktning), Pröva (att testa och lära) och Förändra (att genomföra tillsammans med andra). En profil som är svag i ett helt fält visar var i förloppet förnyelsen brukar stanna."
+    },
+    {
      "term": "Axlarna",
      "text": "För de valda förmågorna visas fyra axlar på en gemensam skala från 1 till 5. Förmåga är den skattade nivån. Mandat är om man har rätt och möjlighet att agera, uppdelat på formellt mandat (beslutsrätt, tid och resurser) och upplevt mandat (om man känner sig fri att agera och att det ger effekt). Vilja är hur angeläget det är och om man är beredd att prioritera. Tilltro är om man tror att man klarar det."
     },
@@ -200,7 +204,45 @@ window.CONTENT = {
     "Vänta": "Bestäm vem som tar upp frågan igen, och vid vilket datum eller vilken händelse.",
     "Nej": "Att avstå är ett legitimt strategiskt val när det är medvetet. Ange vad som skulle få er att ompröva beslutet."
    }
-  }
+  },
+  "kvadranter": [
+   {
+    "namn": "Upptäcka",
+    "text": "De tre första förmågorna handlar om att upptäcka: att se vad som händer i omvärlden och ha kunskap att förstå det.",
+    "formagor": [
+     12,
+     11,
+     9
+    ]
+   },
+   {
+    "namn": "Välja",
+    "text": "De tre följande förmågorna handlar om att välja: att sätta riktning och avgöra vad som är värt att satsa på.",
+    "formagor": [
+     3,
+     1,
+     8
+    ]
+   },
+   {
+    "namn": "Pröva",
+    "text": "De tre följande förmågorna handlar om att pröva: att ta idéer vidare, testa dem och lära av resultaten.",
+    "formagor": [
+     7,
+     6,
+     5
+    ]
+   },
+   {
+    "namn": "Förändra",
+    "text": "De tre sista förmågorna handlar om att förändra: att få med människor och partner och genomföra förändringen.",
+    "formagor": [
+     4,
+     2,
+     10
+    ]
+   }
+  ]
  },
  "matchup": {
   "intro": [
