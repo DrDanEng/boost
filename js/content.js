@@ -2,16 +2,64 @@
 // MatchUp-delen är hämtad ur Självskattning mottagningsförmåga MatchUp v1.0 (rättad referens för Strategiskt ledarskap, Nej).
 window.CONTENT = {
  "boost": {
-  "version": "0.2 prototyp",
+  "version": "0.3 prototyp",
   "sammanfattning": {
-    "rubrik": "Sammanfattning",
-    "helhet": "Lärandeindex {index}, {omdome}. Profilen är {form}.",
-    "valda": "Ni går vidare med {lista}.",
-    "monster": "Mönstret går igen: för {n} av {m} valda förmågor är {axel} den svagaste axeln. Det tyder på ett gemensamt hinder i organisationen snarare än brister i enskilda förmågor, och där bör ni börja.",
-    "spritt": "De valda förmågorna har olika svagaste axlar, så första steget ser olika ut för var och en.",
-    "styrka": "{styrka} sticker ut som en styrka som kan användas som hävstång.",
-    "recRubrik": "De viktigaste rekommendationerna",
-    "recStyrka": "Använd {styrka} som hävstång för att stärka {svag}. Fråga er samtidigt om styrkan gör er för säkra på nuvarande arbetssätt."
+   "rubrik": "Sammanfattning",
+   "inledning": "{org} har bedömt hur redo organisationen är att hantera scenariot ”{scenario}”.",
+   "inledningUtanScenario": "{org} har bedömt hur redo organisationen är att hantera kommande förändringar.",
+   "niva": [
+    "Bedömningen visar att organisationen befinner sig i ett tidigt skede: förnyelse sker mest när enskilda eldsjälar driver den.",
+    "Bedömningen visar att organisationen har börjat röra sig: insikten finns, men gemensamma arbetssätt och tydligt ansvar saknas ännu.",
+    "Bedömningen visar att organisationen har etablerade arbetssätt för förnyelse inom flera områden, men ännu inte överallt.",
+    "Bedömningen visar att förnyelse är en naturlig del av hur organisationen arbetar."
+   ],
+   "form": {
+    "jämn": "Förmågorna ligger på ungefär samma nivå.",
+    "ojämn": "Förmågorna är något ojämnt utvecklade.",
+    "taggig": "Förmågorna är mycket ojämnt utvecklade. Några är starka och andra svaga, och det är de svaga som sätter gränsen för helheten."
+   },
+   "valda": "De områden som mest behöver stärkas är {lista}.",
+   "hinder": {
+    "formaga": "det som främst saknas är kunskap och beprövade arbetssätt",
+    "mandat": "det som främst saknas är beslutsrätt, tid och resurser",
+    "vilja": "det som främst saknas är att frågan upplevs som tillräckligt angelägen"
+   },
+   "hinderGemensamt": "I flera av dem är hindret detsamma: {hinder}. Det pekar på något i organisationen som helhet, och där bör arbetet börja.",
+   "hinderEtt": "Där är hindret främst detta: {hinder}.",
+   "hinderOlika": "Hindren ser olika ut för de olika områdena, så det första steget blir olika för vart och ett.",
+   "styrka": "Organisationen är särskilt stark på {styrka}, och den styrkan kan användas för att lyfta de svagare områdena.",
+   "recRubrik": "De viktigaste rekommendationerna",
+   "recStyrka": "Använd {styrka} som hävstång för att stärka {svag}. Fråga er samtidigt om styrkan gör er för säkra på nuvarande arbetssätt.",
+   "nyckeltalRubrik": "Nyckeltal",
+   "nyckeltalHanvisning": "Begreppen förklaras under Så läser du rapporten, sist i rapporten.",
+   "monster": "För {n} av {m} valda förmågor är {axel} den svagaste axeln.",
+   "lasRubrik": "Så läser du rapporten",
+   "las": [
+    {
+     "term": "Förmågor och nivåer",
+     "text": "Organisationen har skattat elva förmågor på en skala från 0 (omedveten) till 4 (transformerad). Ett halvsteg, till exempel 1,5, betyder att man landat mellan två nivåer."
+    },
+    {
+     "term": "Lärandeindex",
+     "text": "Medelvärdet av de elva skattningarna, från 0 till 4. Det säger hur långt organisationen har kommit i stort, men inte var de svaga punkterna finns. Läs det därför alltid tillsammans med profilens form."
+    },
+    {
+     "term": "Profilens form",
+     "text": "Skillnaden mellan den högsta och den lägsta skattningen. Jämn betyder mindre än ett steg: förmågorna ligger nära varandra och indexet ger en rättvisande bild. Ojämn betyder ett till två steg. Taggig betyder två steg eller mer: några förmågor är klart svagare än andra, och eftersom förmågor samverkar begränsar de svaga helheten mer än indexet visar."
+    },
+    {
+     "term": "Spindeldiagrammet",
+     "text": "Varje eker är en förmåga, och ju längre ut desto högre nivå. Den streckade cirkeln är lärandeindexet. Punkter innanför cirkeln ligger under genomsnittet, punkter utanför över. De valda förmågorna är markerade i rött och en eventuell styrka i guld."
+    },
+    {
+     "term": "Axlarna",
+     "text": "För de valda förmågorna visas fyra axlar på en gemensam skala från 1 till 5. Förmåga är den skattade nivån. Mandat är om man har rätt och möjlighet att agera, uppdelat på formellt mandat (beslutsrätt, tid och resurser) och upplevt mandat (om man känner sig fri att agera och att det ger effekt). Vilja är hur angeläget det är och om man är beredd att prioritera. Tilltro är om man tror att man klarar det."
+    },
+    {
+     "term": "Svagaste axeln",
+     "text": "Den axel som ligger lägst visar vilken sorts hinder som är störst, och därmed vilken sorts första steg som passar. Saknas förmåga behövs lärande, saknas mandat behövs beslut och resurser, och saknas vilja behövs mening och angelägenhet."
+    }
+   ]
   },
   "titel": "Dialogverktyget",
   "undertitel": "Självskattning av mottagningsförmåga och agency inför förändring",

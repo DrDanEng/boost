@@ -234,30 +234,40 @@
     return '<div class="eyebrow">Sista steget</div><h2>Egna förslag på åtgärder</h2><p class="muted">Vad tar ni med er härifrån? Skriv gärna vem som gör vad och när.</p><textarea data-field="egnaAtgarder" rows="7">' + esc(state.egnaAtgarder) + '</textarea>';
   }
   function summary() {
-    var S = B.sammanfattning, p = profile(), sg = strength(), lines = [], recs = [];
+    var S = B.sammanfattning, p = profile(), sg = strength(), m = state.meta, plain = [], keys = [], recs = [];
     var axName = { formaga: 'Förmåga', mandat: 'Mandat', vilja: 'Vilja' };
-    lines.push(fill(S.helhet, { index: fmt(p.index), omdome: p.omdome.namn.toLowerCase(), form: p.form }));
+    var org = m.foretag || 'Organisationen';
+    plain.push(m.scenarioNamn ? fill(S.inledning, { org: org, scenario: m.scenarioNamn }) : fill(S.inledningUtanScenario, { org: org }));
+    plain.push(S.niva[band(p.index)] + ' ' + S.form[p.form]);
     var names = state.valda.map(function (id) { return cap(id).namn.toLowerCase(); });
-    lines.push(fill(S.valda, { lista: names.length > 1 ? names.slice(0, -1).join(', ') + ' och ' + names[names.length - 1] : names[0] }));
+    plain.push(fill(S.valda, { lista: names.length > 1 ? names.slice(0, -1).join(', ') + ' och ' + names[names.length - 1] : names[0] }));
     var count = {};
     state.valda.forEach(function (id) { var d = diagnosis(id); if (d) d.weakest.forEach(function (k) { if (k !== 'jamn') count[k] = (count[k] || 0) + 1; }); });
     var top = Object.keys(count).sort(function (a, b) { return count[b] - count[a]; })[0];
     var shared = top && count[top] >= 2;
-    if (shared) { var t = fill(S.monster, { axel: axName[top], n: count[top], m: state.valda.length }); lines.push(t + ' ' + B.svagastAxel[top].shift); }
-    else if (state.valda.length > 1) lines.push(S.spritt);
-    if (sg && state.styrkaRelevant) lines.push(fill(S.styrka, { styrka: cap(sg.id).namn }));
+    if (shared) plain.push(fill(S.hinderGemensamt, { hinder: S.hinder[top] }) + ' ' + B.svagastAxel[top].shift);
+    else if (state.valda.length > 1) plain.push(S.hinderOlika);
+    if (sg && state.styrkaRelevant) plain.push(fill(S.styrka, { styrka: cap(sg.id).namn.toLowerCase() }));
+    keys.push('Lärandeindex: ' + fmt(p.index) + ' av 4 (' + p.omdome.namn.toLowerCase() + ').');
+    keys.push('Profilens form: ' + p.form + ' (skillnad mellan högsta och lägsta skattning: ' + fmtN(p.range) + ').');
+    if (shared) keys.push(fill(S.monster, { axel: axName[top], n: count[top], m: state.valda.length }));
     state.valda.forEach(function (id) {
       var d = diagnosis(id); if (!d) return;
       var lead = shared && d.weakest.indexOf(top) >= 0 ? '' : B.svagastAxel[d.weakest[0]].shift;
       recs.push({ titel: cap(id).namn + (state.beslut[id] ? ' (' + state.beslut[id].toLowerCase() + ')' : ''), text: ((d.atgard ? d.atgard + ' ' : '') + lead).trim() });
     });
     if (recs.length < 3 && sg && state.styrkaRelevant) recs.push({ titel: cap(sg.id).namn + ' (styrka)', text: fill(S.recStyrka, { styrka: cap(sg.id).namn.toLowerCase(), svag: cap(weakestValda()).namn.toLowerCase() }) });
-    return { lines: lines, recs: recs.slice(0, 3) };
+    return { plain: plain, keys: keys, recs: recs.slice(0, 3) };
   }
   function summaryHTML() {
     var sm = summary(), S = B.sammanfattning;
-    return '<div class="card summary"><div class="eyebrow">' + esc(S.rubrik) + '</div><p>' + sm.lines.map(esc).join(' ') + '</p><h3>' + esc(S.recRubrik) + '</h3><ol class="recs">' +
-      sm.recs.map(function (r) { return '<li><b>' + esc(r.titel) + '.</b> ' + esc(r.text) + '</li>'; }).join('') + '</ol></div>';
+    return '<div class="card summary"><div class="eyebrow">' + esc(S.rubrik) + '</div><p>' + sm.plain.map(esc).join(' ') + '</p><h3>' + esc(S.recRubrik) + '</h3><ol class="recs">' +
+      sm.recs.map(function (r) { return '<li><b>' + esc(r.titel) + '.</b> ' + esc(r.text) + '</li>'; }).join('') + '</ol></div>' +
+      '<div class="card tight"><div class="eyebrow">' + esc(S.nyckeltalRubrik) + '</div>' + sm.keys.map(function (k) { return '<p class="small" style="margin-bottom:4px">' + esc(k) + '</p>'; }).join('') + '<p class="small muted" style="margin:8px 0 0">' + esc(S.nyckeltalHanvisning) + '</p></div>';
+  }
+  function guideHTML() {
+    var S = B.sammanfattning;
+    return '<h3>' + esc(S.lasRubrik) + '</h3><div class="card tight">' + S.las.map(function (g) { return '<p class="small"><b>' + esc(g.term) + '.</b> ' + esc(g.text) + '</p>'; }).join('') + '</div>';
   }
   function reportHTML() {
     var p = profile(), sg = strength(), m = state.meta;
@@ -282,6 +292,7 @@
     }
     if (state.egnaAtgarder) h += '<div class="card"><div class="eyebrow">Egna förslag på åtgärder</div><p style="white-space:pre-wrap;margin:0">' + esc(state.egnaAtgarder) + '</p></div>';
     h += '<h3>Övriga förmågor</h3><div class="card tight">' + CAPS.filter(function (c) { return state.valda.indexOf(c.id) < 0; }).map(function (c) { return '<p class="small"><b>' + esc(c.namn) + ' (' + fmtN(state.nivaer[c.id]) + '):</b> ' + esc(c.intern[band(state.nivaer[c.id])]) + '</p>'; }).join('') + '</div>';
+    h += guideHTML();
     h += '<div class="actions"><button class="btn quiet" data-act="restart">Börja om med en ny körning</button></div>';
     return h;
   }
@@ -420,9 +431,10 @@
     text(m.datum + ' · ' + (m.typ === 'grupp' ? 'Gruppbedömning' : 'Individuell bedömning') + (m.namn ? ' · ' + m.namn : ''), { size: 10, color: MUT, after: 5 });
     if (m.scenarioNamn || m.scenarioText) { label('Scenario'); if (m.scenarioNamn) text(m.scenarioNamn, { bold: true, after: 1 }); if (m.scenarioText) text(m.scenarioText, { after: 4 }); }
     var sm = summary(), S = B.sammanfattning;
-    label(S.rubrik); text(sm.lines.join(' '), { size: 10.5, after: 3 });
+    label(S.rubrik); text(sm.plain.join(' '), { size: 10.5, after: 3 });
     text(S.recRubrik, { size: 11, bold: true, after: 1.5 });
     sm.recs.forEach(function (r, i) { text((i + 1) + '. ' + r.titel + '.', { size: 10, bold: true, after: 0.5 }); text(r.text, { size: 9.5, x: L + 4, width: Wt - 4, after: 2.5 }); });
+    label(S.nyckeltalRubrik); sm.keys.forEach(function (k) { text(k, { size: 9.5, after: 0.8 }); }); text(S.nyckeltalHanvisning, { size: 8.5, italic: true, color: MUT, after: 2 });
     rule(); ensure(140);
     label('Profil');
     var series = [{ values: scores(), color: '#2f6b5e', fill: '#2f6b5e', dots: true }];
@@ -465,6 +477,7 @@
       if (state.egnaAtgarder) { rule(); label('Egna förslag på åtgärder'); text(state.egnaAtgarder, { size: 10 }); }
       rule(); label('Övriga förmågor');
       CAPS.filter(function (c) { return state.valda.indexOf(c.id) < 0; }).forEach(function (c) { text(c.namn + ' (' + fmtN(state.nivaer[c.id]) + '): ' + c.intern[band(state.nivaer[c.id])], { size: 9, after: 1.5 }); });
+      rule(); label(B.sammanfattning.lasRubrik); B.sammanfattning.las.forEach(function (g) { text(g.term + '.', { size: 9.5, bold: true, after: 0.3 }); text(g.text, { size: 9, after: 2 }); });
       rule(); label('Om verktyget', MUT); text(M.intro[1] + ' ' + B.integritet, { size: 8.5, color: MUT });
       var n = doc.getNumberOfPages();
       for (var i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text(B.titel + ' · version ' + B.version + ' · ' + B.upphov, L, PH - 10); doc.text('Sida ' + i + ' av ' + n, L + Wt, PH - 10, { align: 'right' }); }
