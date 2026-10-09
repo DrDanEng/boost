@@ -245,38 +245,38 @@ window.CONTENT = {
      "Anlita facilitator för att visualisera skillnader mellan drift och utveckling och skapa gemensam förståelse.",
      "Ta in stöd för att bygga en balanserad styrmodell och reflektera över lärande från den.",
      "Låt extern part göra en benchmark och föreslå hur dubbel logik kan förbättras.",
-     "Dela erfarenheter i branschnätverk och bidra till utveckling av ambidext styrning."
+     "Bjud in forskare eller en annan organisation att granska er modell, och bidra med era erfarenheter i branschens utvecklingsprojekt."
     ],
     "atgard": {
      "Ja": [
-      "Skapa rutin i ledningsgruppen för att följa upp både drift- och utvecklingsmål. Lägg till reflektion om lärande.",
-      "Testa dubbel styrning i ett projekt med separata mål för drift och utveckling. Bestäm i förväg vem som tar lärdomarna vidare till nästa projekt.",
-      "Inför årlig uppföljning där effektivitet och förnyelse behandlas som likvärdiga mål. Dokumentera lärdomarna.",
-      "Dela arbetssättet externt i nätverk eller projekt. Visa hur balansen mellan drift och utveckling stärker konkurrenskraft och lärande."
+      "Låt ledningsgruppen följa upp utvecklingsmål på samma möten och med samma allvar som driftmål. Börja med ett eller två mål.",
+      "Testa dubbel styrning i ett projekt: separata mål för leverans och för utveckling, och en namngiven person som äger utvecklingsdelen. Bestäm i förväg vem som tar lärdomarna vidare till nästa projekt.",
+      "Ge de personer som redan driver utveckling i projekten tid, mandat och ett forum där deras erfarenheter tas om hand. Det är där balansen mellan drift och utveckling faktiskt skapas i projektbaserad verksamhet.",
+      "Hjälp partner i era projekt att utveckla samma balans. I en projektbaserad bransch begränsas er förmåga av den svagaste aktören i projektet."
      ],
      "Fortsätt": [
-      "Behåll befintlig rytm men lägg till enkel månadsreflektion om balans mellan drift, utveckling och lärande.",
+      "Behåll rytmen och lägg till en fast punkt: vad har vi lärt oss om nya verktyg eller arbetssätt sedan sist, och i vilket projekt?",
       "Fortsätt pilot eller spår, säkra 5–10 % kapacitet för utveckling och reflektera över vad ni lär.",
       "Fortsätt med dubbel styrning och gör kvartalsvisa kontroller så att utvecklingsmål följs upp lika systematiskt som driftmål.",
-      "Fortsätt och förvalta ambidexteriteten; bevara kadens, planera succession i roller och dela arbetssätt internt/externt."
+      "Fortsätt och förvalta. Planera för att de personer som bär balansen kan byta projekt eller sluta, så att förmågan inte försvinner med dem."
      ],
      "Utred": [
       "Kartlägg hur beslut fattas idag och var drift och utveckling krockar. Identifiera exempel att diskutera.",
-      "Analysera målkonflikter där idéer möter driftlogik. Föreslå justeringar som stärker lärandet.",
+      "Analysera var utvecklingsidéer stoppas: i projektets kalkyl, i beställarens krav eller i er egen styrning. Föreslå en justering för den vanligaste spärren.",
       "Jämför var dubbel logik fungerar bäst i organisationen. Identifiera lärdomar att sprida till andra delar.",
       "Utvärdera hur modellen påverkar innovationsförmågan långsiktigt och hur den kan skalas till andra organisationer."
      ],
      "Vänta": [
-      "Notera varför frågan pausas – saknas tid, stöd eller mandat? Skriv vad som krävs för att ta upp den igen.",
+      "Skriv ner vad som saknas just nu: tid, stöd eller mandat. Det avgör vad som måste finnas på plats innan ni går vidare.",
       "Avvakta med större förändringar men följ upp hur mycket innovationsarbete får plats i praktiken.",
-      "Behåll nuvarande styrning men följ upp om driftfokus hämmar lärande och anpassning.",
-      "Planera en reflektion snarare än ny struktur – fokusera på hur dynamiken bevaras över tid."
+      "Behåll nuvarande styrning, men notera varje gång en utvecklingsidé stoppas av driftskäl. Mönstret blir ert underlag.",
+      "Ändra inget i strukturen, men använd nästa kritiska händelse i ett projekt som tillfälle att pröva om balansen håller."
      ],
      "Nej": [
-      "Om fokus ligger på drift, dokumentera varför. Undvik att kortsiktiga effektivitetsmål hindrar lärande och utveckling.",
-      "Avstå endast om befintlig styrning redan skapar balans. Dokumentera varför beslutet togs.",
-      "Om utvecklingsdelen pausas, säkerställ att beslutet inte begränsar framtida initiativ. Kommunicera orsaken.",
-      "Om vidareutveckling stoppas, reflektera om beslutet grundas i mättnad eller verklig strategisk prioritering."
+      "Om ni medvetet satsar på drift, håll ändå koll på vad konkurrenter och beställare gör med ny teknik, så att ni inte blir överraskade.",
+      "Avstå om nuvarande styrning redan ger utrymme för utveckling i projekten. Kontrollera det genom att fråga dem som driver utvecklingen.",
+      "Om utvecklingsdelen pausas, säg det öppet till dem som drivit den och ge dem en väg att fortsätta i liten skala. Annars försvinner både engagemanget och kunnandet.",
+      "Pröva om beslutet bygger på en verklig prioritering eller på att ni känner er färdiga. Det senare är den vanligaste vägen in i en kompetensfälla."
      ]
     }
    },
@@ -311,26 +311,26 @@ window.CONTENT = {
      "Starta små tvärfunktionella arbetsgrupper för utvalda initiativ och låt dem testa nya arbetssätt.",
      "Skapa fasta forum där olika funktioner möts regelbundet för att utbyta insikter och gemensamt lösa problem.",
      "Koppla tvärfunktionella arbetssätt till projektmodeller och belöningssystem, och reflektera över vad som driver samarbete.",
-     "Dokumentera arbetssättet som intern standard och sprid det externt – bjud in andra till lärande utbyte."
+     "Låt någon utifrån, gärna en partner i era projekt, granska var samverkan har blivit rutin utan innehåll, och utveckla arbetssättet tillsammans med partnerna."
     ],
     "extern": [
      "Anlita facilitator för första tvärfunktionella workshopen kring ett gemensamt mål.",
      "Ta in hjälp för att utforma verktyg och rutiner för lärande samverkan (t.ex. design thinking).",
      "Låt extern aktör utvärdera er samarbetskultur och ge återkoppling på förbättringsmöjligheter.",
-     "Delta i nätverk eller forskningsprojekt om gränsöverskridande samverkan."
+     "Delta i forskningsprojekt om samverkan över organisationsgränser och låt forskarna pröva er modell kritiskt."
     ],
     "atgard": {
      "Ja": [
       "Samla funktionerna kring en konkret gemensam uppgift, till exempel ett problem i ett pågående projekt. Fokusera på att förstå varandras perspektiv och utmaningar.",
       "Etablera ett stående forum där olika funktioner möts regelbundet för att dela insikter och utveckla gemensamma mål. Se till att det är tryggt att ta upp problem och misstag.",
       "Integrera tvärfunktionell samverkan i projektmodeller och planering. Låt personer som arbetat tvärfunktionellt ta med sig arbetssättet till nästa projekt.",
-      "Dela erfarenheter externt genom nätverk eller partnerskap. Visa hur tvärfunktionell samverkan skapar lärande och innovation."
+      "Driv samma arbetssätt tillsammans med partner i era projekt, så att samverkan inte stannar vid er egen organisations gräns."
      ],
      "Fortsätt": [
-      "Fortsätt med nuvarande samverkan men lägg in korta reflektioner om vad som hindrar eller stärker lärandet.",
-      "Fortsätt med forumet men fokusera på att stärka kopplingen mellan lärdomar och beslut.",
-      "Fortsätt utveckla arbetssättet och följ upp hur det påverkar kvalitet, engagemang och innovationskraft.",
-      "Fortsätt och förvalta samverkanskulturen; stötta nya medarbetare i att förstå logiken bakom arbetssättet."
+      "Fortsätt, och avsluta varje gemensamt möte med två frågor: vad hindrade oss, och vad tar vi med oss?",
+      "Fortsätt med forumet, men låt varje möte sluta i ett beslut eller i en tydlig fråga till den som kan fatta det.",
+      "Fortsätt, och följ upp en konkret effekt, till exempel färre fel i gränssnitten mellan skeden eller kortare tid till beslut.",
+      "Fortsätt, och ge nya medarbetare en tidig tvärfunktionell uppgift tillsammans med erfarna kollegor. Kulturen lärs i arbetet, inte i introduktionen."
      ],
      "Utred": [
       "Kartlägg vilka funktioner som behöver samverka och vilka hinder som finns i dagens struktur.",
@@ -341,14 +341,14 @@ window.CONTENT = {
      "Vänta": [
       "Vänta tills pågående initiativ har avslutats och använd erfarenheterna som startpunkt.",
       "Avvakta med att skapa nya forum, men följ upp hur mycket samverkan som sker spontant.",
-      "Vänta tills befintliga projekt avslutats, men samla in lärdomar för framtida arbetssätt.",
-      "Vänta tills resurser finns att sprida arbetssättet brett."
+      "Vänta tills pågående projekt har avslutats, men gör en kort lärandegenomgång i vart och ett om var samverkan mellan funktionerna brast.",
+      "Vänta med bred spridning, men låt dem som kan arbetssättet bäst bemanna nya projekt."
      ],
      "Nej": [
-      "Om ni väljer bort frågan, dokumentera varför samverkan inte prioriteras just nu och när den kan tas upp igen.",
+      "Om ni avstår, utse ändå en person som ansvarar för överlämningar mellan funktioner i de största projekten. Där uppstår de dyraste felen.",
       "Avstå bara om befintliga strukturer redan stödjer tvärfunktionellt lärande. Förklara beslutet öppet.",
       "Om samverkan minskas, förtydliga hur ni ändå säkerställer lärande mellan funktioner.",
-      "Reflektera över riskerna med att pausa samverkan och hur det påverkar lärande och engagemang."
+      "Om samverkan pausas, håll utkik efter tecken på att silorna växer tillbaka: fler fel i gränssnitten och fler frågor som måste lyftas uppåt."
      ]
     }
    },
@@ -383,26 +383,26 @@ window.CONTENT = {
      "Skapa en stående punkt om innovationsklimat och framtidsperspektiv på ledningsmöten.",
      "Identifiera och kommunicera hur strategiska utmaningar kopplar till behov av förnyelse och lärande.",
      "Etablera innovationsnyckeltal eller utse ambassadörer i ledningsgruppen för att hålla lärande och riktning levande.",
-     "Integrera långsiktig förnyelse i alla styrelse- och ledningsprocesser och dela erfarenheter i omvärlden."
+     "Låt styrelsen eller en extern part utmana ledningens bild av framtiden, och pröva strategin mot scenarier där er nuvarande styrka blir mindre värd."
     ],
     "extern": [
      "Ta in stöd för att leda workshop om VUCA och strategiskt lärande i ledningen.",
      "Anlita coach för scenarioplanering och reflekterande strategiarbete.",
      "Låt extern facilitator utvärdera ledningsgruppens arbete kring förnyelse.",
-     "Dela erfarenheter nationellt eller internationellt och bidra i policy- eller forskningsforum."
+     "Bidra i branschens framsyn och i forskningsforum, och använd dem för att få era egna antaganden ifrågasatta."
     ],
     "atgard": {
      "Ja": [
       "Avsätt tid i ledningsgruppen för att diskutera framtiden utifrån konkreta scenarier, och vad de betyder för era prioriteringar i dag.",
       "Identifiera hur utveckling bidrar till affärsmål och kommunicera kopplingen till organisationen.",
       "Etablera tydliga roller, mål och forum för att följa upp innovationsarbete i ledningen.",
-      "Dela erfarenheter internt och externt om hur strategiskt ledarskap kan skapa lärande i osäkra lägen."
+      "Låt ledningsgruppen pröva sina strategiska antaganden mot nya scenarier varje år, och engagera er i branschens gemensamma framsyn."
      ],
      "Fortsätt": [
-      "Fortsätt nuvarande arbete men lägg in regelbunden reflektion om långsiktig riktning.",
-      "Fortsätt utveckla strategiska mål men följ upp hur de inspirerar lärande och förnyelse.",
-      "Fortsätt driva strategiska initiativ men bygg in tid för reflektion kring vad ni lär er.",
-      "Fortsätt förvalta förnyelsearbetet; integrera reflektion och lärande i ordinarie ledningsprocesser."
+      "Fortsätt, och ägna en ledningsgruppsträff per kvartal helt åt framtiden, utan driftfrågor på agendan.",
+      "Fortsätt, och fråga regelbundet några medarbetare om de kan beskriva den långsiktiga riktningen. Svaren visar om strategin når fram.",
+      "Fortsätt, och avsluta varje strategiskt initiativ med en lärandegenomgång i ledningsgruppen innan nästa startas.",
+      "Fortsätt, och ge någon i ledningsgruppen i uppdrag att ifrågasätta etablerade sanningar. Framgång gör ledningsgrupper överens för tidigt."
      ],
      "Utred": [
       "Kartlägg hur ledningen idag arbetar med utveckling och var frågor om framtid hanteras.",
@@ -413,14 +413,14 @@ window.CONTENT = {
      "Vänta": [
       "Vänta tills pågående strategiprocesser är avslutade, men notera behov av längre perspektiv.",
       "Avvakta tills pågående omorganisation eller planperiod är färdig, men samla lärdomar.",
-      "Vänta tills planerade strategiska förändringar stabiliserats.",
-      "Vänta tills ni har resurser att dela och sprida erfarenheter på ett hållbart sätt."
+      "Vänta tills planerade strategiska förändringar har stabiliserats, men håll en punkt om omvärlden kvar på ledningsgruppens agenda.",
+      "Vänta med att bredda arbetet, men se till att förnyelsefrågan har en tydlig ägare i ledningsgruppen under tiden."
      ],
      "Nej": [
-      "Dokumentera varför ni väljer bort frågan och hur ni kompenserar för brist på framtidsfokus.",
+      "Om ni avstår, bestäm hur ledningen ändå får signaler om förändringar i omvärlden, till exempel genom en återkommande omvärldsrapport.",
       "Om fokus ligger på drift, tydliggör hur ni ändå säkerställer reflektion kring förnyelse.",
-      "Dokumentera varför ni avstår från att utveckla förnyelsearbetet nu och när frågan tas upp igen.",
-      "Reflektera över konsekvenserna av att pausa utvecklingen av strategiskt ledarskap."
+      "Om ni avstår, se till att de som driver utveckling längre ner i organisationen vet om det, så att de inte väntar på stöd som inte kommer.",
+      "Om ni pausar, bestäm vilken signal i omvärlden som ska få er att agera. Framgångsrika ledningsgrupper pausar ofta för tidigt."
      ]
     }
    },
@@ -455,7 +455,7 @@ window.CONTENT = {
      "Identifiera hinder och möjligheter för medarbetares engagemang i utvecklingsarbete.",
      "Genomför dialogmöten där medarbetare kan dela idéer och förslag, och samla lärdomar.",
      "Utse interna ambassadörer för innovationsarbete och följ upp hur deras initiativ påverkar lärandet i organisationen.",
-     "Sprid framgångsrika exempel på engagemang och utveckla former för kollegialt lärande."
+     "Pröva om delaktigheten fortfarande är verklig eller har blivit en ritual: låt medarbetare utan särskilt uppdrag beskriva hur mycket de faktiskt kan påverka."
     ],
     "extern": [
      "Ta in processledning för att utforska kultur och engagemang i förändring.",
@@ -467,13 +467,13 @@ window.CONTENT = {
      "Ja": [
       "Skapa dialog med medarbetare om vad förnyelse betyder i deras vardag. Lyssna efter hinder och drivkrafter.",
       "Anordna en workshop där medarbetare kan bidra med idéer kring hur ni stärker ägarskap i förändring. Återkoppla synligt vad som händer med varje idé, även de som inte genomförs.",
-      "Skapa en struktur för ambassadörer eller interna förebilder som sprider lärande och engagemang.",
-      "Visa hur engagemanget bidrar till organisationens lärande och resultat. Dela exempel internt och externt."
+      "Ge de medarbetare som redan driver förändring informellt ett erkänt uppdrag med tid, mandat och ett forum att dela erfarenheter i.",
+      "Låt medarbetare vara med och forma nya mål, inte bara genomföra dem. Låt era förebilder också stötta partner i gemensamma projekt."
      ],
      "Fortsätt": [
-      "Fortsätt nuvarande kommunikation men lägg till korta reflektioner om lärande och engagemang.",
-      "Fortsätt med insamling av idéer, men följ upp vad som leder till handling och lärande.",
-      "Fortsätt följa upp hur era ambassadörer verkar och sprider erfarenheter i organisationen.",
+      "Fortsätt, men byt en del av informationen mot samtal: fråga medarbetarna vad som hindrar dem, och svara på det.",
+      "Fortsätt samla idéer, och redovisa öppet vad som hände med dem. Idéer som aldrig får svar slutar komma.",
+      "Fortsätt, och se till att ambassadörerna har avsatt tid och att deras chefer stödjer uppdraget. Utan det tröttnar de.",
       "Fortsätt förvalta kulturen av delaktighet; stöd nya medarbetare att förstå dess värde."
      ],
      "Utred": [
@@ -486,13 +486,13 @@ window.CONTENT = {
       "Vänta tills andra förändringsinitiativ har landat, men håll frågan levande i samtal.",
       "Avvakta med nya initiativ, men observera hur befintliga forum fungerar.",
       "Vänta tills pågående initiativ är utvärderade, men notera vad som stärker engagemang.",
-      "Vänta tills resurser finns för att bredda spridningen, men säkra kontinuitet i arbetet."
+      "Vänta med att bredda spridningen, men låt dem som redan engagerar sig behålla sin tid och sitt mandat."
      ],
      "Nej": [
-      "Dokumentera varför engagemang inte prioriteras just nu och när frågan ska tas upp igen.",
+      "Om ni avstår, säg det öppet till medarbetarna. Ett tydligt nej skadar förtroendet mindre än ett tyst.",
       "Om ni väljer bort förankring, förklara hur ni ändå säkrar delaktighet i beslut.",
-      "Dokumentera varför initiativet pausas och hur lärdomarna tas till vara.",
-      "Reflektera över riskerna med att minska medarbetarinflytandet och dokumentera skälen."
+      "Om initiativet pausas, tacka dem som drivit det och berätta vad deras arbete ledde till.",
+      "Om ni minskar medarbetarinflytandet, följ upp engagemanget över tid. Förlorat förtroende tar lång tid att bygga upp igen."
      ]
     }
    },
@@ -527,26 +527,26 @@ window.CONTENT = {
      "Identifiera vilka datamängder som redan finns tillgängliga och vilka som saknas för lärande.",
      "Skapa rutiner för att samla och strukturera data i prioriterade områden, och pröva hur de kan ge insikt.",
      "Använd data proaktivt i beslutsfattande och diskutera hur de påverkar era val och prioriteringar.",
-     "Dokumentera hur data används strategiskt för lärande och innovation och dela goda exempel internt."
+     "Låt en extern part granska om era data och mått fortfarande styr mot det viktiga, och om nya verktyg som AI förändrar vad som är möjligt."
     ],
     "extern": [
      "Anlita stöd för att sätta upp enkla verktyg för datainsamling och reflektion.",
      "Ta hjälp för att bygga datadrivna insiktsmodeller för lärande och beslut.",
      "Engagera extern analysresurs eller AI-expert för fördjupad mönsteranalys.",
-     "Delta i bransch- eller forskningsnätverk kring datadriven innovation."
+     "Delta i branschens arbete med gemensamma datastandarder. I byggsektorn avgör de hur mycket er egen data är värd."
     ],
     "atgard": {
      "Ja": [
       "Identifiera vilka data ni redan har tillgång till och vad de kan lära er om verksamheten.",
       "Utgå från ett konkret beslut som ska fattas och samla den data som behövs för just det. Diskutera vad ni lär er.",
       "Etablera processer för att använda data aktivt i analys, prioritering och reflektion kring resultat.",
-      "Visa hur data bidrar till lärande och strategiska beslut. Dela exempel internt och i nätverk."
+      "Dela data och insikter med partner i era projekt. I en projektbaserad bransch blir data mest värdefull när den följer med mellan skeden och aktörer."
      ],
      "Fortsätt": [
-      "Fortsätt samla data men lägg till reflektioner om vad siffrorna faktiskt betyder för besluten.",
-      "Fortsätt använda data i mindre projekt, men dokumentera lärdomar för framtida användning.",
-      "Fortsätt med datadrivet arbetssätt men lägg fokus på att dela insikter mellan team.",
-      "Fortsätt förvalta arbetssättet; håll fokus på kvalitet, transparens och lärandekultur."
+      "Fortsätt, och sluta samla data som inte används i något beslut. Det frigör tid för det som gör nytta.",
+      "Fortsätt i mindre projekt, och låt dem som arbetat med data ta med sig arbetssättet till nästa projekt.",
+      "Fortsätt, och ge varje viktigt dataflöde en ägare som ansvarar för kvaliteten och för att insikterna når dem som fattar beslut.",
+      "Fortsätt, och pröva regelbundet om era mått fortfarande mäter det viktiga, eller bara det som är lätt att mäta."
      ],
      "Utred": [
       "Kartlägg hur data används idag och vilka beslut som saknar faktabaserat underlag.",
@@ -556,15 +556,15 @@ window.CONTENT = {
      ],
      "Vänta": [
       "Vänta tills ni har en tydligare bild av vilka frågor som kan stärkas med data.",
-      "Avvakta med nya datainitiativ tills ni har färdigställt basstrukturer för insamling.",
+      "Avvakta med nya datainitiativ tills grundstrukturen för insamling är på plats, men låt ett pågående beslut visa om den data ni har räcker.",
       "Vänta tills pilotprojekt har utvärderats, men följ upp vilka beslut som byggde på fakta.",
-      "Vänta tills resurser finns för bred delning av erfarenheter, men säkra kontinuitet."
+      "Vänta med bred spridning, men se till att nyckelpersonerna inom data stannar kvar i arbetet."
      ],
      "Nej": [
-      "Om ni avstår, dokumentera varför och säkerställ att beslut inte enbart bygger på magkänsla.",
-      "Om datainsamling pausas, notera konsekvenser för utveckling och beslut.",
-      "Dokumentera varför datadrivet arbete pausas och hur det påverkar er förnyelseförmåga.",
-      "Reflektera över varför datadriven utveckling pausas och hur ni bevarar insiktskapacitet."
+      "Om ni avstår, välj ut de två eller tre viktigaste besluten och se till att de ändå får ett faktaunderlag.",
+      "Om datainsamlingen pausas, spara det som redan finns i ett format som går att använda senare. Data som går förlorad kan inte samlas in i efterhand.",
+      "Om datadrivet arbete pausas, behåll åtminstone den kompetens ni har byggt upp, till exempel genom att låta den stötta projekten vid behov.",
+      "Om utvecklingen pausas, var uppmärksamma på att beställare och konkurrenter kan gå förbi er snabbt på det här området."
      ]
     }
    },
@@ -599,7 +599,7 @@ window.CONTENT = {
      "Välj en idé och gör ett enkelt test med användare för att se vad ni lär er – inte bara om den fungerar.",
      "Skapa en rutin för att alltid testa nya idéer i liten skala innan större beslut.",
      "Gör lärandet till en tillgång, inte ett minne: låt dem som genomfört tester berätta om dem för andra team, och låt gärna personer flytta mellan projekt så att erfarenheterna följer med.",
-     "Dela era test- och lärmetoder internt och utbilda andra team i hur man lär snabbare genom test."
+     "Låt någon utifrån granska om era tester fortfarande prövar verkliga osäkerheter, eller mest bekräftar beslut som redan är fattade."
     ],
     "extern": [
      "Be extern partner leda en “fail fast”-workshop för att träna små experiment.",
@@ -612,13 +612,13 @@ window.CONTENT = {
       "Genomför ett enkelt test i liten skala för att se vad ni lär er – inte om idén ”fungerar”.",
       "Inför rutin att varje utvecklingsidé testas i liten skala innan beslut. Samla lärdomar i gemensamt format.",
       "Gör hypotesdrivet arbete till rutin: bestäm före varje test vad som räknas som ett lärande resultat, och låt ledningen bemöta misslyckade tester som information, inte som fel.",
-      "Dela ert arbetssätt i nätverk eller samarbeten för att bidra till gemensamt lärande om testkultur."
+      "Testa tillsammans med beställare och partner i gemensamma projekt, och låt dem dela både risken och lärandet."
      ],
      "Fortsätt": [
       "Fortsätt nuvarande arbete men lägg in kort reflektion efter varje försök: vad lärde vi oss?",
-      "Fortsätt med testning i projekt men följ upp hur lärdomarna delas mellan team.",
+      "Fortsätt testa i projekt, och bestäm före varje test vem som ska få veta resultatet.",
       "Fortsätt använda testmetoderna men skapa forum för att dela erfarenheter och misstag.",
-      "Fortsätt förvalta lärandekulturen – håll kvar rytmen i test och reflektion."
+      "Fortsätt, och pröva då och då en idé som går emot det ni tror på. Annars testar ni bara det ni redan vet."
      ],
      "Utred": [
       "Kartlägg hur nya idéer idag prövas, vem som gör det och vad som händer med resultaten.",
@@ -630,13 +630,13 @@ window.CONTENT = {
       "Vänta tills ni har tydliggjort syftet med testandet, men dokumentera vilka frågor som behöver prövas.",
       "Avvakta med fler tester tills pågående pilotprojekt är analyserade, men samla reflektioner.",
       "Vänta tills större förändringar är stabila men håll testmetodiken aktiv i mindre skala.",
-      "Vänta tills resurser finns att sprida modellen men dokumentera lärdomar löpande."
+      "Vänta med bred spridning, men låt dem som kan testmetodiken bemanna nya projekt."
      ],
      "Nej": [
-      "Notera varför ni väljer bort testning nu och vad som skulle krävas för att återuppta lärande i liten skala.",
-      "Dokumentera varför testandet pausas och hur det påverkar er förmåga att utvecklas.",
+      "Om ni avstår, fatta åtminstone större beslut om nya arbetssätt med en tydlig plan för att utvärdera dem efteråt.",
+      "Om testandet pausas, var medvetna om att nya idéer då införs i full skala utan att ha prövats. Det blir dyrare när de misslyckas.",
       "Klargör varför testkulturen inte prioriteras just nu och hur ni bevarar lärande i drift.",
-      "Reflektera över riskerna med att pausa testkulturen och hur ni skyddar lärandeförmågan."
+      "Om ni pausar, behåll åtminstone genomgångarna efter avslutade projekt. De är den billigaste formen av lärande."
      ]
     }
    },
@@ -671,26 +671,26 @@ window.CONTENT = {
      "Identifiera var dagens mätetal och rutiner missgynnar innovation eller lärande.",
      "Skapa parallella mål för drift respektive utveckling i ett pilotprojekt och analysera effekterna.",
      "Integrera utforskande/utförande-logik i ordinarie styrprocesser och följ upp vad det betyder för tempo och engagemang.",
-     "Dokumentera ert styrsätt som ramverk och bidra till gemensam lärande praxis i nätverk."
+     "Låt en extern part pröva om er styrmodell fortfarande passar verksamheten, eller om den har blivit ett mål i sig."
     ],
     "extern": [
      "Ta in hjälp för att analysera styrmodeller och föreslå dubbel logik.",
      "Anlita stöd för att utveckla balanserad styrning som främjar lärande.",
      "Be extern part jämföra er styrning med andra organisationer.",
-     "Dela erfarenheter i branschforum och bidra till standarder för adaptiv styrning."
+     "Bidra i branschens arbete med avtal och ersättningsformer som ger utrymme för utveckling i projekt."
     ],
     "atgard": {
      "Ja": [
       "Identifiera var nuvarande processer och styrning hindrar utveckling och lärande.",
       "Testa i ett projekt att följa upp utvecklingsarbete med lärandemål, till exempel vilka antaganden som har prövats, i stället för med samma ekonomiska mål som driften.",
       "Inför anpassade styrprinciper för olika typer av arbete och följ upp hur det påverkar engagemang och resultat.",
-      "Dela erfarenheter av hur ni kombinerar stabilitet och lärande i styrningen, internt och i nätverk."
+      "Utveckla styrningen tillsammans med beställare och partner, så att avtal och ersättningsformer ger utrymme för utveckling i projekten."
      ],
      "Fortsätt": [
-      "Fortsätt nuvarande arbetssätt men lägg in reflektion om hur styrningen påverkar utvecklingsförmågan.",
-      "Fortsätt med pilot men säkerställ att lärdomar dokumenteras och diskuteras i ledningsgruppen.",
-      "Fortsätt utveckla dubbel styrning och integrera reflektion om lärande i uppföljningen.",
-      "Fortsätt förvalta och förfina er modell; håll kvar rytmen i reflektion och förbättring."
+      "Fortsätt, och fråga projektledarna vilken regel eller vilket mått som oftast stoppar en bra idé.",
+      "Fortsätt med piloten, och låt projektledaren själv redovisa lärdomarna för ledningsgruppen.",
+      "Fortsätt, och följ upp utvecklingsarbete med lärandemål och driften med ekonomiska mål. Blanda inte ihop dem.",
+      "Fortsätt, och rensa regelbundet bland regler och mått. Styrsystem växer om ingen tar bort något."
      ],
      "Utred": [
       "Kartlägg hur beslut tas och var det finns spänningar mellan effektivitet och lärande.",
@@ -702,13 +702,13 @@ window.CONTENT = {
       "Vänta tills nuvarande styrmodell har utvärderats, men samla observationer under tiden.",
       "Avvakta tills pågående förändringsprojekt är avslutade, men följ upp vad de lär er.",
       "Vänta tills pågående styrjusteringar är utvärderade, men observera effekterna på lärandet.",
-      "Vänta tills resurser finns för bred spridning men håll fast vid strukturer för reflektion."
+      "Vänta med bred spridning, men behåll de anpassade styrprinciper som redan fungerar."
      ],
      "Nej": [
-      "Dokumentera varför ni väljer bort frågan och vilka konsekvenser det får för lärande och utveckling.",
+      "Om ni avstår, låt åtminstone utvecklingsarbete slippa de mest detaljerade driftmåtten. De mäter fel saker för utforskande arbete.",
       "Om ni pausar arbetet, notera vilka frågor som behöver återupptas för att inte tappa rörelse framåt.",
-      "Dokumentera skälen till att ni avstår från fortsatt styrutveckling och hur det påverkar innovation.",
-      "Reflektera över riskerna med att stanna upp styrutvecklingen och dokumentera lärdomarna."
+      "Om ni avstår från fortsatt styrutveckling, följ upp hur många utvecklingsidéer som stoppas av styrningen. Det visar priset för beslutet.",
+      "Om ni stannar här, var uppmärksamma på att styrningen åldras när verksamheten förändras."
      ]
     }
    },
@@ -743,23 +743,23 @@ window.CONTENT = {
      "Gör en nulägesanalys av nuvarande affärsmodell och reflektera över dess antaganden.",
      "Identifiera alternativa intäktslogiker och testa dem i liten skala tillsammans med kunder.",
      "Genomför återkommande experiment med nya erbjudanden och analysera vad ni lär av varje försök.",
-     "Dokumentera och sprid er metod för affärsutforskning i organisationen och i samarbeten."
+     "Pröva er nuvarande affärsmodell mot ett scenario där den slutar fungera, och låt en extern part utmana era antaganden."
     ],
     "extern": [
      "Låt facilitator leda workshop om nya affärsmodeller i er bransch.",
      "Ta hjälp att testa idéer med kunder genom intervjuer eller mock-ups.",
      "Låt extern part stödja strukturerade experiment (Lean Startup m.fl.).",
-     "Dela lärdomar i bransch- eller forskningsnätverk om affärsmodeller."
+     "Delta i forskning eller branschinitiativ om nya affärsmodeller och låt dem utmana era antaganden."
     ],
     "atgard": {
      "Ja": [
       "Gör en enkel kartläggning av hur ni skapar, levererar och fångar värde idag. Diskutera antagandena bakom modellen.",
       "Välj ett erbjudande och testa en alternativ värde- eller intäktslogik i liten skala, gärna tillsammans med en beställare eller kund som är villig att pröva.",
       "Inför återkommande reflektion i ledningsgruppen kring nya affärslogiker och lärdomar från pilotprojekt.",
-      "Dela ert arbetssätt för affärsmodellinnovation i nätverk eller samarbeten för att bidra till gemensamt lärande."
+      "Utforska affärsmodeller tillsammans med beställare och partner, där nya intäktslogiker kräver att flera aktörer ändrar sig samtidigt."
      ],
      "Fortsätt": [
-      "Fortsätt med befintlig modell men lägg in reflektion om vad som skulle kunna förändras på sikt.",
+      "Fortsätt med befintlig modell, och fråga en gång per år: vad skulle få vår affärsmodell att sluta fungera?",
       "Fortsätt utveckla testet och följ upp vilka lärdomar ni får om kundbehov och värde.",
       "Fortsätt experimentera med nya erbjudanden och följ upp lärandet i organisationen.",
       "Fortsätt utveckla era modeller men håll fast vid reflektion kring värdeskapande, inte bara tillväxt."
@@ -771,16 +771,16 @@ window.CONTENT = {
       "Utred hur ert sätt att arbeta kan spridas till partners eller nya affärsområden."
      ],
      "Vänta": [
-      "Vänta tills ni har samlat mer information om marknad och omvärld, men dokumentera möjliga risker.",
+      "Vänta tills ni vet mer om marknaden, men bestäm vilken information ni behöver och vem som tar fram den.",
       "Avvakta tills nuvarande satsningar utvärderats men samla idéer från kunder eller partners.",
       "Vänta tills pilotprojekt är avslutade men analysera resultaten tillsammans med teamen.",
       "Vänta tills resurser finns att bredda arbetet men håll reflektionen levande i ledningen."
      ],
      "Nej": [
-      "Dokumentera varför affärsmodellen inte ses som prioriterad just nu och vad som skulle krävas för att återuppta arbetet.",
+      "Om ni avstår, håll ändå koll på hur beställarnas krav och upphandlingsformer förändras. Där syns förändringar först.",
       "Om ni väljer bort utforskning, beskriv varför och hur ni säkrar omvärldsbevakning ändå.",
-      "Dokumentera varför ni pausar vidare utveckling och vilka möjligheter som riskerar att gå förlorade.",
-      "Reflektera över följderna av att inte utforska nya värden och dokumentera resonemangen."
+      "Om ni pausar, skriv ner vilka möjligheter ni avstår från. Listan blir användbar när förutsättningarna ändras.",
+      "Om ni slutar utforska, var uppmärksamma på att en framgångsrik affärsmodell är som svårast att ifrågasätta."
      ]
     }
    },
@@ -815,25 +815,25 @@ window.CONTENT = {
      "Kartlägg vilken kompetens som är kritisk för utveckling och var den finns idag.",
      "Utveckla en plan för intern kompetensutveckling och lärande mellan team.",
      "Etablera samarbeten med externa aktörer som kompletterar era kompetensbehov.",
-     "Dokumentera er strategi för kompetensförsörjning och sprid lärdomar om hur partnerskap stärker er utveckling."
+     "Pröva om era partnerskap fortfarande tillför något nytt, eller om de har blivit bekväma. Sök medvetet partner som tänker annorlunda än ni."
     ],
     "extern": [
      "Ta hjälp att analysera framtida kompetensbehov och lärandegap.",
      "Anlita stöd för att identifiera nya kompetensspår och samarbeten.",
      "Be extern part hjälpa till att bygga partnerskap för långsiktig kompetens.",
-     "Delta i nationella eller internationella nätverk för kompetens och lärande."
+     "Delta i nätverk utanför er egen bransch, där ni möter kompetens som ni inte redan har."
     ],
     "atgard": {
      "Ja": [
       "Kartlägg vilken kompetens som är avgörande för utveckling och var den finns idag.",
       "Skapa vägar för kunskap att följa med människor: rotation mellan projekt, mentorskap eller nätverk för dem som arbetar med samma frågor.",
       "Etablera partnerskap med externa aktörer för att stärka kompetens och innovation. Se till att någon internt äger samarbetet och har kunskap nog att ta emot det ni lär er.",
-      "Dela erfarenheter av hur ni utvecklar kompetens genom samverkan i nätverk och projekt."
+      "Utveckla kompetens tillsammans med partner i era projekt, till exempel genom gemensamma utbildningar eller utbyte av personer."
      ],
      "Fortsätt": [
-      "Fortsätt med befintlig bemanning men lägg in reflektion om framtida kompetensbehov.",
+      "Fortsätt, och fråga vid varje rekrytering: vilken kompetens behöver vi om fem år, inte bara i dag?",
       "Fortsätt med befintliga lärinsatser men följ upp hur de bidrar till verksamhetsmål.",
-      "Fortsätt samarbeten men lägg in rutiner för gemensam reflektion och lärande.",
+      "Fortsätt samarbetena, och se till att någon internt tar emot och sprider det ni lär er av partnerna.",
       "Fortsätt och förvalta partnerskapen; håll fokus på lärande och ömsesidigt värde."
      ],
      "Utred": [
@@ -849,10 +849,10 @@ window.CONTENT = {
       "Vänta tills resurser finns för bredare satsning men håll dialogen med nyckelaktörer levande."
      ],
      "Nej": [
-      "Dokumentera varför kompetensfrågan inte prioriteras nu och när den ska tas upp igen.",
+      "Om ni avstår, identifiera åtminstone de personer vars kunskap ni inte har råd att förlora.",
       "Om ni väljer bort utvecklingsinsatser, förtydliga hur ni ändå säkrar långsiktig kompetens.",
       "Dokumentera varför partnerskap pausas och hur ni hanterar kunskapsbehov under tiden.",
-      "Reflektera över riskerna med att pausa kompetensutveckling och hur det påverkar lärandet."
+      "Om ni pausar, var uppmärksamma på att kompetens tar år att bygga men kan försvinna med några få personer."
      ]
     }
    },
@@ -887,7 +887,7 @@ window.CONTENT = {
      "Lista pågående förändringar och analysera varför de lyckats eller misslyckats – vad lär vi oss?",
      "Skapa ett gemensamt arbetssätt för små förändringsinitiativ (t.ex. checklista eller mall).",
      "Integrera förändringsledning i projektmodeller och utvecklingsprocesser och följ upp effekten.",
-     "Dela goda exempel i organisationen och bygg en kultur som lär av förändring."
+     "Låt de som berördes av era senaste förändringar, inte de som ledde dem, bedöma hur väl de genomfördes."
     ],
     "extern": [
      "Ta in processledare för att facilitera lärande av tidigare förändringscase.",
@@ -900,13 +900,13 @@ window.CONTENT = {
       "Samla erfarenheter från tidigare förändringar och prata om vad ni lärde er – inte bara vad som gick fel.",
       "Skapa en enkel metod för små förändringar med tydligt syfte och reflektion, och låt dem som berörs vara med och utforma förändringen.",
       "Integrera förändringsledning i projekt- och styrmodeller. Gör reflektion och lärande till en del av processen.",
-      "Dela era arbetssätt för lärande förändringsledning internt och i nätverk."
+      "Led förändringar tillsammans med partner i era projekt, där förändringen kräver att flera organisationer ändrar sig."
      ],
      "Fortsätt": [
       "Fortsätt pågående förändring men avsätt tid för korta reflektioner efter varje steg.",
       "Fortsätt använda er metod men följ upp hur den påverkar engagemang och tempo.",
       "Fortsätt arbetet men skapa forum där chefer och medarbetare delar erfarenheter av förändring.",
-      "Fortsätt förvalta er modell och håll fokus på reflektion och delning av lärdomar."
+      "Fortsätt, och var uppmärksamma på förändringströtthet. Fler förändringar samtidigt är inte alltid mer förändring."
      ],
      "Utred": [
       "Kartlägg hur förändringar drivs idag och var kommunikationen eller engagemanget brister.",
@@ -921,10 +921,10 @@ window.CONTENT = {
       "Vänta tills resurser finns för spridning men behåll strukturen för reflektion i vardagen."
      ],
      "Nej": [
-      "Dokumentera varför förändringsledning inte prioriteras just nu och vilka risker det medför.",
+      "Om ni avstår, genomför ändå inga större förändringar utan att de berörda har fått vara med och påverka.",
       "Om ni väljer bort arbetet, förklara hur ni ändå bevarar lärande i förändringar.",
       "Klargör varför förändringsstödet pausas och hur ni hanterar effekterna på kultur och tillit.",
-      "Reflektera över riskerna med att pausa förändringsarbete och dokumentera lärdomarna."
+      "Om ni pausar, använd tiden till att låta tidigare förändringar sätta sig. Det är ofta mer värt än en ny förändring."
      ]
     }
    },
@@ -959,7 +959,7 @@ window.CONTENT = {
      "Identifiera beroenden mellan teknik, process och mål i ett konkret projekt.",
      "Utbilda projektledare i grundläggande systemtänk och reflektion kring teknikens roll.",
      "Integrera teknologiska scenarier i strategisk planering och följ upp hur de påverkar arbetet.",
-     "Dokumentera och sprid arbetssätt för helhetssyn i beslutsfattande och lär av samverkan mellan teknik och människa."
+     "Låt en extern part granska om er systemhelhet fortfarande håller när nya verktyg, till exempel AI, kommer in."
     ],
     "extern": [
      "Ta hjälp att visualisera beroenden mellan teknik, process och mål.",
@@ -971,14 +971,14 @@ window.CONTENT = {
      "Ja": [
       "Identifiera hur teknik, process och mål hänger ihop i ett konkret projekt. Diskutera vad som fungerar och inte.",
       "Utbilda team i hur tekniska beslut påverkar processer och mål. Använd ett konkret case som underlag.",
-      "Inkludera teknik- och systemperspektiv i strategiska diskussioner och beslutsunderlag.",
-      "Dela erfarenheter om hur ni integrerar teknik, process och mål i lärande och beslutsfattande."
+      "Utse i varje större projekt en aktör som äger den digitala helheten, med gemensamma digitala mål och en gemensam informationsstruktur för alla parter.",
+      "Driv gemensamma digitala mål och informationsstrukturer tillsammans med beställare och partner, så att digital nytta mäts i projektets gemensamma effektivitet."
      ],
      "Fortsätt": [
-      "Fortsätt med nuvarande teknikanvändning men lyft reflektioner om hur den påverkar arbetssätt och lärande.",
-      "Fortsätt befintlig utveckling men inkludera gemensamma reflektioner om teknikens roll i beslutsfattande.",
+      "Fortsätt, och fråga efter varje projekt: vilket system skapade dubbelarbete, och varför?",
+      "Fortsätt, och låt användarna i produktionen vara med när tekniska val görs.",
       "Fortsätt utveckla systemförståelsen men lägg till regelbundna genomgångar av samband och risker.",
-      "Fortsätt förvalta helhetsperspektivet; uppmuntra andra att reflektera kring systemens konsekvenser."
+      "Fortsätt, och följ upp de digitala målen i projekten över hela projekttiden, inte bara vid start."
      ],
      "Utred": [
       "Kartlägg vilka tekniska system som används, av vem och hur de stöder eller hindrar helhetssyn, även i gränssnitten mot beställare, konsulter och underentreprenörer.",
@@ -990,13 +990,13 @@ window.CONTENT = {
       "Vänta tills nuvarande digitaliseringsinitiativ är avslutade men dokumentera insikter under tiden.",
       "Avvakta tills ni har översikt över pågående system, men samla input från användarna.",
       "Vänta tills nuvarande investeringar utvärderats men håll reflektionen levande i projekten.",
-      "Vänta tills resurser finns för spridning men håll kvar kontinuerliga reflektioner i projekten."
+      "Vänta med bred spridning, men behåll ansvaret för den digitala helheten i de projekt där det redan finns."
      ],
      "Nej": [
-      "Dokumentera varför teknikutveckling inte prioriteras nu och vilka effekter det får på lärande och effektivitet.",
+      "Om ni avstår, se till att ingen ny teknik införs i ett projekt utan att någon har tänkt igenom hur den påverkar de andra parterna.",
       "Om ni väljer bort arbetet, säkra att någon ansvarar för tekniska beroenden i större projekt.",
-      "Dokumentera varför ni avstår från vidare teknikutveckling och hur det påverkar helhetsperspektivet.",
-      "Reflektera över riskerna med att pausa systemtänkandet och hur ni bevarar förståelsen för helheten."
+      "Om ni avstår, var uppmärksamma på att digitala initiativ utan gemensam riktning tenderar att bli öar som inte går att koppla ihop.",
+      "Om ni pausar, behåll ändå en person som har överblick över era system och deras beroenden."
      ]
     }
    }
