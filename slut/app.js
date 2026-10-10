@@ -117,7 +117,9 @@
     var svag = (sh.rorelse || []).filter(function (r) { return r.efter == null || r.fore == null || r.efter <= r.fore; })[0];
     if ((b.lage === 'sarbar' || b.lage === 'fara') && svag) forslag.push({ titel: R.forslagAxel, text: fill(R.forslagAxelText, { axel: AXK[svag.axel] || svag.axel, formaga: lc(svag.behov || '') }) });
     if (k.s.faste < 2) forslag.push({ titel: R.forslagFaste, text: R.forslagFasteText });
-    var sett = {}; (sh.forsok || []).filter(function (f) { return f.nasta && f.status === 'klart' && !f.fortsatt && !sett[f.nasta] && (sett[f.nasta] = true); }).slice(-2).forEach(function (f) { forslag.push({ titel: R.forslagNasta, text: f.nasta }); });
+    var sett = {}, nasta = (sh.forsok || []).filter(function (f) { return f.nasta && f.status === 'klart' && !f.fortsatt && !sett[f.nasta] && (sett[f.nasta] = true); });
+    if (nasta.length === 1) forslag.push({ titel: R.forslagNasta, text: nasta[0].nasta });
+    else if (nasta.length > 1) forslag.push({ titel: R.forslagNastaFler, text: nasta.map(function (f) { var i = (sh.riktning || []).map(function (r) { return r.fraga; }).indexOf(f.fraga); return f.nasta.replace(/[.]$/, '') + (i >= 0 ? ' (lärandefråga ' + (i + 1) + ')' : ''); }).join('; ') + '.' });
     if (sh.ledningensHinder) forslag.push({ titel: R.forslagHinder, text: sh.ledningensHinder });
     if (s.robustaAtgarder && s.robustaAtgarder.length) forslag.push({ titel: R.forslagRobust, text: lista(s.robustaAtgarder.slice(0, 3)) + '.' });
     forslag.push({ titel: R.forslagNyRunda, text: R.forslagNyRundaText });

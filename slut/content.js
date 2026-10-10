@@ -1,7 +1,7 @@
 // Innehållsfil för slutsidan. Texter kan redigeras här utan att röra koden.
 // Slutsidan visas när Sense, See och Shift är gjorda i följd. Den läser sparfilen från Shift, som bär med sig hela kedjan.
 window.CONTENT = {
- "version": "0.1 prototyp",
+ "version": "0.2 prototyp",
  "titel": "Slutsida",
  "verktyg": "Dialogverktyg — Learning Curve Approach",
  "upphov": "© Engströms Mickla AB 2026",
@@ -76,6 +76,7 @@ window.CONTENT = {
   "forslagAxel": "Rikta nästa lärperiod",
   "forslagAxelText": "Fortsätt rikta försöken mot {axel} för {formaga}, där mottagningsförmågan fortfarande är svagast.",
   "forslagNasta": "Nästa lilla försök",
+  "forslagNastaFler": "Nästa små försök",
   "forslagHinder": "Ledningens bidrag",
   "forslagRobust": "Robusta åtgärder från Sense",
   "forslagNyRunda": "Nästa varv",

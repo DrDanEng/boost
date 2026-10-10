@@ -346,7 +346,8 @@
     var dags = state.forsok.filter(function (f) { return status(f) === 'dags'; });
     if (dags.length) forslag.push({ titel: R.forslagAvlas, text: fill(R.forslagAvlasText, { lista: lista(dags.map(function (f) { return '”' + f.titel + '”'; })) }) });
     var oppna = av.filter(function (f) { return !state.forsok.some(function (x) { return x.fore === f.id; }); });
-    oppna.forEach(function (f) { forslag.push({ titel: R.forslagNasta + ' (' + short(fraga(f.fraga) ? fraga(f.fraga).text : '', 50) + ')', text: f.av.nasta }); });
+    if (oppna.length === 1) forslag.push({ titel: R.forslagNasta, text: oppna[0].av.nasta });
+    else if (oppna.length > 1) forslag.push({ titel: R.forslagNastaFler, text: oppna.map(function (f) { var i = state.fragor.indexOf(fraga(f.fraga)); return f.av.nasta.replace(/[.]$/, '') + (i >= 0 ? ' (lärandefråga ' + (i + 1) + ')' : ''); }).join('; ') + '.' });
     var sk = av.filter(function (f) { return f.av.beslut === 'skala'; }).map(function (f) { return '”' + f.titel + '”'; });
     if (sk.length || state.period.skala.trim()) forslag.push({ titel: R.forslagSkala, text: (sk.length ? lista(sk) + '. ' : '') + state.period.skala.trim() });
     var hinder = (state.period.hinder || state.ram.hinder || '').trim();
