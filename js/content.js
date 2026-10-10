@@ -1,7 +1,7 @@
 // Innehållsfil för landningssidan. Texter kan redigeras här utan att röra koden.
 // Status per modul: "oppen" (länkas) eller "kommer" (visas som under utveckling).
 window.CONTENT = {
- "version": "0.4 prototyp",
+ "version": "0.5 prototyp",
  "fredLank": "https://www.researchgate.net/profile/Dalia-Mukhtar-Landgren/publication/366482837_Larande_genom_temporar_organisering_-_projekt_piloter_och_experiment_i_Malmo_stad/links/63a3341cc3c9bb1647fb905d/Laerande-genom-temporaer-organisering-projekt-piloter-och-experiment-i-Malmoe-stad.pdf",
  "upphov": "© Engströms Mickla AB 2026",
  "eyebrow": "Smart Built Boost",
@@ -51,8 +51,8 @@ window.CONTENT = {
    "lank": "shift/",
    "rubrik": "Shift: från insikt till rörelse",
    "underrubrik": "Hur vi gör ett första litet steg",
-   "text": "Ledningen formulerar en riktning för lärande. Därefter planeras små tester som riktas mot det som håller tillbaka, genomförs under några veckor och följs upp, så att varje test leder till nästa.",
-   "far": "En riktning för lärande, testkort och lärkort, och en rytm för uppföljning.",
+   "text": "Ledningen formulerar en riktning för lärande. Därefter planeras små trimförsök som riktas mot det som håller tillbaka, genomförs under några veckor och följs upp med en kursavläsning, så att varje försök leder till nästa.",
+   "far": "En riktning för lärande, trimförsök och kursavläsningar, och er lärandekurva.",
    "tid": "En lärperiod om ungefär fyra veckor."
   }
  },
@@ -75,14 +75,8 @@ window.CONTENT = {
   "vantar": "{modul} är under utveckling. Spara filen tills vidare, den går att läsa in när modulen är klar."
  },
  "pagaende": "Påbörjad körning i den här webbläsaren",
- "kallorRubrik": "Forskningsunderlag i urval",
- "kallor": [
-  "Fred, M. & Mukhtar-Landgren, D. (2022). Lärande genom temporär organisering: projekt, piloter och experiment i Malmö stad. Kunskapsunderlag framtaget för Malmö Tillväxtkommission.",
-  "Rohrbeck, R. & Kum, M. E. (2018). Corporate foresight and its impact on firm performance: A longitudinal analysis. Technological Forecasting and Social Change, 129, 105-116.",
-  "Zahra, S. A. & George, G. (2002). Absorptive capacity: A review, reconceptualization, and extension. Academy of Management Review, 27(2), 185-203.",
-  "Weiner, B. J. (2009). A theory of organizational readiness for change. Implementation Science, 4, 67.",
-  "Michie, S., van Stralen, M. M. & West, R. (2011). The behaviour change wheel. Implementation Science, 6, 42.",
-  "Weick, K. E. (1984). Small wins: Redefining the scale of social problems. American Psychologist, 39(1), 40-49."
- ],
+ "teoriRubrik": "Vetenskaplig grund",
+ "teoriText": "Varje del av verktygen bygger på forskning om absorptionsförmåga, strategisk framsyn, beteendeförändring och organisatoriskt lärande. Teoriplattformen beskriver hur forskningsfälten hänger ihop och innehåller hela litteraturlistan.",
+ "teoriKnapp": "Till Teoriplattformen",
  "integritet": "Allt ni skriver sparas bara i er webbläsare och i de filer ni själva laddar ner. Ingenting skickas till oss eller någon annan. Sidan har ingen statistik och inga kakor."
 };

@@ -1,7 +1,7 @@
 // Innehållsfil för Shift. Texter kan redigeras här utan att röra koden.
 // Bygger på Learning Direction Canvas och Trim Tab Canvas (Dan Engström), uppdelad i trimförsök och kursavläsning.
 window.CONTENT = {
- "version": "0.1 prototyp",
+ "version": "0.2 prototyp",
  "titel": "Shift",
  "verktyg": "Dialogverktyg — Learning Curve Approach",
  "undertitel": "Från insikt till rörelse: små trimförsök som ger momentum",
@@ -139,6 +139,7 @@ window.CONTENT = {
   "kurvaText": "Varje punkt är en kursavläsning. Linjerna visar hur många lärdomar som har delats och hur många som har förts in i ett arbetssätt. En brantare kurva betyder att organisationen tar vara på sina lärdomar snabbare.",
   "rorelseRubrik": "Rörelse i mottagningsförmågan",
   "period": "Avsluta lärperioden",
+  "kalender": "Lägg in datumen i kalendern",
   "rapport": "Visa rapporten"
  },
  "period": {
@@ -182,20 +183,5 @@ window.CONTENT = {
  "parkering": {
   "rubrik": "Parkering",
   "text": "Tankar att hantera senare. Kommer med i rapporten."
- },
- "kallor": [
-  "Gioia, D. A. & Chittipeddi, K. (1991). Sensemaking and sensegiving in strategic change initiation. Strategic Management Journal, 12(6), 433-448.",
-  "Michie, S., van Stralen, M. M. & West, R. (2011). The behaviour change wheel. Implementation Science, 6, 42.",
-  "Gollwitzer, P. M. & Sheeran, P. (2006). Implementation intentions and goal achievement: A meta-analysis. Advances in Experimental Social Psychology, 38, 69-119.",
-  "Solberg, L. I., Mosser, G. & McDonald, S. (1997). The three faces of performance measurement. Joint Commission Journal on Quality Improvement, 23(3), 135-147.",
-  "Reed, J. E. & Card, A. J. (2016). The problem with Plan-Do-Study-Act cycles. BMJ Quality & Safety, 25(3), 147-152.",
-  "Institute for Healthcare Improvement. Model for Improvement: Testing changes.",
-  "Weick, K. E. (1984). Small wins: Redefining the scale of social problems. American Psychologist, 39(1), 40-49.",
-  "Amabile, T. M. & Kramer, S. J. (2011). The power of small wins. Harvard Business Review, 89(5), 70-80.",
-  "Zollo, M. & Winter, S. G. (2002). Deliberate learning and the evolution of dynamic capabilities. Organization Science, 13(3), 339-351.",
-  "Edmondson, A. C., Bohmer, R. M. & Pisano, G. P. (2001). Disrupted routines: Team learning and new technology implementation in hospitals. Administrative Science Quarterly, 46(4), 685-716.",
-  "Pisano, G. P., Bohmer, R. M. J. & Edmondson, A. C. (2001). Organizational differences in rates of learning. Management Science, 47(6), 752-768.",
-  "Argyris, C. & Schön, D. A. (1978). Organizational Learning: A Theory of Action Perspective. Addison-Wesley.",
-  "Edmondson, A. C. (1999). Psychological safety and learning behavior in work teams. Administrative Science Quarterly, 44(2), 350-383."
- ]
+ }
 };

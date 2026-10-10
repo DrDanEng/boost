@@ -1,8 +1,8 @@
 // Innehållsfil för Sense (Collision Compass). Texter kan redigeras här utan att röra koden.
 // Strukturen bygger på Dans Collision Compass, generaliserad från fastighet till verksamhet.
-// Forskningsstöd per skede: se CLAUDE.md och "kallor" nedan.
+// Forskningsstöd per skede: se CLAUDE.md och Teoriplattformen (teori/).
 window.CONTENT = {
- "version": "0.4 prototyp",
+ "version": "0.5 prototyp",
  "titel": "Sense",
  "verktyg": "Dialogverktyg — Learning Curve Approach",
  "undertitel": "Collision Compass: var möter framtiden er verksamhet?",
@@ -180,7 +180,8 @@ window.CONTENT = {
   "text": "Ge varje framtid ett namn och en kort berättelse om hur det ser ut där. Använd byggstenarna: de förutbestämda elementen finns i alla fyra, och de övriga trenderna kan färga berättelserna.",
   "byggstenar": "Byggstenar",
   "namn": "Namn",
-  "berattelse": "Kort berättelse"
+  "berattelse": "Kort berättelse",
+  "andrade": "Axlarna har ändrats sedan ni namngav framtiderna. Kontrollera att namnen och berättelserna fortfarande stämmer med kombinationerna."
  },
  "varden": {
   "rubrik": "Vad bär er verksamhet i dag?",
@@ -293,19 +294,6 @@ window.CONTENT = {
   },
   "nastaRubrik": "Nästa steg: See",
   "nastaText": "I See bedömer ni hur redo organisationen är att ta emot den framtid ni valt: förmåga, mandat och vilja. Scenariot och kollisionerna följer med.",
-  "tillSee": "Gå vidare till See",
-  "kallorRubrik": "Metod och källor"
- },
- "kallor": [
-  "Ramírez, R. & Wilkinson, A. (2016). Strategic Reframing: The Oxford Scenario Planning Approach. Oxford University Press.",
-  "Voros, J. (2003). A generic foresight process framework. Foresight, 5(3), 10-21.",
-  "Hiltunen, E. (2008). The future sign and its three dimensions. Futures, 40(3), 247-260.",
-  "Burt, G. & Wright, G. (2006). Pre-determined elements in the business environment: Reflecting on the legacy of Pierre Wack. Futures, 38(7), 830-840.",
-  "Vester, F. (2007). The Art of Interconnected Thinking. MCB Verlag.",
-  "Wright, G., Bradfield, R. & Cairns, G. (2013). Does the intuitive logics method, and its recent enhancements, produce effective scenarios? Technological Forecasting and Social Change, 80(4), 631-642.",
-  "Osterwalder, A. & Pigneur, Y. (2010). Business Model Generation. Wiley.",
-  "Dewar, J. A. (2002). Assumption-Based Planning. Cambridge University Press.",
-  "van der Heijden, K. (2005). Scenarios: The Art of Strategic Conversation. Wiley.",
-  "Rohrbeck, R. & Kum, M. E. (2018). Corporate foresight and its impact on firm performance. Technological Forecasting and Social Change, 129, 105-116."
- ]
+  "tillSee": "Gå vidare till See"
+ }
 };

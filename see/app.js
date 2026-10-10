@@ -98,7 +98,7 @@
     s.push('egna', 'rapport');
     return s;
   }
-  function go(step) { view.step = step; render(); window.scrollTo(0, 0); app.focus({ preventScroll: true }); }
+  function go(step) { view.step = step; if (step !== 'start' && state) { state.steg = step; save(); } render(); window.scrollTo(0, 0); app.focus({ preventScroll: true }); }
   function nav(delta) { var s = steps(); var i = s.indexOf(view.step); go(s[Math.max(0, Math.min(s.length - 1, i + delta))]); }
   function canNext() {
     var st = view.step;
@@ -311,7 +311,7 @@
     }
     if (state.egnaAtgarder) h += '<div class="card"><div class="eyebrow">Egna förslag på åtgärder</div><p style="white-space:pre-wrap;margin:0">' + esc(state.egnaAtgarder) + '</p></div>';
     h += '<h3>Övriga förmågor</h3><div class="card tight">' + CAPS.filter(function (c) { return state.valda.indexOf(c.id) < 0; }).map(function (c) { return '<p class="small"><b>' + esc(c.namn) + ' (' + fmtN(state.nivaer[c.id]) + '):</b> ' + esc(c.intern[band(state.nivaer[c.id])]) + '</p>'; }).join('') + '</div>';
-    h += guideHTML();
+    h += guideHTML() + LCA.teoriHTML();
     h += '<div class="card tight"><div class="eyebrow">' + esc(B.lca.nastaRubrik) + '</div><p class="small" style="margin:0">' + esc(B.lca.nastaText) + '</p><div class="actions" style="margin-top:12px"><button class="btn" data-act="toshift">' + esc(B.lca.tillShift) + ' →</button><button class="btn ghost" data-act="savefile">Spara sparfil</button><a class="btn quiet" href="../">' + esc(B.lca.tillLanding) + '</a></div></div>';
     h += '<div class="actions"><button class="btn quiet" data-act="restart">Börja om med en ny körning</button></div>';
     return h;
@@ -347,7 +347,7 @@
     else if (st === 'rapport') html = reportHTML();
     if (st !== 'start' && st !== 'facil' && st !== 'rapport') {
       var nxt = s[i + 1] === 'rapport' ? 'Visa rapporten' : 'Nästa';
-      html += '<div class="navrow"><button class="btn quiet" data-act="back">← Tillbaka</button><span class="hint" id="nexthint"></span><button class="btn" data-act="next"' + (canNext() ? '' : ' disabled') + '>' + nxt + ' →</button></div>';
+      html += '<div class="navrow"><button class="btn quiet" data-act="back">← Tillbaka</button><span class="hint" id="nexthint"></span><button class="btn quiet savebtn" data-act="savefile" title="Ladda ner en sparfil så att arbetet inte går förlorat">Spara sparfil</button><button class="btn" data-act="next"' + (canNext() ? '' : ' disabled') + '>' + nxt + ' →</button></div>';
     }
     app.innerHTML = html;
     var pct = st === 'start' || st === 'facil' ? 0 : Math.round(i / (s.length - 1) * 100);
@@ -362,7 +362,7 @@
     if (act === 'next') { if (canNext()) nav(1); return; }
     if (act === 'back') { nav(-1); return; }
     if (act === 'new') { if (!load() || confirmReset()) { state = fresh(); save(); go('uppgifter'); } return; }
-    if (act === 'resume') { state = load(); go(resumeStep()); return; }
+    if (act === 'resume') { state = load(); go(state.steg && state.steg !== 'start' && steps().indexOf(state.steg) >= 0 ? state.steg : resumeStep()); return; }
     if (act === 'open') { document.getElementById('file-load').click(); return; }
     if (act === 'facil') { go('facil'); return; }
     if (act === 'faciladd') { document.getElementById('file-facil').click(); return; }
@@ -533,7 +533,7 @@
       rule(); label('Övriga förmågor');
       CAPS.filter(function (c) { return state.valda.indexOf(c.id) < 0; }).forEach(function (c) { text(c.namn + ' (' + fmtN(state.nivaer[c.id]) + '): ' + c.intern[band(state.nivaer[c.id])], { size: 9, after: 1.5 }); });
       rule(); label(B.sammanfattning.lasRubrik); B.sammanfattning.las.forEach(function (g) { text(g.term + '.', { size: 9.5, bold: true, after: 0.3 }); text(g.text, { size: 9, after: 2 }); });
-      rule(); label('Om verktyget', MUT); text(M.intro[1] + ' ' + B.integritet, { size: 8.5, color: MUT });
+      rule(); label('Om verktyget', MUT); text(M.intro[1] + ' ' + B.integritet, { size: 8.5, color: MUT }); text(LCA.TEORI.text + ': ' + LCA.TEORI.url, { size: 8.5, color: MUT });
       var n = doc.getNumberOfPages(), logo = document.querySelector('.footer img');
       if (logo && !logo.complete) logo = null;
       for (var i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text(B.verktyg + ' · ' + B.titel + ' · version ' + B.version + ' · ' + B.upphov, L, PH - 10); doc.text('Sida ' + i + ' av ' + n, L + Wt, PH - 10, { align: 'right' }); if (logo) { try { doc.addImage(logo, 'PNG', L + Wt - 24, PH - 13.6, 4.5, 4.5); } catch (e) {} } }

@@ -75,10 +75,17 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 ## Fast rapportmall (alla moduler och slutrapporten)
 - Varje rapport börjar med **Sammanfattning**, **Analys** och **Förslag**, därefter rubriken **Detaljer**. Mallen finns i `LCA.reportBlock` och `LCA.reportPDF` i `js/lca.js`.
 
-## Begrepp och Om metoden
+## Begrepp, Om metoden och Teoriplattform
+- `teori/` (Teoriplattform) innehåller resonemanget om metodens vetenskapliga grund och hela litteraturlistan, i `js/info.js` under `teori`. Den nås från Om metoden, Begrepp och startsidan.
+- Rapporterna listar inga källor; de hänvisar till Teoriplattformen (`LCA.teoriHTML`, `LCA.TEORI`). Nya källor läggs i `js/info.js`.
 - `begrepp/` är en sökbar begreppslista; `om/` beskriver bakgrund, upplägg, mål, upphovsman och kontakt (dan@mickla.se, 0709 60 70 76). Innehållet ligger i `js/info.js`.
 - Länkarna Begrepp och Om metoden finns i sidhuvudet på alla sidor och öppnas i en ny flik så att körningen inte avbryts.
 - Första gången ett begrepp eller en canvas dyker upp i en modul visas en kort beskrivning med länk till begreppslistan.
+
+## Navigering och sparande
+- Länken Hem finns i sidhuvudet på alla sidor utom startsidan. Körningen sparas löpande i webbläsaren, och varje modul minns senaste steg (`state.steg`), så Fortsätt tar användaren tillbaka exakt dit hen var.
+- Knappen Spara sparfil finns på varje steg i alla moduler, eftersom webbläsarens lagring kan tömmas (privat läge, rensning, annan dator).
+- Shift kan ladda ner en kalenderfil (.ics) med datum för start, kursavläsning och lärperiodens slut.
 
 ## Struktur för flera moduler
 

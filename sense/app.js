@@ -204,7 +204,7 @@
     }
     return m;
   }
-  function go(step) { view.step = step; render(); window.scrollTo(0, 0); app.focus({ preventScroll: true }); }
+  function go(step) { view.step = step; if (step !== 'start' && state) { state.steg = step; save(); } render(); window.scrollTo(0, 0); app.focus({ preventScroll: true }); }
   function nav(d) { var s = steps(), i = s.indexOf(view.step); go(s[Math.max(0, Math.min(s.length - 1, i + d))]); }
   function resumeStep() { var s = steps(); for (var i = 1; i < s.length - 1; i++) if (!canNext(s[i])) return s[i]; return 'rapport'; }
   function rerender() { var y = window.scrollY; render(); window.scrollTo(0, y); }
@@ -404,7 +404,9 @@
   }
   function renderScenarier() {
     var Sc = C.scenarier, v = axlar(), fb = forutbestamda(), ovr = urval().filter(function (id) { return v.indexOf(id) < 0; });
-    var h = head('scenarier', Sc.rubrik, Sc.text);
+    var h = head('scenarier', Sc.rubrik, Sc.text), nyckel = v.join('+');
+    if (state.scenAxlar && state.scenAxlar !== nyckel && state.scen.some(function (x) { return x.namn.trim(); })) h += '<div class="note weak small">' + esc(Sc.andrade) + '</div>';
+    if (state.scen.some(function (x) { return x.namn.trim(); }) || !state.scenAxlar) { state.scenAxlar = nyckel; save(); }
     h += '<div class="card tight"><div class="eyebrow">' + esc(Sc.byggstenar) + '</div>' + (fb.length ? '<p class="small" style="margin-bottom:6px"><b>I alla framtider:</b> ' + esc(fb.map(tname).join('; ')) + '</p>' : '') + (ovr.length ? '<p class="small" style="margin:0"><b>Kan färga berättelserna:</b> ' + esc(ovr.map(tname).join('; ')) + '</p>' : '') + '</div>';
     var a = andp(v[0]), b = andp(v[1]);
     h += '<p class="small"><b>Axel A:</b> ' + esc(tname(v[0])) + ' <span class="muted">(' + esc(a.svag) + ' / ' + esc(a.stark) + ')</span><br><b>Axel B:</b> ' + esc(tname(v[1])) + ' <span class="muted">(' + esc(b.svag) + ' / ' + esc(b.stark) + ')</span></p>';
@@ -485,7 +487,7 @@
       axlar: axlar().map(function (id) { return { trend: tname(id), svag: andp(id).svag, stark: andp(id).stark }; }),
       forutbestamda: forutbestamda().map(tname),
       drivande: urval().filter(function (id) { return sums().r[id].kat === 'drivande'; }).map(tname),
-      kollisioner: state.kollisioner.map(function (k) { return { namn: k.namn, antagande: k.ant, tryck: k.tryck, tempo: k.tempo == null ? null : K.tempoSkala[k.tempo], synlighet: k.syn, varde: k.fran ? (varde(k.fran) || {}).namn : null }; }),
+      kollisioner: state.kollisioner.map(function (k) { return { namn: k.namn, antagande: k.ant, tryck: k.tryck, tempo: k.tempo == null ? null : K.tempoSkala[k.tempo], tempoIndex: k.tempo, synlighet: k.syn, varde: k.fran ? (varde(k.fran) || {}).namn : null }; }),
       robustaAtgarder: robusta(), signaler: state.syntes.signaler.slice()
     };
   }
@@ -559,7 +561,7 @@
     h += '<h3>Bärande delar och antaganden</h3><div class="card tight">' + valdaVarden().map(function (v) { var d = vd(v.id); return '<p class="small" style="margin-bottom:6px"><b>' + esc(v.namn) + ':</b> ' + esc(d.hos || '') + (d.ant ? ' <span class="muted">Bärande antagande: ' + esc(d.ant) + '</span>' : '') + '</p>'; }).join('') + '</div>';
     if (state.parkering.trim()) h += '<h3>Parkerade frågor</h3><p class="small" style="white-space:pre-wrap">' + esc(state.parkering) + '</p>';
     h += '<div class="card tight next"><div class="eyebrow">' + esc(R.nastaRubrik) + '</div><p class="small">' + esc(R.nastaText) + '</p><div class="actions" style="margin-top:8px"><button class="btn" data-act="tosee">' + esc(R.tillSee) + ' →</button><button class="btn ghost" data-act="savefile">Spara sparfil</button></div></div>';
-    h += '<h3>' + esc(R.kallorRubrik) + '</h3><ul class="refs">' + C.kallor.map(function (k) { return '<li>' + esc(k) + '</li>'; }).join('') + '</ul>';
+    h += LCA.teoriHTML();
     return h + '<div class="actions"><button class="btn quiet" data-act="restart">Börja om med en ny körning</button></div>';
   }
 
@@ -585,7 +587,7 @@
     if (st !== 'start' && st !== 'rapport') {
       if (st !== 'uppgifter') html += parking();
       var nxt = s[i + 1] === 'rapport' ? 'Visa rapporten' : 'Nästa';
-      html += '<div class="navrow"><button class="btn quiet" data-act="back">← Tillbaka</button><button class="btn" data-act="next"' + (canNext() ? '' : ' disabled') + '>' + nxt + ' →</button></div><div class="missing" id="missing" aria-live="polite">' + missingHTML() + '</div>';
+      html += '<div class="navrow"><button class="btn quiet" data-act="back">← Tillbaka</button><button class="btn quiet savebtn" data-act="savefile" title="Ladda ner en sparfil så att arbetet inte går förlorat">Spara sparfil</button><button class="btn" data-act="next"' + (canNext() ? '' : ' disabled') + '>' + nxt + ' →</button></div><div class="missing" id="missing" aria-live="polite">' + missingHTML() + '</div>';
     }
     app.innerHTML = html;
     document.getElementById('progress-bar').style.width = (st === 'start' ? 0 : Math.round(i / (s.length - 1) * 100)) + '%';
@@ -600,7 +602,7 @@
     if (act === 'next') { if (canNext()) nav(1); return; }
     if (act === 'back') { nav(-1); return; }
     if (act === 'new') { if (!load() || confirmReset()) { state = fresh(); save(); go('uppgifter'); } return; }
-    if (act === 'resume') { state = load(); go(resumeStep()); return; }
+    if (act === 'resume') { state = load(); go(state.steg && state.steg !== 'start' && steps().indexOf(state.steg) >= 0 ? state.steg : resumeStep()); return; }
     if (act === 'open') { document.getElementById('file-load').click(); return; }
     if (act === 'forarbete') { if (!load() || confirmReset()) { state = fresh(); state.forarbete = true; state.meta.typ = 'individ'; save(); go('uppgifter'); } return; }
     if (act === 'merge') { document.getElementById('file-merge').click(); return; }
@@ -736,7 +738,7 @@
       rule(); label('Alla trender');
       validTrends().forEach(function (t) { var k = klass(t.id); text(tnr(t.id) + '. ' + t.trend + (k ? ' (' + C.bedomning.klasser[k].namn.toLowerCase() + ')' : '') + (t.signal ? '. Signal: ' + t.signal : ''), { size: 8.5, after: 0.8 }); });
       if (state.parkering.trim()) { rule(); label('Parkerade frågor'); text(state.parkering, { size: 9.5 }); }
-      rule(); label('Metod och källor', MUT); C.kallor.forEach(function (k) { text(k, { size: 8, color: MUT, after: 0.8 }); });
+      rule(); label('Vetenskaplig grund', MUT); text(LCA.TEORI.text + ': ' + LCA.TEORI.url, { size: 8.5, color: MUT });
       text(C.integritet, { size: 8, color: MUT });
       var n = doc.getNumberOfPages(), logo = document.querySelector('.footer img'); if (logo && !logo.complete) logo = null;
       for (var i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text(C.verktyg + ' · Sense · version ' + C.version + ' · ' + C.upphov, L, PH - 10); doc.text('Sida ' + i + ' av ' + n, L + Wt, PH - 10, { align: 'right' }); if (logo) { try { doc.addImage(logo, 'PNG', L + Wt - 24, PH - 13.6, 4.5, 4.5); } catch (e) {} } }

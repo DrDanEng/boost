@@ -39,7 +39,9 @@
   function see() { var s = state.kedja && state.kedja.see; return s && s.valda && s.valda.length ? s : null; }
   function kollisioner() {
     if (sense()) return sense().kollisioner.filter(function (k) { return k.namn; }).map(function (k) { return { namn: k.namn, antagande: k.antagande, tryck: k.tryck, tempo: k.tempo }; });
-    return state.eget.utmaning.trim() ? [{ namn: state.eget.utmaning.trim(), antagande: '', tryck: null, tempo: null }] : [];
+    if (state.eget.utmaning.trim()) return [{ namn: state.eget.utmaning.trim(), antagande: '', tryck: null, tempo: null }];
+    var sc = state.kedja && state.kedja.see && state.kedja.see.scenario;
+    return sc && sc.namn ? [{ namn: sc.namn, antagande: '', tryck: null, tempo: null, franSee: true }] : [];
   }
   function minAxel(ax) { return AX.slice().sort(function (a, b) { return (ax[a] == null ? 9 : ax[a]) - (ax[b] == null ? 9 : ax[b]); })[0]; }
   function behovLista() {
@@ -130,7 +132,7 @@
   }
   function go(step) {
     if (/^plan-/.test(step)) { var qid = step.slice(5); if (!firstForsok(qid)) { newForsok(qid); save(); } }
-    view.step = step; render(); window.scrollTo(0, 0); app.focus({ preventScroll: true });
+    view.step = step; if (step !== 'start') { state.steg = step; save(); } render(); window.scrollTo(0, 0); app.focus({ preventScroll: true });
   }
   function nav(d) {
     if (sideView(view.step)) { go('oversikt'); return; }
@@ -307,7 +309,7 @@
       h += '<h3>' + esc(O.kurvaRubrik) + '</h3><div class="card tight chartcard"><div class="chart">' + kurvaSVG() + '</div>' + kurvaLegend() + '<p class="small muted" style="margin:8px 0 0">' + esc(O.kurvaText) + '</p></div>';
       h += '<h3>' + esc(O.rorelseRubrik) + '</h3><div class="card tight">' + rorelseHTML() + '</div>';
     }
-    h += '<div class="actions"><button class="btn ghost" data-act="period">' + esc(state.period.avslutad ? C.period.avslutad : O.period) + '</button></div>';
+    h += '<div class="actions"><button class="btn ghost" data-act="ics">' + esc(O.kalender) + '</button><button class="btn ghost" data-act="period">' + esc(state.period.avslutad ? C.period.avslutad : O.period) + '</button></div>';
     return h;
   }
   function renderPeriod() {
@@ -386,7 +388,7 @@
     if (state.period.monster || state.period.skala) h += '<h3>' + esc(C.period.rubrik) + '</h3><div class="card tight">' + (state.period.monster ? '<p class="small"><b>Mönster:</b> ' + esc(state.period.monster) + '</p>' : '') + state.fragor.map(function (q) { var v = state.period.fragaVal[q.id]; return v ? '<p class="small" style="margin-bottom:4px">' + esc(C.period.fragaVal[v]) + ': ' + esc(q.text) + '</p>' : ''; }).join('') + (state.period.nasta ? '<p class="small" style="margin:0"><b>Nästa lärperiod:</b> ' + esc(state.period.nasta) + '</p>' : '') + '</div>';
     if (state.parkering.trim()) h += '<h3>Parkerade frågor</h3><p class="small" style="white-space:pre-wrap">' + esc(state.parkering) + '</p>';
     h += '<div class="card tight next"><div class="eyebrow">' + esc(R.nastaRubrik) + '</div><p class="small" style="margin:0">' + esc(R.nastaText) + '</p></div>';
-    h += '<h3>Metod och källor</h3><ul class="refs">' + C.kallor.map(function (k) { return '<li>' + esc(k) + '</li>'; }).join('') + '</ul>';
+    h += LCA.teoriHTML();
     return h + '<div class="actions"><button class="btn quiet" data-act="restart">Börja om med en ny körning</button></div>';
   }
 
@@ -408,7 +410,7 @@
     if (st !== 'start' && st !== 'rapport') {
       if (st !== 'uppgifter') html += parking();
       var side = sideView(st), nxt = side ? 'Klar, till översikten' : (s[i + 1] === 'rapport' ? 'Visa rapporten' : 'Nästa');
-      html += '<div class="navrow"><button class="btn quiet" data-act="back">← ' + (side ? 'Översikten' : 'Tillbaka') + '</button><button class="btn" data-act="next"' + (canNext() ? '' : ' disabled') + '>' + nxt + ' →</button></div><div class="missing" id="missing" aria-live="polite">' + missingHTML() + '</div>';
+      html += '<div class="navrow"><button class="btn quiet" data-act="back">← ' + (side ? 'Översikten' : 'Tillbaka') + '</button><button class="btn quiet savebtn" data-act="savefile" title="Ladda ner en sparfil så att arbetet inte går förlorat">Spara sparfil</button><button class="btn" data-act="next"' + (canNext() ? '' : ' disabled') + '>' + nxt + ' →</button></div><div class="missing" id="missing" aria-live="polite">' + missingHTML() + '</div>';
     }
     app.innerHTML = html;
     var pi = sideView(st) ? s.indexOf('oversikt') : i;
@@ -425,7 +427,7 @@
     if (act === 'next') { if (canNext()) nav(1); return; }
     if (act === 'back') { if (sideView(view.step)) go('oversikt'); else nav(-1); return; }
     if (act === 'new') { if (!load() || confirmReset()) { state = fresh(); save(); go('uppgifter'); } return; }
-    if (act === 'resume') { state = load(); go(resumeStep()); return; }
+    if (act === 'resume') { state = load(); var sg = state.steg; go(sg && sg !== 'start' && (steps().indexOf(sg) >= 0 || (/^(f|a)-/.test(sg) && forsok(sg.slice(2))) || sg === 'period') ? sg : resumeStep()); return; }
     if (act === 'open') { document.getElementById('file-load').click(); return; }
     if (act === 'fromhandoff') { var ho = LCA.takeHandOff(); LCA.clearHandOff(); if (ho) { if (ho.modul === 'shift' || !load() || confirmReset()) useEnv(ho, true); } return; }
     if (act === 'dropho') { LCA.clearHandOff(); render(); return; }
@@ -435,13 +437,14 @@
     if (act === 'restart') { if (confirmReset()) { state = fresh(); save(); go('start'); } return; }
     if (act === 'addbehov') { state.eget.behov.push({ id: nid('b'), text: '', axel: null, niva: null }); save(); rerender(); return; }
     if (act === 'addfraga') { var fs = forslagFragor(); addFraga(d('data-i') != null ? fs[+d('data-i')] : null); save(); rerender(); return; }
-    if (act === 'delfraga') { var q = state.fragor[+d('data-i')]; state.fragor.splice(+d('data-i'), 1); state.forsok = state.forsok.filter(function (f) { return f.fraga !== q.id; }); save(); rerender(); return; }
+    if (act === 'delfraga') { var q = state.fragor[+d('data-i')]; if (forsokFor(q.id).length && !window.confirm('Lärandefrågan och dess försök tas bort. Fortsätta?')) return; state.fragor.splice(+d('data-i'), 1); state.forsok = state.forsok.filter(function (f) { return f.fraga !== q.id; }); save(); rerender(); return; }
     if (act === 'useex') { var f = curForsok(); if (f) { f.om = lc(d('data-ex')); if (!f.titel.trim()) f.titel = short(d('data-ex'), 50); save(); rerender(); } return; }
     if (act === 'openf') { go('f-' + d('data-id')); return; }
     if (act === 'opena') { go('a-' + d('data-id')); return; }
     if (act === 'nyttf') { var nf = newForsok(d('data-q')); save(); go('f-' + nf.id); return; }
     if (act === 'planeranasta') { var pf = newForsok(forsok(d('data-id')).fraga, d('data-id')); save(); go('f-' + pf.id); return; }
     if (act === 'period') { go('period'); return; }
+    if (act === 'ics') { kalender(); return; }
     if (act === 'avsluta') { state.period.avslutad = !state.period.avslutad; save(); rerender(); return; }
     if (t.hasAttribute('data-bax')) { state.eget.behov[+d('data-i')].axel = d('data-bax'); save(); rerender(); return; }
     if (t.hasAttribute('data-bniva')) { state.eget.behov[+d('data-i')].niva = +d('data-bniva'); save(); rerender(); return; }
@@ -489,6 +492,24 @@
       useEnv(env, false);
     });
   });
+
+  /* ---------- kalenderfil ---------- */
+  function kalender() {
+    var ev = [], org = state.meta.foretag || 'Shift';
+    function d8(d) { return d.replace(/-/g, ''); }
+    function esct(t) { return String(t).replace(/[\\;,]/g, function (c) { return '\\' + c; }).replace(/\n/g, ' '); }
+    state.forsok.filter(forsokKlar).forEach(function (f) {
+      if (!avKlar(f)) { ev.push([f.nar, 'Trimförsök startar: ' + f.titel, 'Om vi ' + f.om + ' så tror vi att ' + f.tror]); ev.push([addDays(f.nar, DAGAR[f.langd]), 'Kursavläsning: ' + f.titel, 'Förutsägelse: ' + f.forutsagelse]); }
+    });
+    if (state.ram.datum) ev.push([state.ram.datum, 'Lärperiodens slut: gemensam återkoppling', 'Pröva om lärandefrågorna fortfarande är rätt.']);
+    if (!ev.length) { toast('Det finns inga datum att lägga in än.'); return; }
+    var stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+    var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Engstroms Mickla AB//Dialogverktyg LCA//SV', 'CALSCALE:GREGORIAN'];
+    ev.forEach(function (e, i) { ics.push('BEGIN:VEVENT', 'UID:' + stamp + '-' + i + '@boost.mickla.se', 'DTSTAMP:' + stamp, 'DTSTART;VALUE=DATE:' + d8(e[0]), 'DTEND;VALUE=DATE:' + d8(addDays(e[0], 1)), 'SUMMARY:' + esct(org + ', ' + e[1]), 'DESCRIPTION:' + esct(e[2]), 'END:VEVENT'); });
+    ics.push('END:VCALENDAR');
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([ics.join('\r\n')], { type: 'text/calendar' })); a.download = 'lca-shift-' + LCA.slug(state.meta.foretag) + '.ics'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    toast('Kalenderfilen är nedladdad. Öppna den för att lägga in datumen.');
+  }
 
   /* ---------- PDF ---------- */
   function makePDF() {
@@ -546,7 +567,7 @@
       });
       if (state.period.monster || state.period.skala || state.period.nasta) { rule(); label(C.period.rubrik); if (state.period.monster) text('Mönster: ' + state.period.monster, { size: 9.5 }); state.fragor.forEach(function (q) { var v = state.period.fragaVal[q.id]; if (v) text(C.period.fragaVal[v] + ': ' + q.text, { size: 9.5, after: 1 }); }); if (state.period.nasta) text('Nästa lärperiod: ' + state.period.nasta, { size: 9.5 }); }
       if (state.parkering.trim()) { rule(); label('Parkerade frågor'); text(state.parkering, { size: 9.5 }); }
-      rule(); label('Metod och källor', MUT); C.kallor.forEach(function (k) { text(k, { size: 8, color: MUT, after: 0.8 }); });
+      rule(); label('Vetenskaplig grund', MUT); text(LCA.TEORI.text + ': ' + LCA.TEORI.url, { size: 8.5, color: MUT });
       text(C.integritet, { size: 8, color: MUT });
       var n = doc.getNumberOfPages(), logo = document.querySelector('.footer img'); if (logo && !logo.complete) logo = null;
       for (var i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text(C.verktyg + ' · Shift · version ' + C.version + ' · ' + C.upphov, L, PH - 10); doc.text('Sida ' + i + ' av ' + n, L + Wt, PH - 10, { align: 'right' }); if (logo) { try { doc.addImage(logo, 'PNG', L + Wt - 24, PH - 13.6, 4.5, 4.5); } catch (e) {} } }
