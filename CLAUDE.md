@@ -9,7 +9,7 @@ Arbetsbeskrivning för den som utvecklar verktygen vidare, människa eller Claud
 - Tjänsten heter **Dialogverktyg — Learning Curve Approach** (Dans namnval, även i rubriker; det långa tankstrecket i namnet är ett uttryckligt undantag från regeln om tankstreck). Modulerna heter Sense, See och Shift.
 - **See** (självskattning av mottagningsförmåga och agency, tidigare kallad Dialogverktyget) ligger i `see/`.
 - Micklas logotyp (`img/mickla.png`, ormen) visas diskret i sidfoten på alla sidor och i PDF-rapportens sidfot.
-- Landningssidan ligger i roten och länkar till modulerna. Byggordning: See (klar), landningssida (klar), Sense (version 0.1, publicerad), Shift, slutsida.
+- Landningssidan ligger i roten och länkar till modulerna. Byggordning: See (klar), landningssida (klar), Sense (publicerad), Shift (version 0.1), slutsida.
 - Modulerna ska kunna köras i valfri ordning och var för sig, och ge en egen rapport. Körs alla tre i rätt ordning ger slutsidan en samlad analys med slutrekommendationer.
 
 ## Fasta principer
@@ -62,6 +62,23 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 - Lärkortet: vad hände, jämfört med förutsägelsen, beslut (fortsätt, justera, skala, avbryt) och obligatoriskt *nästa lilla test* (Weick 1984; Amabile & Kramer 2011).
 - Tid: första testet startas inom en vecka (IHI). Lärperiod om fyra veckor med 2 till 3 cykler om 1 till 2 veckor, avslutas med gemensam återkoppling där Learning Direction Canvas uppdateras.
 - Grund för korten: test card och learning card (Bland & Osterwalder 2019), Trim Tab Canvas.
+
+### Shift, version 0.1 (byggd 2026-10-10)
+- Namn (Dans beslut att byta från strategyzers test card och learning card): **trimförsök** (planen) och **kursavläsning** (uppföljningen), i linje med trimroder-bilden.
+- Filen hålls av en kontaktperson, eller av facilitatorn om gruppen har gemensamma avstämningar.
+- Ett försök per lärandefråga från start, högst tre lärandefrågor.
+- Efter varje försök skattas den axel som försöket riktades mot igen (1 till 5, samma skala som i See). Det ger rörelsen i mottagningsförmågan till slutrapporten.
+- Perspektiv i kursavläsningen, grundade i litteraturen om lärandekurvor: effekt i vardagen (tid, kvalitet, energi, trivsel, intäkter, från Trim Tab Canvas), **lärdomens väg** (stannar hos oss, delad med kollegor, införd i rutin eller beslut; Zollo & Winter 2002: erfarenhet, artikulering, kodifiering), förutsägelse mot utfall, beslut och nästa lilla försök. Organisationer med samma erfarenhet lär i olika takt beroende på reflektion och delning (Pisano, Bohmer & Edmondson 2001; Edmondson m.fl. 2001). "Lärande" läggs därför inte till som ett sjätte effektvärde.
+- Översikten visar försöken som kedjor per lärandefråga, **er lärandekurva** (kumulativt antal lärdomar, delade och införda) och rörelsen per axel.
+- Steg: underlag (sparfil från See, eller två korta frågor om See och Sense saknas), Learning Direction Canvas (tryck och beredskap förifyllda, förslag på lärandefrågor ur kollision × förmåga × svagaste axel), kommunikationsram och stöd (inklusive vilket hinder ledningen tar bort; Edmondson 1999), första trimförsöket per fråga, översikt, kursavläsning, lärperiodens slut (pröva frågorna: behåll, justera, byt; Argyris & Schön 1978).
+
+## Fast rapportmall (alla moduler och slutrapporten)
+- Varje rapport börjar med **Sammanfattning**, **Analys** och **Förslag**, därefter rubriken **Detaljer**. Mallen finns i `LCA.reportBlock` och `LCA.reportPDF` i `js/lca.js`.
+
+## Begrepp och Om metoden
+- `begrepp/` är en sökbar begreppslista; `om/` beskriver bakgrund, upplägg, mål, upphovsman och kontakt (dan@mickla.se, 0709 60 70 76). Innehållet ligger i `js/info.js`.
+- Länkarna Begrepp och Om metoden finns i sidhuvudet på alla sidor och öppnas i en ny flik så att körningen inte avbryts.
+- Första gången ett begrepp eller en canvas dyker upp i en modul visas en kort beskrivning med länk till begreppslistan.
 
 ## Struktur för flera moduler
 

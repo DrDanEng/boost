@@ -84,6 +84,24 @@
   /* Status för en modul i den här webbläsaren (för landningssidan). */
   function stored(modul) { return get(NYCKLAR[modul]); }
 
-  window.LCA = { FORMAT: FORMAT, MODULER: MODULER, NYCKLAR: NYCKLAR, NAMN: NAMN, wrap: wrap, unwrap: unwrap, chainFrom: chainFrom,
+  /* Fast rapportmall för alla moduler: sammanfattning, analys och förslag före detaljerna. */
+  var RUBRIK = { sammanfattning: 'Sammanfattning', analys: 'Analys', forslag: 'Förslag', detaljer: 'Detaljer' };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function punkt(t) { t = String(t || ''); return /[.?!:]$/.test(t) ? t : t + '.'; }
+  function reportBlock(r) {
+    var h = '<div class="card summary report-block"><div class="eyebrow">' + RUBRIK.sammanfattning + '</div>' + (r.sammanfattning || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + (r.extraSammanfattning || '');
+    if (r.analys && r.analys.length) h += '<h3>' + RUBRIK.analys + '</h3><ul class="analys">' + r.analys.map(function (a) { return '<li>' + (typeof a === 'string' ? esc(a) : '<b>' + esc(punkt(a.titel)) + '</b> ' + esc(a.text)) + '</li>'; }).join('') + '</ul>' + (r.analysNot ? '<p class="small muted">' + esc(r.analysNot) + '</p>' : '');
+    if (r.forslag && r.forslag.length) h += '<h3>' + RUBRIK.forslag + '</h3><ol class="recs">' + r.forslag.map(function (f) { return '<li><b>' + esc(punkt(f.titel)) + '</b> ' + esc(f.text) + '</li>'; }).join('') + '</ol>';
+    return h + '</div><h2 class="details-head">' + RUBRIK.detaljer + '</h2>';
+  }
+  /* Samma mall i PDF. t(text, opt) och label(text) är modulens egna skrivfunktioner. */
+  function reportPDF(r, t, label, L, Wt) {
+    label(RUBRIK.sammanfattning); (r.sammanfattning || []).forEach(function (p) { t(p, { size: 10.5, after: 2.5 }); });
+    if (r.extraPDF) r.extraPDF();
+    if (r.analys && r.analys.length) { t(RUBRIK.analys, { size: 12, bold: true, after: 1.5 }); r.analys.forEach(function (a) { t('• ' + (typeof a === 'string' ? a : punkt(a.titel) + ' ' + a.text), { size: 10, x: L + 2, width: Wt - 2, after: 1.5 }); }); if (r.analysNot) t(r.analysNot, { size: 8.5, italic: true, after: 2 }); }
+    if (r.forslag && r.forslag.length) { t(RUBRIK.forslag, { size: 12, bold: true, after: 1.5 }); r.forslag.forEach(function (f, i) { t((i + 1) + '. ' + punkt(f.titel), { size: 10, bold: true, after: 0.5 }); t(f.text, { size: 9.5, x: L + 4, width: Wt - 4, after: 2.5 }); }); }
+  }
+
+  window.LCA = { RUBRIK: RUBRIK, reportBlock: reportBlock, reportPDF: reportPDF, FORMAT: FORMAT, MODULER: MODULER, NYCKLAR: NYCKLAR, NAMN: NAMN, wrap: wrap, unwrap: unwrap, chainFrom: chainFrom,
     readFile: readFile, download: download, fileName: fileName, slug: slug, handOff: handOff, takeHandOff: takeHandOff, clearHandOff: clearHandOff, stored: stored };
 })();

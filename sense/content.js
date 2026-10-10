@@ -2,7 +2,7 @@
 // Strukturen bygger på Dans Collision Compass, generaliserad från fastighet till verksamhet.
 // Forskningsstöd per skede: se CLAUDE.md och "kallor" nedan.
 window.CONTENT = {
- "version": "0.3 prototyp",
+ "version": "0.4 prototyp",
  "titel": "Sense",
  "verktyg": "Dialogverktyg — Learning Curve Approach",
  "undertitel": "Collision Compass: var möter framtiden er verksamhet?",
@@ -254,6 +254,14 @@ window.CONTENT = {
   "resultat": "{n} trender från {d} lades till. {dubbletter} dubbletter hoppades över.",
   "fran": "Från"
  },
+ "omOvningen": {
+  "bedomning": { "begrepp": "Kritisk osäkerhet", "text": "Här skiljs två slags trender åt. Kritiska osäkerheter har stor påverkan men osäker utveckling och bygger scenarierna. Förutbestämda element är förändringar som redan är i rörelse och finns med i alla framtider." },
+  "urval": { "begrepp": "Påverkansmatris", "text": "En påverkansmatris visar hur trenderna driver varandra. Ni svarar på en fråga i taget, och verktyget räknar ut vilka trender som driver utvecklingen och vilka som mest påverkas." },
+  "axlar": { "begrepp": "Axel (i scenariokorset)", "text": "Ett scenariokors bygger på två kritiska osäkerheter. Varje axel går från svag till stark utveckling, och de fyra kombinationerna blir fyra möjliga framtider. Scenarier är inga prognoser utan ett sätt att pröva antaganden." },
+  "varden": { "begrepp": "Bärande del", "text": "Bärande delar är det verksamheten vilar på, hämtade ur affärsmodellens byggstenar. Varje del vilar på ett bärande antagande: det som måste vara sant för att den ska fortsätta bära." },
+  "vind": { "begrepp": "Vindtunnel", "text": "I vindtunneln prövas de bärande delarna mot varje framtid, en framtid i taget, precis som en modell prövas i en vindtunnel." },
+  "karta": { "begrepp": "Collision Map", "text": "Collision Map samlar de framtidskollisioner ni tar vidare. Tryck, tempo och synlighet visar var lärandet behöver börja. Den blir underlaget för See." }
+ },
  "parkering": {
   "rubrik": "Parkering",
   "text": "Tankar att hantera senare. Kommer med i rapporten."
@@ -274,7 +282,7 @@ window.CONTENT = {
    "sarbar": "Det som bär sämre i flera framtider, och därför är en sårbarhet oavsett hur det blir, är {lista}.",
    "ingenSarbar": "Ingen av verksamhetens bärande delar försvagas i mer än en framtid. Det kan tyda på en robust position, men också på att bedömningen behöver prövas igen.",
    "styrka": "Det som bär bättre i flera framtider är {lista}.",
-   "kollisioner": "Den viktigaste slutsatsen är var framtiden krockar med verksamhetens antaganden. Gruppen har pekat ut {antal}.",
+   "kollisioner": "Den viktigaste slutsatsen är var framtiden krockar med verksamhetens antaganden. Gruppen har pekat ut {antal}:",
    "vidare": "Framtiden ”{scen}” tas vidare till See, där organisationen bedömer hur redo den är att ta emot den.",
    "slutsatserRubrik": "De viktigaste slutsatserna",
    "kollision": "Utmanar antagandet ”{ant}”.",

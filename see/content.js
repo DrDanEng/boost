@@ -2,13 +2,16 @@
 // MatchUp-delen är hämtad ur Självskattning mottagningsförmåga MatchUp v1.0 (rättad referens för Strategiskt ledarskap, Nej).
 window.CONTENT = {
  "boost": {
-  "version": "0.7 prototyp",
+  "version": "0.8 prototyp",
   "lca": {
    "kollisionerRubrik": "Framtidskollisioner från Sense",
    "nastaRubrik": "Nästa steg i The Learning Curve Approach",
-   "nastaText": "Spara sparfilen. I Shift läser ni in den, och de förmågor ni valt, den svagaste axeln och era beslut blir utgångspunkten för de första små testerna. Har ni gjort Sense finns det med i filen, så att slutrapporten kan väga samman alla tre faserna.",
+   "nastaText": "Gå vidare till Shift, eller spara sparfilen och läs in den där senare. De förmågor ni valt, den svagaste axeln och era beslut blir utgångspunkten för de första små trimförsöken. Har ni gjort Sense finns det med i filen, så att slutrapporten kan väga samman alla tre faserna.",
    "tillLanding": "Till The Learning Curve Approach",
-   "felModul": "Det här är en sparfil från {modul}. Öppna den i {modul}."
+   "felModul": "Det här är en sparfil från {modul}. Öppna den i {modul}.",
+   "nastaForslagTitel": "Nästa steg: Shift",
+   "nastaForslag": "Ta med sparfilen till Shift. Där blir den svagaste axeln utgångspunkten för de första små trimförsöken, riktade mot det som håller tillbaka.",
+   "tillShift": "Gå vidare till Shift"
   },
   "sammanfattning": {
    "rubrik": "Sammanfattning",

@@ -284,3 +284,52 @@ ul.futures li.till { font-weight: 500; }
 .chips.ex { align-items: center; margin: 10px 0 4px; }
 .chips.ex .chip { font-size: 13px; padding: 5px 10px; }
 .tnr.koll-nr { background: #b8532c; }
+
+/* ---------- Begrepp, Om metoden, toppnavigering ---------- */
+.toplinks { display: flex; gap: 14px; margin-left: auto; font-size: 14px; white-space: nowrap; }
+.toplinks a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.toplinks a:hover { text-decoration: underline; }
+.topbar-inner .progress + .toplinks, .topbar-inner .toplinks + .progress { margin-left: 0; }
+.info h1 { margin-top: 8px; }
+.glossary { margin: 0; }
+.gterm { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; margin-bottom: 10px; scroll-margin-top: 80px; }
+.gterm.hit { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.gterm dt { font: 600 18px/1.3 var(--serif); margin-bottom: 4px; }
+.gterm dd { margin: 0; font-size: 15px; }
+.contact a { color: var(--accent); }
+.about { font-size: 14px; }
+.about summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+@media (max-width: 680px) {
+  .toplinks { gap: 10px; font-size: 13px; }
+  .topbar-inner .progress { display: none; }
+}
+.about-note a { color: var(--accent); font-weight: 600; white-space: nowrap; }
+.report-block h3 { margin-top: 18px; }
+ul.analys { padding-left: 20px; margin: 0 0 8px; }
+ul.analys li { margin-bottom: 8px; }
+h2.details-head { margin: 34px 0 14px; padding-top: 14px; border-top: 2px solid var(--line); font-size: 22px; }
+
+/* ---------- Shift ---------- */
+.canvas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.canvas .card { margin: 0; }
+ul.plain { list-style: none; padding: 0; margin: 0; }
+ul.plain li { padding: 6px 0; border-top: 1px solid var(--line); font-size: 15px; }
+ul.plain li:first-child { border-top: 0; }
+.kollnr.q { border-color: var(--accent); color: var(--accent); }
+.koll textarea { margin-bottom: 4px; }
+.chip.on { background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); }
+.behov { padding: 12px 0; border-top: 1px solid var(--line); }
+.behov:first-of-type { border-top: 0; }
+.ramp { margin: 6px 0 8px; }
+.ramp-row { display: grid; grid-template-columns: 30px 1fr auto; gap: 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.ramp-act { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.axis.rr { grid-template-columns: 240px 1fr 80px; font-size: 14px; }
+.bar2 { display: grid; gap: 4px; }
+.bar2 .bar { height: 8px; }
+@media (max-width: 680px) {
+  .canvas { grid-template-columns: 1fr; }
+  .ramp-row { grid-template-columns: 26px 1fr; }
+  .ramp-act { grid-column: 2; justify-content: flex-start; }
+  .axis.rr { grid-template-columns: 1fr 70px; }
+  .axis.rr .bar2 { grid-column: 1 / -1; grid-row: 2; }
+}

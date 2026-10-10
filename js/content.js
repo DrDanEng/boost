@@ -1,7 +1,7 @@
 // Innehållsfil för landningssidan. Texter kan redigeras här utan att röra koden.
 // Status per modul: "oppen" (länkas) eller "kommer" (visas som under utveckling).
 window.CONTENT = {
- "version": "0.3 prototyp",
+ "version": "0.4 prototyp",
  "fredLank": "https://www.researchgate.net/profile/Dalia-Mukhtar-Landgren/publication/366482837_Larande_genom_temporar_organisering_-_projekt_piloter_och_experiment_i_Malmo_stad/links/63a3341cc3c9bb1647fb905d/Laerande-genom-temporaer-organisering-projekt-piloter-och-experiment-i-Malmoe-stad.pdf",
  "upphov": "© Engströms Mickla AB 2026",
  "eyebrow": "Smart Built Boost",
@@ -47,7 +47,7 @@ window.CONTENT = {
    "tid": "30 till 45 minuter."
   },
   "shift": {
-   "status": "kommer",
+   "status": "oppen",
    "lank": "shift/",
    "rubrik": "Shift: från insikt till rörelse",
    "underrubrik": "Hur vi gör ett första litet steg",

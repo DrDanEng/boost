@@ -258,13 +258,19 @@
     plain.push(S.niva[band(p.index)] + ' ' + S.form[p.form]);
     var names = state.valda.map(function (id) { return cap(id).namn.toLowerCase(); });
     plain.push(fill(S.valda, { lista: names.length > 1 ? names.slice(0, -1).join(', ') + ' och ' + names[names.length - 1] : names[0] }));
-    var count = {};
+    var analys = [], count = {};
     state.valda.forEach(function (id) { var d = diagnosis(id); if (d) d.weakest.forEach(function (k) { if (k !== 'jamn') count[k] = (count[k] || 0) + 1; }); });
     var top = Object.keys(count).sort(function (a, b) { return count[b] - count[a]; })[0];
     var shared = top && count[top] >= 2;
-    if (shared) plain.push(fill(S.hinderGemensamt, { hinder: S.hinder[top] }) + ' ' + B.svagastAxel[top].shift);
-    else if (state.valda.length > 1) plain.push(S.hinderOlika);
-    if (sg && state.styrkaRelevant) plain.push(fill(S.styrka, { styrka: cap(sg.id).namn.toLowerCase() }));
+    if (shared) analys.push(fill(S.hinderGemensamt, { hinder: S.hinder[top] }) + ' ' + B.svagastAxel[top].shift);
+    else if (state.valda.length > 1) analys.push(S.hinderOlika);
+    state.valda.forEach(function (id) {
+      var d = diagnosis(id); if (!d) return;
+      var t = d.weakest.map(function (k) { return B.svagastAxel[k].rubrik; }).join('. ') + '.';
+      if (d.glapp) t += ' ' + B.glapp[d.glapp].rubrik + '.';
+      analys.push({ titel: cap(id).namn + ' (nivå ' + fmtN(state.nivaer[id]) + ')', text: t.replace(/\.\./g, '.') });
+    });
+    if (sg && state.styrkaRelevant) analys.push(fill(S.styrka, { styrka: cap(sg.id).namn.toLowerCase() }));
     keys.push('Lärandeindex: ' + fmt(p.index) + ' av 4 (' + p.omdome.namn.toLowerCase() + ').');
     keys.push('Profilens form: ' + p.form + ' (skillnad mellan högsta och lägsta skattning: ' + fmtN(p.range) + ').');
     if (shared) keys.push(fill(S.monster, { axel: axName[top], n: count[top], m: state.valda.length }));
@@ -274,14 +280,10 @@
       recs.push({ titel: cap(id).namn + (state.beslut[id] ? ' (' + state.beslut[id].toLowerCase() + ')' : ''), text: ((d.atgard ? d.atgard + ' ' : '') + lead).trim() });
     });
     if (recs.length < 3 && sg && state.styrkaRelevant) recs.push({ titel: cap(sg.id).namn + ' (styrka)', text: fill(S.recStyrka, { styrka: cap(sg.id).namn.toLowerCase(), svag: cap(weakestValda()).namn.toLowerCase() }) });
-    return { plain: plain, keys: keys, recs: recs.slice(0, 3) };
+    recs = recs.slice(0, 3); recs.push({ titel: B.lca.nastaForslagTitel, text: B.lca.nastaForslag });
+    return { plain: plain, analys: analys.concat(keys), keys: keys, recs: recs, block: { sammanfattning: [plain.join(' ')], analys: analys.concat(keys), analysNot: S.nyckeltalHanvisning, forslag: recs } };
   }
-  function summaryHTML() {
-    var sm = summary(), S = B.sammanfattning;
-    return '<div class="card summary"><div class="eyebrow">' + esc(S.rubrik) + '</div><p>' + sm.plain.map(esc).join(' ') + '</p><h3>' + esc(S.recRubrik) + '</h3><ol class="recs">' +
-      sm.recs.map(function (r) { return '<li><b>' + esc(r.titel) + '.</b> ' + esc(r.text) + '</li>'; }).join('') + '</ol></div>' +
-      '<div class="card tight"><div class="eyebrow">' + esc(S.nyckeltalRubrik) + '</div>' + sm.keys.map(function (k) { return '<p class="small" style="margin-bottom:4px">' + esc(k) + '</p>'; }).join('') + '<p class="small muted" style="margin:8px 0 0">' + esc(S.nyckeltalHanvisning) + '</p></div>';
-  }
+  function summaryHTML() { return LCA.reportBlock(summary().block); }
   function guideHTML() {
     var S = B.sammanfattning;
     return '<h3>' + esc(S.lasRubrik) + '</h3><div class="card tight">' + S.las.map(function (g) { return '<p class="small"><b>' + esc(g.term) + '.</b> ' + esc(g.text) + '</p>'; }).join('') + '</div>';
@@ -310,7 +312,7 @@
     if (state.egnaAtgarder) h += '<div class="card"><div class="eyebrow">Egna förslag på åtgärder</div><p style="white-space:pre-wrap;margin:0">' + esc(state.egnaAtgarder) + '</p></div>';
     h += '<h3>Övriga förmågor</h3><div class="card tight">' + CAPS.filter(function (c) { return state.valda.indexOf(c.id) < 0; }).map(function (c) { return '<p class="small"><b>' + esc(c.namn) + ' (' + fmtN(state.nivaer[c.id]) + '):</b> ' + esc(c.intern[band(state.nivaer[c.id])]) + '</p>'; }).join('') + '</div>';
     h += guideHTML();
-    h += '<div class="card tight"><div class="eyebrow">' + esc(B.lca.nastaRubrik) + '</div><p class="small" style="margin:0">' + esc(B.lca.nastaText) + '</p><div class="actions" style="margin-top:12px"><button class="btn ghost" data-act="savefile">Spara sparfil</button><a class="btn quiet" href="../">' + esc(B.lca.tillLanding) + '</a></div></div>';
+    h += '<div class="card tight"><div class="eyebrow">' + esc(B.lca.nastaRubrik) + '</div><p class="small" style="margin:0">' + esc(B.lca.nastaText) + '</p><div class="actions" style="margin-top:12px"><button class="btn" data-act="toshift">' + esc(B.lca.tillShift) + ' →</button><button class="btn ghost" data-act="savefile">Spara sparfil</button><a class="btn quiet" href="../">' + esc(B.lca.tillLanding) + '</a></div></div>';
     h += '<div class="actions"><button class="btn quiet" data-act="restart">Börja om med en ny körning</button></div>';
     return h;
   }
@@ -369,6 +371,7 @@
     if (act === 'fromhandoff') { var ho = handOffEnv(); if (ho && (!load() || confirmReset())) { LCA.clearHandOff(); useEnv(ho); } return; }
     if (act === 'dropho') { LCA.clearHandOff(); render(); return; }
     if (act === 'savefile') { saveFile(); return; }
+    if (act === 'toshift') { LCA.handOff(envelope()); window.location.href = '../shift/'; return; }
     if (act === 'compare') { document.getElementById('file-compare').click(); return; }
     if (act === 'pdf') { makePDF(); return; }
     if (act === 'restart') { if (confirmReset()) { state = fresh(); save(); view.compare = null; go('start'); } return; }
@@ -486,13 +489,9 @@
     text(m.datum + ' · ' + (m.typ === 'grupp' ? 'Gruppbedömning' : 'Individuell bedömning') + (m.namn ? ' · ' + m.namn : ''), { size: 10, color: MUT, after: 5 });
     if (m.scenarioNamn || m.scenarioText) { label('Scenario'); if (m.scenarioNamn) text(m.scenarioNamn, { bold: true, after: 1 }); if (m.scenarioText) text(m.scenarioText, { after: 4 }); }
     var sn = sense(); if (sn && sn.kollisioner && sn.kollisioner.length) { label(B.lca.kollisionerRubrik); sn.kollisioner.forEach(function (k) { text('• ' + k.namn + (k.antagande ? '. Utmanar: ' + k.antagande : ''), { size: 9.5, after: 1 }); }); y += 3; }
-    var sm = summary(), S = B.sammanfattning;
-    label(S.rubrik); text(sm.plain.join(' '), { size: 10.5, after: 3 });
-    text(S.recRubrik, { size: 11, bold: true, after: 1.5 });
-    sm.recs.forEach(function (r, i) { text((i + 1) + '. ' + r.titel + '.', { size: 10, bold: true, after: 0.5 }); text(r.text, { size: 9.5, x: L + 4, width: Wt - 4, after: 2.5 }); });
-    label(S.nyckeltalRubrik); sm.keys.forEach(function (k) { text(k, { size: 9.5, after: 0.8 }); }); text(S.nyckeltalHanvisning, { size: 8.5, italic: true, color: MUT, after: 2 });
+    LCA.reportPDF(summary().block, text, label, L, Wt);
     rule(); ensure(140);
-    label('Profil');
+    label('Detaljer'); label('Profil');
     var series = [{ values: scores(), color: '#2f6b5e', fill: '#2f6b5e', dots: true }];
     if (view.compare) series.unshift({ values: scores(view.compare), color: '#8a8f96', fill: 'none', width: 2, dash: '6 5' });
     var holder = document.createElement('div'); holder.style.cssText = 'position:absolute;left:-9999px;top:0;width:860px'; holder.innerHTML = radarSVG({ index: p.index, series: series, weak: state.valda, strong: sg && state.styrkaRelevant ? sg.id : null }); document.body.appendChild(holder);
