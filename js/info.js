@@ -1,6 +1,6 @@
 // Innehållsfil för sidorna Begrepp och Om metoden. Texter kan redigeras här utan att röra koden.
 window.INFO = {
- "version": "0.2 prototyp",
+ "version": "0.3 prototyp",
  "verktyg": "Dialogverktyg — Learning Curve Approach",
  "upphov": "© Engströms Mickla AB 2026",
  "lankBegrepp": "Begrepp",
@@ -74,7 +74,7 @@ window.INFO = {
   ],
   "kontaktRubrik": "Kontakt",
   "kontakt": { "namn": "Dan Engström, Engströms Mickla AB", "epost": "dan@mickla.se", "telefon": "0709 60 70 76" },
-  "integritet": "Verktygen sparar allt ni skriver i er egen webbläsare och i de filer ni själva laddar ner. Ingenting skickas till oss eller någon annan."
+  "integritet": "Verktygen är fria att använda för alla och kräver ingen inloggning. Allt ni skriver sparas i er egen webbläsare och i de filer ni själva laddar ner. Ingenting skickas till oss eller någon annan."
  },
  "lankTeori": "Teoriplattform",
  "teori": {

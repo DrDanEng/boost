@@ -52,7 +52,7 @@
 
   function render() {
     var P = C.perspektiv, O = C.ordning, S = C.sparfil;
-    var h = '<section class="hero"><div class="eyebrow">' + esc(C.eyebrow) + '</div><h1>' + esc(C.titel) + '</h1><p class="lead">' + esc(C.lead) + '</p>' + C.intro.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</section>';
+    var h = '<section class="hero"><div class="eyebrow">' + esc(C.eyebrow) + '</div><h1>' + esc(C.titel) + '</h1><p class="lead">' + esc(C.lead) + '</p>' + (C.fritt ? '<p class="fritt">' + esc(C.fritt) + '</p>' : '') + C.intro.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</section>';
     var Fm = C.film;
     if (Fm) h += '<section class="film"><video controls preload="metadata" playsinline poster="' + esc(Fm.affisch) + '" aria-label="' + esc(Fm.rubrik) + '"><source src="' + esc(Fm.fil) + '" type="video/mp4">' + (Fm.webm ? '<source src="' + esc(Fm.webm) + '" type="video/webm">' : '') + '</video><p class="small muted" style="margin:8px 0 0">' + esc(Fm.text) + ' <a href="' + esc(Fm.fil) + '" download="Learning-Curve-Approach-introduktion.mp4">' + esc(Fm.ladda) + '</a></p></section>';
     h += phasesHTML();
