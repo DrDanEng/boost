@@ -191,12 +191,46 @@ window.CONTENT = {
   "scenarioMotivering": "Varför valde ni en annan framtid än förslaget?",
   "max": "Högst tre kollisioner."
  },
+ "forarbete": {
+  "rubrik": "Förarbete på egen hand",
+  "text": "Som alternativ till att samla signaler tillsammans kan varje deltagare göra skede 0 och 1 själv före workshopen och spara en fil. Facilitatorn läser sedan in allas filer i skede 1.",
+  "sparaRubrik": "Klart med ert förarbete?",
+  "sparaText": "Spara filen och skicka den till facilitatorn. Ni behöver inte gå vidare härifrån.",
+  "hamtaRubrik": "Deltagarnas förarbete",
+  "hamtaText": "Läs in de filer deltagarna har sparat. Deras trender läggs till här, och dubbletter hoppas över.",
+  "hamtaKnapp": "Läs in förarbete",
+  "resultat": "{n} trender från {d} lades till. {dubbletter} dubbletter hoppades över.",
+  "fran": "Från"
+ },
  "parkering": {
   "rubrik": "Parkering",
   "text": "Tankar att hantera senare. Kommer med i rapporten."
  },
  "rapport": {
   "rubrik": "Rapport",
+  "sammanfattning": {
+   "rubrik": "Sammanfattning",
+   "inledning": "{org} har undersökt frågan ”{fraga}” med blicken {horisont} år framåt.",
+   "grund": "Arbetet utgick från {n} trender. Två av dem är både osäkra och drivande, och de bildar axlarna i fyra möjliga framtider: axel A, ”{a}”, och axel B, ”{b}”.",
+   "forutbestamda": "Oavsett vilken framtid som blir verklighet räknar organisationen med att {lista} fortsätter.",
+   "framtiderRubrik": "Fyra framtider och vad de betyder för {org}",
+   "utveckling": { "-1": "minskar verksamhetens samlade värde", "0": "står verksamhetens samlade värde sig", "1": "ökar verksamhetens samlade värde" },
+   "utvecklingSaknas": "är värdeutvecklingen inte bedömd",
+   "framtid": "I ”{namn}” (A {a}, B {b}) {utv}.",
+   "forsvagas": "Försvagas: {lista}.",
+   "starks": "Stärks: {lista}.",
+   "sarbar": "Det som försvagas i flera framtider, och därför är en sårbarhet oavsett hur det blir, är {lista}.",
+   "ingenSarbar": "Inget av verksamhetens värden försvagas i mer än en framtid. Det kan tyda på en robust position, men också på att bedömningen behöver prövas igen.",
+   "styrka": "Det som stärks i flera framtider, och därför kan bära verksamheten, är {lista}.",
+   "kollisioner": "Den viktigaste slutsatsen är var framtiden krockar med verksamhetens antaganden. Gruppen har pekat ut {antal}.",
+   "vidare": "Framtiden ”{scen}” tas vidare till See, där organisationen bedömer hur redo den är att ta emot den.",
+   "slutsatserRubrik": "De viktigaste slutsatserna",
+   "kollision": "Utmanar antagandet ”{ant}”.",
+   "kollisionMatt": "Tryck: {tryck}. Slår igenom {tempo}.",
+   "dold": "Den uppmärksammas knappt i dag, vilket gör den till en dold kollision.",
+   "robustaTitel": "Robusta åtgärder",
+   "robustaText": "Klokt i flera framtider: {lista}."
+  },
   "nastaRubrik": "Nästa steg: See",
   "nastaText": "I See bedömer ni hur redo organisationen är att ta emot den framtid ni valt: förmåga, mandat och vilja. Scenariot och kollisionerna följer med.",
   "tillSee": "Gå vidare till See",

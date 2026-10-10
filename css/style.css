@@ -270,3 +270,8 @@ table.mtab td:first-child { min-width: 180px; }
   .seg button { padding: 8px 9px; font-size: 13px; }
   .prop { flex-direction: column; align-items: flex-start; }
 }
+
+.trow .from { grid-column: 2 / -1; margin-top: -4px; }
+ul.futures { padding-left: 20px; margin: 0 0 14px; }
+ul.futures li { margin-bottom: 8px; }
+ul.futures li.till { font-weight: 500; }

@@ -26,7 +26,7 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function fill(t, map) { return t.replace(/\{(\w+)\}/g, function (m, k) { return map[k] != null ? map[k] : m; }); }
   function toast(msg) { var t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(function () { t.remove(); }, 2800); }
-  function lista(a) { return a.length > 1 ? a.slice(0, -1).join(', ') + ' och ' + a[a.length - 1] : (a[0] || ''); }
+  function lista(a) { if (a.some(function (x) { return / och /.test(x); })) return a.join('; '); return a.length > 1 ? a.slice(0, -1).join(', ') + ' och ' + a[a.length - 1] : (a[0] || ''); }
   function short(t, n) { t = String(t || ''); n = n || 26; return t.length > n ? t.slice(0, n - 1).trim() + '…' : t; }
   function getPath(o, p) { return p.split('.').reduce(function (x, k) { return x == null ? x : x[k]; }, o); }
   function setPath(o, p, v) { var k = p.split('.'), last = k.pop(); var t = k.reduce(function (x, kk) { if (x[kk] == null) x[kk] = {}; return x[kk]; }, o); t[last] = v; }
@@ -269,7 +269,8 @@
     h += '<div class="card tight"><b>Så går det till</b><ol class="steps-ol" start="0">' + C.skeden.map(function (s) { return '<li>' + esc(s.namn) + ' <span class="muted">(' + esc(s.tid) + ')</span></li>'; }).join('') + '</ol><p class="small muted" style="margin:0">' + esc(C.tidstext) + '</p></div>';
     var resume = has && (has.trender.length || has.meta.foretag) ? '<div class="card"><h3>Fortsätt där ni var</h3><p class="muted small">Det finns en påbörjad körning sparad i den här webbläsaren' + (has.meta.foretag ? ' för ' + esc(has.meta.foretag) : '') + '.</p><button class="btn" data-act="resume">Fortsätt</button></div>' : '';
     h += '<div class="startgrid">' + resume + '<div class="card"><h3>Ny körning</h3><p class="muted small">Börja från början.</p><button class="btn" data-act="new">Starta</button></div>' +
-      '<div class="card"><h3>Öppna en sparfil</h3><p class="muted small">Fortsätt eller titta på en tidigare körning.</p><button class="btn ghost" data-act="open">Välj fil</button></div></div>';
+      '<div class="card"><h3>Öppna en sparfil</h3><p class="muted small">Fortsätt eller titta på en tidigare körning.</p><button class="btn ghost" data-act="open">Välj fil</button></div>' +
+      '<div class="card"><h3>' + esc(C.forarbete.rubrik) + '</h3><p class="muted small">' + esc(C.forarbete.text) + '</p><button class="btn ghost" data-act="forarbete">Starta förarbete</button></div></div>';
     return h + '<p class="note small">' + esc(C.integritet) + '</p>';
   }
   function renderMeta() {
@@ -291,7 +292,7 @@
     return h;
   }
   function trendRow(t) {
-    return '<div class="trow"><span class="tnr">' + tnr(t.id) + '</span><label><span>Signal</span><textarea rows="2" data-trend="' + t.id + '" data-f="signal">' + esc(t.signal) + '</textarea></label><label><span>Indikerar trend</span><textarea rows="2" data-trend="' + t.id + '" data-f="trend">' + esc(t.trend) + '</textarea></label><button class="del" data-act="deltrend" data-id="' + t.id + '" aria-label="Ta bort">×</button></div>';
+    return '<div class="trow"><span class="tnr">' + tnr(t.id) + '</span><label><span>Signal</span><textarea rows="2" data-trend="' + t.id + '" data-f="signal">' + esc(t.signal) + '</textarea></label><label><span>Indikerar trend</span><textarea rows="2" data-trend="' + t.id + '" data-f="trend">' + esc(t.trend) + '</textarea></label><button class="del" data-act="deltrend" data-id="' + t.id + '" aria-label="Ta bort">×</button>' + (t.fran && t.fran.length ? '<span class="from small muted">' + esc(C.forarbete.fran) + ': ' + esc(t.fran.join(', ')) + '</span>' : '') + '</div>';
   }
   function renderSignaler() {
     var S = C.signaler, fo = fokusOmraden(), h = head('signaler', S.rubrik, S.text);
@@ -303,6 +304,9 @@
     var rest = C.omraden.filter(function (o) { return state.seedade.indexOf(o.id) < 0; });
     if (rest.length) h += '<h3>' + esc(S.ovrigaRubrik) + '</h3><div class="chips">' + rest.map(function (o) { return '<button class="chip" data-act="addarea" data-om="' + o.id + '">+ ' + esc(o.namn) + '</button>'; }).join('') + '</div>';
     h += '<p class="hint">' + validTrends().length + ' trender. ' + esc(S.minText) + '</p>';
+    var FA = C.forarbete;
+    if (state.forarbete) h += '<div class="card tight next"><div class="eyebrow">' + esc(FA.sparaRubrik) + '</div><p class="small">' + esc(FA.sparaText) + '</p><button class="btn" data-act="savefile">Spara förarbetet</button></div>';
+    else h += '<div class="card tight"><div class="eyebrow">' + esc(FA.hamtaRubrik) + '</div><p class="small">' + esc(FA.hamtaText) + '</p><button class="btn ghost" data-act="merge">' + esc(FA.hamtaKnapp) + '</button></div>';
     return h;
   }
   function renderBedomning() {
@@ -455,23 +459,49 @@
   }
   function envelope() { return LCA.wrap({ modul: 'sense', version: C.version, skapad: state.skapad, organisation: { namn: state.meta.foretag, typ: state.meta.typ, deltagare: state.meta.namn }, data: state, lamnar: lamnar(), kedja: state.kedja || {} }); }
   function sammanfattning() {
-    var org = state.meta.foretag || 'Organisationen', p = [];
-    p.push(org + ' har undersökt frågan: ”' + state.fokus.fraga.trim() + '”');
-    p.push('Arbetet utgick från ' + validTrends().length + ' trender. ' + (forutbestamda().length ? forutbestamda().length + ' av dem bedömdes som förutbestämda element som finns med i alla framtider. ' : '') + 'Framtiderna byggdes på två kritiska osäkerheter: ' + lista(axlar().map(function (id) { return '”' + tname(id) + '”'; })) + '.');
-    var st = vardeStat(), neg = st.filter(function (s) { return s.neg.length >= 2; });
-    if (neg.length) p.push('Det som försvagas i flera framtider, och därför är en sårbarhet oavsett hur det blir, är ' + lista(neg.map(function (s) { return s.v.namn.toLowerCase(); })) + '.');
-    if (state.kollisioner.length) p.push('Gruppen tar med sig ' + (state.kollisioner.length === 1 ? 'en framtidskollision' : state.kollisioner.length + ' framtidskollisioner') + ': ' + lista(state.kollisioner.map(function (k) { return '”' + k.namn + '”'; })) + '.');
-    if (state.seeScen !== null) p.push('Framtiden ”' + scenNamn(state.seeScen) + '” tas vidare till See.');
-    return p;
+    var S = C.rapport.sammanfattning, org = state.meta.foretag || 'Organisationen', ax = axlar(), A = andp(ax[0] || ''), B = andp(ax[1] || '');
+    function lc(x) { return /^[A-ZÅÄÖ][a-zåäö]/.test(x) ? x.charAt(0).toLowerCase() + x.slice(1) : x; }
+    var intro = [fill(S.inledning, { org: org, fraga: state.fokus.fraga.trim().replace(/[?.]$/, '') + (/[?]$/.test(state.fokus.fraga.trim()) ? '?' : ''), horisont: state.fokus.horisont }),
+      fill(S.grund, { n: validTrends().length, a: tname(ax[0]), b: tname(ax[1]) })];
+    if (forutbestamda().length) intro.push(fill(S.forutbestamda, { lista: lista(forutbestamda().map(function (id) { return '”' + lc(tname(id)) + '”'; })) }));
+    var st = vardeStat();
+    var framtider = [0, 1, 2, 3].map(function (i) {
+      var k = kombination(i), u = state.vind[i].utv;
+      var neg = st.filter(function (s) { return s.neg.indexOf(i) >= 0; }).map(function (s) { return lc(s.v.namn); });
+      var pos = st.filter(function (s) { return s.pos.indexOf(i) >= 0; }).map(function (s) { return lc(s.v.namn); });
+      var t = fill(S.framtid, { namn: scenNamn(i), a: lc(k.aStark ? A.stark : A.svag), b: lc(k.bStark ? B.stark : B.svag), utv: u === null ? S.utvecklingSaknas : S.utveckling[String(u)] });
+      if (neg.length) t += ' ' + fill(S.forsvagas, { lista: lista(neg) });
+      if (pos.length) t += ' ' + fill(S.starks, { lista: lista(pos) });
+      return { i: i, text: t, till: state.seeScen === i };
+    });
+    var efter = [], negF = st.filter(function (s) { return s.neg.length >= 2; }), posF = st.filter(function (s) { return s.pos.length >= 2; });
+    efter.push(negF.length ? fill(S.sarbar, { lista: lista(negF.map(function (s) { return lc(s.v.namn); })) }) : S.ingenSarbar);
+    if (posF.length) efter.push(fill(S.styrka, { lista: lista(posF.map(function (s) { return lc(s.v.namn); })) }));
+    if (state.kollisioner.length) efter.push(fill(S.kollisioner, { antal: state.kollisioner.length === 1 ? 'en framtidskollision' : state.kollisioner.length + ' framtidskollisioner' }));
+    if (state.seeScen !== null) efter.push(fill(S.vidare, { scen: scenNamn(state.seeScen) }));
+    var K = C.karta, slut = state.kollisioner.filter(kollKlar).slice().sort(function (a, b) { return b.tryck - a.tryck || a.tempo - b.tempo; }).map(function (k) {
+      var t = (k.ant ? fill(S.kollision, { ant: k.ant }) + ' ' : '') + fill(S.kollisionMatt, { tryck: (K.tryckSkala[k.tryck - 1] || '').toLowerCase(), tempo: (K.tempoSkala[k.tempo] || '').toLowerCase() });
+      if (k.syn <= 2) t += ' ' + S.dold;
+      return { titel: k.namn, text: t };
+    });
+    if (robusta().length) slut.push({ titel: S.robustaTitel, text: fill(S.robustaText, { lista: lista(robusta().map(lc)) }) });
+    return { rubrik: S.rubrik, intro: intro, framtiderRubrik: fill(S.framtiderRubrik, { org: org }), framtider: framtider, efter: efter, slutsatserRubrik: S.slutsatserRubrik, slutsatser: slut };
+  }
+  function sammanfattningHTML() {
+    var sm = sammanfattning();
+    return '<div class="card summary"><div class="eyebrow">' + esc(sm.rubrik) + '</div><p>' + sm.intro.map(esc).join(' ') + '</p>' +
+      '<h3>' + esc(sm.framtiderRubrik) + '</h3><ul class="futures">' + sm.framtider.map(function (f) { return '<li' + (f.till ? ' class="till"' : '') + '>' + esc(f.text) + (f.till ? ' <span class="tag strong">till See</span>' : '') + '</li>'; }).join('') + '</ul>' +
+      '<p>' + sm.efter.map(esc).join(' ') + '</p>' +
+      (sm.slutsatser.length ? '<h3>' + esc(sm.slutsatserRubrik) + '</h3><ol class="recs">' + sm.slutsatser.map(function (r) { return '<li><b>' + esc(r.titel) + '.</b> ' + esc(r.text) + '</li>'; }).join('') + '</ol>' : '') + '</div>';
   }
   function renderRapport() {
     var R = C.rapport, m = state.meta, K = C.karta, h = '';
     h += '<div class="eyebrow">' + esc(R.rubrik) + ' · Sense</div><h2>' + esc(m.foretag || 'Er organisation') + '</h2><p class="muted">' + esc(m.datum) + ' · ' + (m.typ === 'grupp' ? 'Grupparbete' : 'Individuellt arbete') + (m.namn ? ' · ' + esc(m.namn) : '') + ' · Tidshorisont ' + state.fokus.horisont + ' år</p>';
     h += '<div class="actions" style="margin:0 0 18px"><button class="btn" data-act="pdf">Ladda ner rapport (PDF)</button><button class="btn ghost" data-act="savefile">Spara sparfil</button></div>';
-    h += '<div class="card summary"><div class="eyebrow">Sammanfattning</div><p>' + sammanfattning().map(esc).join(' ') + '</p></div>';
+    h += sammanfattningHTML();
+    h += '<h3>Fyra framtider</h3><div class="scen-grid report">' + [0, 1, 2, 3].map(function (i) { var u = state.vind[i].utv; return '<div class="card tight' + (state.seeScen === i ? ' chosen' : '') + '">' + (state.seeScen === i ? '<div class="eyebrow">Till See</div>' : '') + '<b>' + esc(scenNamn(i)) + '</b><p class="small muted" style="margin:4px 0">' + esc(kombText(i)) + '</p><p class="small" style="margin:0">' + esc(state.scen[i].text) + '</p>' + (u !== null ? '<p class="small" style="margin:6px 0 0"><b>Värdet:</b> ' + esc(C.vind.utveckling[u + 1].toLowerCase()) + '</p>' : '') + '</div>'; }).join('') + '</div>';
     h += '<h3>Collision Map</h3><div class="card tight chartcard"><div class="chart">' + kartaSVG() + '</div></div>';
     state.kollisioner.forEach(function (k, i) { h += '<div class="card tight"><b>' + (i + 1) + '. ' + esc(k.namn) + '</b><p class="small" style="margin:4px 0">Utmanat antagande: ' + esc(k.ant || '(ej angivet)') + '</p><p class="small muted" style="margin:0">Tryck ' + k.tryck + ' av 5 (' + esc((K.tryckSkala[k.tryck - 1] || '').toLowerCase()) + ') · Tempo: ' + esc((K.tempoSkala[k.tempo] || '').toLowerCase()) + ' · Synlighet ' + k.syn + ' av 5 (' + esc((K.synlighetSkala[k.syn - 1] || '').toLowerCase()) + ')</p></div>'; });
-    h += '<h3>Fyra framtider</h3><div class="scen-grid report">' + [0, 1, 2, 3].map(function (i) { var u = state.vind[i].utv; return '<div class="card tight' + (state.seeScen === i ? ' chosen' : '') + '">' + (state.seeScen === i ? '<div class="eyebrow">Till See</div>' : '') + '<b>' + esc(scenNamn(i)) + '</b><p class="small muted" style="margin:4px 0">' + esc(kombText(i)) + '</p><p class="small" style="margin:0">' + esc(state.scen[i].text) + '</p>' + (u !== null ? '<p class="small" style="margin:6px 0 0"><b>Värdet:</b> ' + esc(C.vind.utveckling[u + 1].toLowerCase()) + '</p>' : '') + '</div>'; }).join('') + '</div>';
     if (state.seeMotivering && state.seeScen !== seeForslag()) h += '<p class="small"><b>Motivering till val av framtid:</b> ' + esc(state.seeMotivering) + '</p>';
     if (robusta().length) h += '<h3>Robusta åtgärder</h3><ul>' + robusta().map(function (r) { return '<li>' + esc(r) + '</li>'; }).join('') + '</ul>';
     var sig = state.syntes.signaler.map(function (s, i) { return s.trim() ? '<li><b>' + esc(scenNamn(i)) + ':</b> ' + esc(s) + '</li>' : ''; }).join('');
@@ -527,6 +557,8 @@
     if (act === 'new') { if (!load() || confirmReset()) { state = fresh(); save(); go('uppgifter'); } return; }
     if (act === 'resume') { state = load(); go(resumeStep()); return; }
     if (act === 'open') { document.getElementById('file-load').click(); return; }
+    if (act === 'forarbete') { if (!load() || confirmReset()) { state = fresh(); state.forarbete = true; state.meta.typ = 'individ'; save(); go('uppgifter'); } return; }
+    if (act === 'merge') { document.getElementById('file-merge').click(); return; }
     if (act === 'fromhandoff') { var ho = LCA.takeHandOff(); LCA.clearHandOff(); if (ho && (!load() || confirmReset())) useEnv(ho); return; }
     if (act === 'dropho') { LCA.clearHandOff(); render(); return; }
     if (act === 'savefile') { var env = envelope(); LCA.download(env, LCA.fileName(env)); toast('Sparfilen är nedladdad.'); return; }
@@ -580,6 +612,29 @@
     if (env.modul !== 'sense') { toast('Det här är en sparfil från ' + LCA.NAMN[env.modul] + '. Öppna den i ' + LCA.NAMN[env.modul] + '.'); return; }
     state = env.data; state.kedja = env.kedja || {}; save(); go(resumeStep());
   }
+  function norm(x) { return String(x || '').toLowerCase().replace(/[^a-zåäö0-9]+/g, ' ').trim(); }
+  function mergeEnvs(envs) {
+    var added = 0, dup = 0, who = [];
+    envs.forEach(function (env, n) {
+      if (env.modul !== 'sense') { toast('En av filerna kommer från ' + LCA.NAMN[env.modul] + ' och hoppades över.'); return; }
+      var d = env.data || {}, namn = (d.meta && (d.meta.namn || d.meta.foretag)) || ('Deltagare ' + (n + 1));
+      if (who.indexOf(namn) < 0) who.push(namn);
+      (d.trender || []).forEach(function (t) {
+        if (!(t.trend || '').trim()) return;
+        var same = state.trender.filter(function (x) { return norm(x.trend) === norm(t.trend); })[0];
+        if (same) { dup++; same.fran = same.fran || []; if (same.fran.indexOf(namn) < 0) same.fran.push(namn); return; }
+        var oid = omrade(t.omrade) ? t.omrade : 'ekonomi';
+        if (state.seedade.indexOf(oid) < 0) state.seedade.push(oid);
+        state.trender.push({ id: 't' + state.nextId++, omrade: oid, signal: t.signal || '', trend: t.trend, fran: [namn] }); added++;
+      });
+    });
+    save(); rerender();
+    if (who.length) toast(fill(C.forarbete.resultat, { n: added, d: who.length === 1 ? '1 deltagare' : who.length + ' deltagare', dubbletter: dup }));
+  }
+  document.getElementById('file-merge').addEventListener('change', function (e) {
+    var files = Array.prototype.slice.call(e.target.files), out = [], left = files.length; e.target.value = ''; if (!left) return;
+    files.forEach(function (f) { LCA.readFile(f, function (env, err) { if (err) toast(err); else out.push(env); if (--left === 0) mergeEnvs(out); }); });
+  });
   document.getElementById('file-load').addEventListener('change', function (e) {
     var f = e.target.files[0]; e.target.value = ''; if (!f) return;
     LCA.readFile(f, function (env, err) { if (err) { toast(err); return; } if (env.modul === 'sense' && load() && load().trender.length && !confirmReset()) return; useEnv(env); });
@@ -609,7 +664,12 @@
     text(C.verktyg + ' · ' + C.undertitel, { size: 9.5, color: MUT, after: 6 });
     text(m.foretag || 'Er organisation', { size: 15, bold: true, after: 1 });
     text(m.datum + ' · ' + (m.typ === 'grupp' ? 'Grupparbete' : 'Individuellt arbete') + (m.namn ? ' · ' + m.namn : '') + ' · Tidshorisont ' + state.fokus.horisont + ' år', { size: 10, color: MUT, after: 5 });
-    label('Sammanfattning'); text(sammanfattning().join(' '), { size: 10.5, after: 4 });
+    var sm = sammanfattning();
+    label(sm.rubrik); text(sm.intro.join(' '), { size: 10.5, after: 3 });
+    text(sm.framtiderRubrik, { size: 11, bold: true, after: 1.5 });
+    sm.framtider.forEach(function (f) { text('• ' + f.text + (f.till ? ' (tas vidare till See)' : ''), { size: 10, x: L + 2, width: Wt - 2, after: 1.5 }); });
+    y += 1.5; text(sm.efter.join(' '), { size: 10.5, after: 3 });
+    if (sm.slutsatser.length) { text(sm.slutsatserRubrik, { size: 11, bold: true, after: 1.5 }); sm.slutsatser.forEach(function (r, i) { text((i + 1) + '. ' + r.titel + '.', { size: 10, bold: true, after: 0.5 }); text(r.text, { size: 9.5, x: L + 4, width: Wt - 4, after: 2.5 }); }); }
     rule(); ensure(120); label('Collision Map', WEAK);
     chart(kartaSVG(), 108).then(function () {
       state.kollisioner.forEach(function (k, i) { text((i + 1) + '. ' + k.namn, { bold: true, after: 0.5 }); text('Utmanat antagande: ' + (k.ant || '(ej angivet)'), { size: 9.5, after: 0.5 }); text('Tryck ' + k.tryck + ' av 5 · Tempo: ' + (K.tempoSkala[k.tempo] || '').toLowerCase() + ' · Synlighet ' + k.syn + ' av 5', { size: 9, color: MUT, after: 3 }); });

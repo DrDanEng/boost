@@ -44,7 +44,10 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 - Sista skedet är **Collision Map**: 1 till 3 prioriterade kollisioner, var och en med *tryck*, *tempo* (mot beslutshorisonten), *synlighet* (hur mycket den redan uppmärksammas) och *utmanat antagande* (Dewar, assumption-based planning). Elasticitet tas bort, eftersom inre förmåga bedöms i See.
 - Hela processen ingår. Används i grupp med Dan som facilitator, gärna i Teams med delad skärm.
 - Version 0.1 byggd i `sense/` (2026-10-10). Skede 2 sorterar trender i kritiska osäkerheter och förutbestämda element (Wack; Burt & Wright 2006). Skede 4: verktyget föreslår två axlar (mest drivande osäkra trender), gruppen väljer och motiverar vid byte; varningar för säker trend och för beroende axlar (svar 3 i matrisen). Fyra scenarier i ett 2×2-kors. Skede 5 bygger på affärsmodellens byggstenar med ett antagande per värde (Dewar). Skede 6 och 7 i förlagan är sammanslagna till vindtunneln (van der Heijden). Scenariot till See föreslås som det där kollisionerna är störst.
-- Senare versioner: individuellt förarbete med sammanslagning i facilitatorläge; femtrendsvariant med max och min som tillval.
+- Individuellt förarbete finns som alternativ (grupparbete är huvudspåret): deltagare gör skede 0 och 1 själva och sparar en fil; facilitatorn läser in filerna i skede 1, trender läggs till och dubbletter hoppas över. Deltagarnas fokusval slås inte ihop.
+- Rapporten börjar, som i See, med en sammanfattning: fokusfråga, axlar, förutbestämda element, de fyra framtiderna och vad de betyder för verksamhetens värden, sårbarheter och styrkor, samt de viktigaste slutsatserna (kollisionerna och robusta åtgärder). Texterna ligger i `rapport.sammanfattning` i `sense/content.js`.
+- Öppen fråga till Dan: ska värdet "Lärande och förnyelse" strykas ur skede 5, eftersom det är en förmåga som bedöms i See?
+- Senare versioner: femtrendsvariant med max och min som tillval.
 
 ### See
 - Ligger i `see/`. Tolv förmågor (elva blev tolv när agency lades till).
