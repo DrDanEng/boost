@@ -90,8 +90,8 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 - Första gången ett begrepp eller en canvas dyker upp i en modul visas en kort beskrivning med länk till begreppslistan.
 
 ## Introduktionsfilm
-- `video/intro.mp4` (80 sekunder, 1280×720, H.264, text men inget ljud) och `video/intro-poster.jpg` visas på startsidan med en nedladdningslänk. Texterna i `js/content.js` under `film`.
-- Filmen är byggd av skärmbilder från verktygen med ett påhittat exempelföretag (Exempelbolaget AB) och textskyltar. Den ska göras om när verktygen ändras märkbart.
+- `video/intro.mp4` (100 sekunder, 1280×720, H.264, text men inget ljud) och `video/intro-poster.jpg` visas på startsidan med en nedladdningslänk. Texterna i `js/content.js` under `film`.
+- Filmen är byggd av skärmbilder från verktygen med Engströms Mickla AB som exempelföretag (påhittade svar) och textskyltar, bland annat om att förändring inte börjar i ledningsrummet och om varje medarbetare som ett trimroder. Den ska göras om när verktygen ändras märkbart.
 
 ## Navigering och sparande
 - Länken Hem finns i sidhuvudet på alla sidor utom startsidan. Körningen sparas löpande i webbläsaren, och varje modul minns senaste steg (`state.steg`), så Fortsätt tar användaren tillbaka exakt dit hen var.

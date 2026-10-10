@@ -13,8 +13,8 @@ window.CONTENT = {
  ],
  "film": {
   "rubrik": "Se hur det går till",
-  "text": "En kort film om metoden, de tre faserna, hur det ser ut att arbeta i verktyget och vad ni får ut. Filmen är 80 sekunder lång och har text men inget ljud.",
-  "ladda": "Ladda ner filmen (MP4, 7 MB)",
+  "text": "En kort film om metoden, de tre faserna, hur det ser ut att arbeta i verktyget och vad ni får ut. Filmen är knappt två minuter lång och har text men inget ljud.",
+  "ladda": "Ladda ner filmen (MP4, 6 MB)",
   "fil": "video/intro.mp4",
   "webm": "video/intro.webm",
   "affisch": "video/intro-poster.jpg"
