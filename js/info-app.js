@@ -35,5 +35,5 @@
     document.getElementById('ingen').hidden = n > 0;
   });
   if (location.hash) { var el = document.getElementById(location.hash.slice(1)); if (el) { el.classList.add('hit'); el.scrollIntoView(); } }
-  document.getElementById('footer').innerHTML = '<span class="maker"><img src="../img/mickla.png" alt="Mickla" width="22" height="22">' + esc(I.upphov) + '</span><span>' + esc(I.verktyg) + ' · version ' + esc(I.version) + '</span>';
+  document.getElementById('footer').innerHTML = '<span class="maker"><img src="../img/mickla.png" alt="Mickla" width="22" height="22">' + esc(I.upphov) + '</span><span>' + esc(I.verktyg) + ' · ' + esc(I.version) + '</span>';
 })();

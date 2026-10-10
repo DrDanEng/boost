@@ -573,12 +573,12 @@
       rule(); label('Vetenskaplig grund', MUT); text(LCA.TEORI.text + ': ' + LCA.TEORI.url, { size: 8.5, color: MUT });
       text(C.integritet, { size: 8, color: MUT });
       var n = doc.getNumberOfPages(), logo = document.querySelector('.footer img'); if (logo && !logo.complete) logo = null;
-      for (var i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text(C.verktyg + ' · Shift · version ' + C.version + ' · ' + C.upphov, L, PH - 10); doc.text('Sida ' + i + ' av ' + n, L + Wt, PH - 10, { align: 'right' }); if (logo) { try { doc.addImage(logo, 'PNG', L + Wt - 24, PH - 13.6, 4.5, 4.5); } catch (e) {} } }
+      for (var i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text(C.verktyg + ' · Shift · ' + C.version + ' · ' + C.upphov, L, PH - 10); doc.text('Sida ' + i + ' av ' + n, L + Wt, PH - 10, { align: 'right' }); if (logo) { try { doc.addImage(logo, 'PNG', L + Wt - 24, PH - 13.6, 4.5, 4.5); } catch (e) {} } }
       doc.save('lca-shift-rapport-' + LCA.slug(m.foretag) + '-' + (m.datum || today()) + '.pdf');
     }).catch(function (err) { console.error(err); toast('Rapporten kunde inte skapas. Försök igen.'); });
   }
 
-  document.getElementById('footer').innerHTML = '<span class="maker"><img src="../img/mickla.png" alt="Mickla" width="22" height="22">' + esc(C.upphov) + '</span><span>' + esc(C.verktyg) + ' · Shift · version ' + esc(C.version) + '</span>';
+  document.getElementById('footer').innerHTML = '<span class="maker"><img src="../img/mickla.png" alt="Mickla" width="22" height="22">' + esc(C.upphov) + '</span><span>' + esc(C.verktyg) + ' · Shift · ' + esc(C.version) + '</span>';
   render();
   window.__shift = { state: function () { return state; }, go: go, set: function (s) { state = s; save(); }, envelope: envelope };
 })();

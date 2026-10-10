@@ -21,7 +21,7 @@ Arbetsbeskrivning för den som utvecklar verktygen vidare, människa eller Claud
 - Upphovsrad: "© Engströms Mickla AB 2026". Raden om Smart Built Environment och Formas läggs till först när finansieringen är beslutad.
 - Verktygen är dialogverktyg, inte mätinstrument. Inga psykometriska anspråk.
 - Publicera aldrig till `main` utan att Dan har sagt "publicera". Förslag läggs i en egen gren.
-- Versionsnummer i `boost.version` i innehållsfilen räknas upp vid varje publicering och syns i sidfoten och i rapporterna.
+- Versionsnummer (`version` i varje innehållsfil) räknas upp vid varje publicering och syns i sidfoten och i rapporterna. Sedan 2026-10-10 heter alla moduler och hela verktyget "prototyp v0.1" (första testrundan med användare).
 
 ## Grundperspektiv: absorptionsförmåga, inte implementering
 
@@ -90,7 +90,7 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 - Första gången ett begrepp eller en canvas dyker upp i en modul visas en kort beskrivning med länk till begreppslistan.
 
 ## Introduktionsfilm
-- `video/intro.mp4` (100 sekunder, 1280×720, H.264, text men inget ljud) och `video/intro-poster.jpg` (filmens startbild med titeln) visas på startsidan med en nedladdningslänk. Texterna i `js/content.js` under `film`.
+- `video/intro.mp4` (100 sekunder, 1280×720, H.264, text men inget ljud) och `video/intro-poster.jpg` (filmens startbild med titeln) visas på startsidan, mellan de två inledande styckena, med en nedladdningslänk. Texterna i `js/content.js` under `film`.
 - Filmen är byggd av skärmbilder från verktygen med Engströms Mickla AB som exempelföretag (påhittade svar) och textskyltar, bland annat om att förändring inte börjar i ledningsrummet och om varje medarbetare som ett trimroder. Den ska göras om när verktygen ändras märkbart.
 
 ## Navigering och sparande

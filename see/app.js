@@ -536,12 +536,12 @@
       rule(); label('Om verktyget', MUT); text(M.intro[1] + ' ' + B.integritet, { size: 8.5, color: MUT }); text(LCA.TEORI.text + ': ' + LCA.TEORI.url, { size: 8.5, color: MUT });
       var n = doc.getNumberOfPages(), logo = document.querySelector('.footer img');
       if (logo && !logo.complete) logo = null;
-      for (var i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text(B.verktyg + ' · ' + B.titel + ' · version ' + B.version + ' · ' + B.upphov, L, PH - 10); doc.text('Sida ' + i + ' av ' + n, L + Wt, PH - 10, { align: 'right' }); if (logo) { try { doc.addImage(logo, 'PNG', L + Wt - 24, PH - 13.6, 4.5, 4.5); } catch (e) {} } }
+      for (var i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text(B.verktyg + ' · ' + B.titel + ' · ' + B.version + ' · ' + B.upphov, L, PH - 10); doc.text('Sida ' + i + ' av ' + n, L + Wt, PH - 10, { align: 'right' }); if (logo) { try { doc.addImage(logo, 'PNG', L + Wt - 24, PH - 13.6, 4.5, 4.5); } catch (e) {} } }
       doc.save('lca-see-rapport-' + slug(m.foretag) + '-' + m.datum + '.pdf');
     }).catch(function (err) { holder.remove(); console.error(err); toast('Rapporten kunde inte skapas. Försök igen.'); });
   }
 
-  document.getElementById('footer').innerHTML = '<span class="maker"><img src="../img/mickla.png" alt="Mickla" width="22" height="22">' + esc(B.upphov) + '</span><span>' + esc(B.verktyg) + ' · ' + esc(B.titel) + ' · version ' + esc(B.version) + '</span>';
+  document.getElementById('footer').innerHTML = '<span class="maker"><img src="../img/mickla.png" alt="Mickla" width="22" height="22">' + esc(B.upphov) + '</span><span>' + esc(B.verktyg) + ' · ' + esc(B.titel) + ' · ' + esc(B.version) + '</span>';
   render();
   window.__dv = { state: function () { return state; }, go: go, set: function (s) { state = s; save(); }, envelope: envelope };
 })();

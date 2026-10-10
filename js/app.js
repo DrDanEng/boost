@@ -38,7 +38,7 @@
     var kedja = ORDNING.filter(function (k) { return k !== env.modul && env.kedja && env.kedja[k]; }).map(function (k) { return LCA.NAMN[k]; });
     var nasta = ORDNING[ORDNING.indexOf(env.modul) + 1];
     var h = '<div class="card opened"><div class="eyebrow">' + esc(fill(S.fran, { modul: namn })) + '</div><h3 style="margin-top:0">' + esc(env.organisation.namn || 'Namnlös organisation') + '</h3>' +
-      '<p class="small muted">Senast ändrad ' + esc((env.andrad || '').slice(0, 10) || 'okänt datum') + (env.version ? ' · version ' + esc(env.version) : '') + '</p>';
+      '<p class="small muted">Senast ändrad ' + esc((env.andrad || '').slice(0, 10) || 'okänt datum') + (env.version ? ' · ' + esc(env.version) : '') + '</p>';
     if (kedja.length) h += '<p class="small">' + esc(fill(S.innehaller, { lista: lista(kedja) })) + '</p>';
     if (env.aldreFormat) h += '<p class="small muted">' + esc(S.aldre) + '</p>';
     h += '<div class="actions" style="margin-top:12px">';
@@ -50,11 +50,14 @@
     return h + '</div></div>';
   }
 
+  function filmHTML() {
+    var Fm = C.film; if (!Fm) return '';
+    return '<div class="film"><video controls preload="metadata" playsinline poster="' + esc(Fm.affisch) + '" aria-label="' + esc(Fm.rubrik) + '"><source src="' + esc(Fm.fil) + '" type="video/mp4">' + (Fm.webm ? '<source src="' + esc(Fm.webm) + '" type="video/webm">' : '') + '</video><p class="small muted" style="margin:8px 0 0">' + esc(Fm.text) + ' <a href="' + esc(Fm.fil) + '" download="Learning-Curve-Approach-introduktion.mp4">' + esc(Fm.ladda) + '</a></p></div>';
+  }
+
   function render() {
     var P = C.perspektiv, O = C.ordning, S = C.sparfil;
-    var h = '<section class="hero"><div class="eyebrow">' + esc(C.eyebrow) + '</div><h1>' + esc(C.titel) + '</h1><p class="lead">' + esc(C.lead) + '</p>' + (C.fritt ? '<p class="fritt">' + esc(C.fritt) + '</p>' : '') + C.intro.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</section>';
-    var Fm = C.film;
-    if (Fm) h += '<section class="film"><video controls preload="metadata" playsinline poster="' + esc(Fm.affisch) + '" aria-label="' + esc(Fm.rubrik) + '"><source src="' + esc(Fm.fil) + '" type="video/mp4">' + (Fm.webm ? '<source src="' + esc(Fm.webm) + '" type="video/webm">' : '') + '</video><p class="small muted" style="margin:8px 0 0">' + esc(Fm.text) + ' <a href="' + esc(Fm.fil) + '" download="Learning-Curve-Approach-introduktion.mp4">' + esc(Fm.ladda) + '</a></p></section>';
+    var h = '<section class="hero"><div class="eyebrow">' + esc(C.eyebrow) + '</div><h1>' + esc(C.titel) + '</h1><p class="lead">' + esc(C.lead) + '</p>' + (C.fritt ? '<p class="fritt">' + esc(C.fritt) + '</p>' : '') + C.intro.map(function (t, i) { return '<p>' + esc(t) + '</p>' + (i === 0 ? filmHTML() : ''); }).join('') + '</section>';
     h += phasesHTML();
     h += '<section><h2 class="section">' + esc(P.rubrik) + '</h2>' + P.text.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') +
       '<blockquote class="quote"><p>' + esc(P.citat) + '</p><cite>' + esc(P.kalla) + '</cite></blockquote></section>';
@@ -82,6 +85,6 @@
     });
   });
 
-  document.getElementById('footer').innerHTML = '<span class="maker"><img src="img/mickla.png" alt="Mickla" width="22" height="22">' + esc(C.upphov) + '</span><span>' + esc(C.titel) + ' · version ' + esc(C.version) + '</span>';
+  document.getElementById('footer').innerHTML = '<span class="maker"><img src="img/mickla.png" alt="Mickla" width="22" height="22">' + esc(C.upphov) + '</span><span>' + esc(C.titel) + ' · ' + esc(C.version) + '</span>';
   render();
 })();

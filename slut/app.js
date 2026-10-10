@@ -213,12 +213,12 @@
       (sh.forsok || []).forEach(function (f) { text('• ' + f.titel + ': ' + (f.jamfort ? lc(f.jamfort) : 'inte avläst') + (f.beslut ? ', ' + (BES[f.beslut] || f.beslut) : '') + (f.nasta ? '. Nästa: ' + f.nasta : ''), { size: 9, after: 1 }); });
       rule(); label('Vetenskaplig grund', MUT); text(LCA.TEORI.text + ': ' + LCA.TEORI.url, { size: 8.5, color: MUT }); text(C.integritet, { size: 8, color: MUT });
       var n = doc.getNumberOfPages(), logo = document.querySelector('.footer img'); if (logo && !logo.complete) logo = null;
-      for (var i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text(C.verktyg + ' · Slutrapport · version ' + C.version + ' · ' + C.upphov, L, PH - 10); doc.text('Sida ' + i + ' av ' + n, L + Wt, PH - 10, { align: 'right' }); if (logo) { try { doc.addImage(logo, 'PNG', L + Wt - 24, PH - 13.6, 4.5, 4.5); } catch (er) {} } }
+      for (var i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text(C.verktyg + ' · Slutrapport · ' + C.version + ' · ' + C.upphov, L, PH - 10); doc.text('Sida ' + i + ' av ' + n, L + Wt, PH - 10, { align: 'right' }); if (logo) { try { doc.addImage(logo, 'PNG', L + Wt - 24, PH - 13.6, 4.5, 4.5); } catch (er) {} } }
       doc.save('lca-slutrapport-' + LCA.slug(env.organisation.namn) + '-' + new Date().toISOString().slice(0, 10) + '.pdf');
     }).catch(function (err) { console.error(err); toast('Rapporten kunde inte skapas. Försök igen.'); });
   }
 
-  document.getElementById('footer').innerHTML = '<span class="maker"><img src="../img/mickla.png" alt="Mickla" width="22" height="22">' + esc(C.upphov) + '</span><span>' + esc(C.verktyg) + ' · Slutsida · version ' + esc(C.version) + '</span>';
+  document.getElementById('footer').innerHTML = '<span class="maker"><img src="../img/mickla.png" alt="Mickla" width="22" height="22">' + esc(C.upphov) + '</span><span>' + esc(C.verktyg) + ' · Slutsida · ' + esc(C.version) + '</span>';
   var ho = LCA.takeHandOff();
   if (ho && ho.modul === 'shift') { LCA.clearHandOff(); use(ho); }
   else { var st = get(KEY); if (st && !saknade(st).length) { env = st; render(); } else render(); }
