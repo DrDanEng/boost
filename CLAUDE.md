@@ -89,6 +89,10 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 - Länkarna Begrepp och Om metoden finns i sidhuvudet på alla sidor och öppnas i en ny flik så att körningen inte avbryts.
 - Första gången ett begrepp eller en canvas dyker upp i en modul visas en kort beskrivning med länk till begreppslistan.
 
+## Introduktionsfilm
+- `video/intro.mp4` (80 sekunder, 1280×720, H.264, text men inget ljud) och `video/intro-poster.jpg` visas på startsidan med en nedladdningslänk. Texterna i `js/content.js` under `film`.
+- Filmen är byggd av skärmbilder från verktygen med ett påhittat exempelföretag (Exempelbolaget AB) och textskyltar. Den ska göras om när verktygen ändras märkbart.
+
 ## Navigering och sparande
 - Länken Hem finns i sidhuvudet på alla sidor utom startsidan. Körningen sparas löpande i webbläsaren, och varje modul minns senaste steg (`state.steg`), så Fortsätt tar användaren tillbaka exakt dit hen var.
 - Knappen Spara sparfil finns på varje steg i alla moduler, eftersom webbläsarens lagring kan tömmas (privat läge, rensning, annan dator).

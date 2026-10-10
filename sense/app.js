@@ -249,7 +249,7 @@
   }
   function matrisSVG() {
     var S = sums(), ids = urval(), W = 640, H = 420, L = 56, T = 20, R = 20, B = 50, w = W - L - R, h = H - T - B;
-    var max = Math.max(3, Math.max.apply(null, ids.map(function (id) { return Math.max(S.r[id].aktiv, S.r[id].passiv); })));
+    var max = Math.max(3, Math.max.apply(null, ids.map(function (id) { return Math.max(S.r[id].aktiv, S.r[id].passiv); }))) + 1;
     function x(v) { return L + v / max * w; } function y(v) { return T + h - v / max * h; }
     var cols = { drivande: '#2f6b5e', kritisk: '#b8532c', paverkad: '#3d5a99', buffrande: '#8a8f96' };
     var g = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" font-family="' + F + '" role="img" aria-label="Aktiv och passiv summa per trend">';

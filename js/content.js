@@ -1,7 +1,7 @@
 // Innehållsfil för landningssidan. Texter kan redigeras här utan att röra koden.
 // Status per modul: "oppen" (länkas) eller "kommer" (visas som under utveckling).
 window.CONTENT = {
- "version": "0.6 prototyp",
+ "version": "0.7 prototyp",
  "fredLank": "https://www.researchgate.net/profile/Dalia-Mukhtar-Landgren/publication/366482837_Larande_genom_temporar_organisering_-_projekt_piloter_och_experiment_i_Malmo_stad/links/63a3341cc3c9bb1647fb905d/Laerande-genom-temporaer-organisering-projekt-piloter-och-experiment-i-Malmoe-stad.pdf",
  "upphov": "© Engströms Mickla AB 2026",
  "eyebrow": "Smart Built Boost",
@@ -11,6 +11,14 @@ window.CONTENT = {
   "Planer skrivs och strukturer förtydligas, men rörelsen uteblir. The Learning Curve Approach utgår från att verklig förändring följer ett annat mönster: först väcks en oro, sedan söker vi insikt, och om lärandet hålls levande uppstår rörelse. Små handlingar som förändrar mer än stora beslut.",
   "Verktygen här gör de tre faserna, Sense, See och Shift, till arbetsmaterial som en grupp kan använda tillsammans, gärna vid en gemensam skärm."
  ],
+ "film": {
+  "rubrik": "Se hur det går till",
+  "text": "En kort film om metoden, de tre faserna, hur det ser ut att arbeta i verktyget och vad ni får ut. Filmen är 80 sekunder lång och har text men inget ljud.",
+  "ladda": "Ladda ner filmen (MP4, 7 MB)",
+  "fil": "video/intro.mp4",
+  "webm": "video/intro.webm",
+  "affisch": "video/intro-poster.jpg"
+ },
  "perspektiv": {
   "rubrik": "Det är mottagaren som avgör",
   "text": [
