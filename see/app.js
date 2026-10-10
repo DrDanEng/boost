@@ -1,4 +1,4 @@
-/* Dialogverktyget. Statisk app, all data stannar i webbläsaren. © Engströms Mickla AB 2026 */
+/* Dialogverktyg -- Learning Curve Approach: See. Statisk app, all data stannar i webbläsaren. © Engströms Mickla AB 2026 */
 (function () {
   'use strict';
   var C = window.CONTENT, B = C.boost, M = C.matchup, Q = B.kvadranter || null;
@@ -480,6 +480,7 @@
       }); y += 2;
     }
     text(B.titel + ': rapport', { size: 22, bold: true, after: 1 });
+    text(B.verktyg, { size: 9, color: MUT, after: 2 });
     text(B.undertitel, { size: 10.5, color: MUT, after: 6 });
     text((m.foretag || 'Er organisation'), { size: 15, bold: true, after: 1 });
     text(m.datum + ' · ' + (m.typ === 'grupp' ? 'Gruppbedömning' : 'Individuell bedömning') + (m.namn ? ' · ' + m.namn : ''), { size: 10, color: MUT, after: 5 });
@@ -534,13 +535,14 @@
       CAPS.filter(function (c) { return state.valda.indexOf(c.id) < 0; }).forEach(function (c) { text(c.namn + ' (' + fmtN(state.nivaer[c.id]) + '): ' + c.intern[band(state.nivaer[c.id])], { size: 9, after: 1.5 }); });
       rule(); label(B.sammanfattning.lasRubrik); B.sammanfattning.las.forEach(function (g) { text(g.term + '.', { size: 9.5, bold: true, after: 0.3 }); text(g.text, { size: 9, after: 2 }); });
       rule(); label('Om verktyget', MUT); text(M.intro[1] + ' ' + B.integritet, { size: 8.5, color: MUT });
-      var n = doc.getNumberOfPages();
-      for (var i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text(B.titel + ' · version ' + B.version + ' · ' + B.upphov, L, PH - 10); doc.text('Sida ' + i + ' av ' + n, L + Wt, PH - 10, { align: 'right' }); }
-      doc.save('dialogverktyget-rapport-' + slug(m.foretag) + '-' + m.datum + '.pdf');
+      var n = doc.getNumberOfPages(), logo = document.querySelector('.footer img');
+      if (logo && !logo.complete) logo = null;
+      for (var i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text(B.verktyg + ' · ' + B.titel + ' · version ' + B.version + ' · ' + B.upphov, L, PH - 10); doc.text('Sida ' + i + ' av ' + n, L + Wt, PH - 10, { align: 'right' }); if (logo) { try { doc.addImage(logo, 'PNG', L + Wt - 24, PH - 13.6, 4.5, 4.5); } catch (e) {} } }
+      doc.save('lca-see-rapport-' + slug(m.foretag) + '-' + m.datum + '.pdf');
     }).catch(function (err) { holder.remove(); console.error(err); toast('Rapporten kunde inte skapas. Försök igen.'); });
   }
 
-  document.getElementById('footer').innerHTML = '<span>' + esc(B.upphov) + '</span><span>' + esc(B.titel) + ' · version ' + esc(B.version) + '</span>';
+  document.getElementById('footer').innerHTML = '<span class="maker"><img src="../img/mickla.png" alt="Mickla" width="22" height="22">' + esc(B.upphov) + '</span><span>' + esc(B.verktyg) + ' · ' + esc(B.titel) + ' · version ' + esc(B.version) + '</span>';
   render();
   window.__dv = { state: function () { return state; }, go: go, set: function (s) { state = s; save(); }, envelope: envelope };
 })();

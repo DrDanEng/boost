@@ -80,7 +80,8 @@ window.CONTENT = {
     }
    ]
   },
-  "titel": "Dialogverktyget",
+  "titel": "See",
+  "verktyg": "Dialogverktyg -- Learning Curve Approach",
   "undertitel": "Självskattning av mottagningsförmåga och agency inför förändring",
   "upphov": "© Engströms Mickla AB 2026",
   "integritet": "Dina svar sparas bara i din webbläsare och i de filer du själv laddar ner. Ingenting skickas till oss eller någon annan.",

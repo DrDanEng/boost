@@ -2,9 +2,10 @@
 // Status per modul: "oppen" (länkas) eller "kommer" (visas som under utveckling).
 window.CONTENT = {
  "version": "0.1 prototyp",
+ "fredLank": "https://www.researchgate.net/profile/Dalia-Mukhtar-Landgren/publication/366482837_Larande_genom_temporar_organisering_-_projekt_piloter_och_experiment_i_Malmo_stad/links/63a3341cc3c9bb1647fb905d/Laerande-genom-temporaer-organisering-projekt-piloter-och-experiment-i-Malmoe-stad.pdf",
  "upphov": "© Engströms Mickla AB 2026",
  "eyebrow": "Smart Built Boost",
- "titel": "The Learning Curve Approach",
+ "titel": "Dialogverktyg -- Learning Curve Approach",
  "lead": "Förändring börjar med lärande. Tre faser som hjälper en organisation att se vad som förändras, förstå vad det betyder för den själv och ta ett första litet steg.",
  "intro": [
   "Planer skrivs och strukturer förtydligas, men rörelsen uteblir. The Learning Curve Approach utgår från att verklig förändring följer ett annat mönster: först väcks en oro, sedan söker vi insikt, och om lärandet hålls levande uppstår rörelse. Små handlingar som förändrar mer än stora beslut.",
@@ -39,7 +40,7 @@ window.CONTENT = {
   "see": {
    "status": "oppen",
    "lank": "see/",
-   "rubrik": "See: Dialogverktyget",
+   "rubrik": "See: mottagningsförmåga och agency",
    "underrubrik": "Hur redo vi är att ta emot förändringen",
    "text": "Ni skattar tolv förmågor att upptäcka, välja, pröva och förändra, väljer de två eller tre som behöver stärkas mest och tar ställning till mandat, vilja och tilltro för dem.",
    "far": "En profil, en diagnos av vad som håller tillbaka och ett beslut per förmåga.",
@@ -68,7 +69,7 @@ window.CONTENT = {
   "knapp": "Öppna sparfil",
   "fran": "Sparfil från {modul}",
   "innehaller": "Innehåller underlag från: {lista}.",
-  "aldre": "Filen är sparad i ett äldre format från Dialogverktyget. Den fungerar som vanligt.",
+  "aldre": "Filen är sparad i ett äldre format från See. Den fungerar som vanligt.",
   "fortsatt": "Fortsätt i {modul}",
   "vidare": "Gå vidare till {modul}",
   "vantar": "{modul} är under utveckling. Spara filen tills vidare, den går att läsa in när modulen är klar."
@@ -76,7 +77,7 @@ window.CONTENT = {
  "pagaende": "Påbörjad körning i den här webbläsaren",
  "kallorRubrik": "Forskningsunderlag i urval",
  "kallor": [
-  "Fred, M. & Mukhtar-Landgren, D. (2022). [Titel kompletteras av Dan.]",
+  "Fred, M. & Mukhtar-Landgren, D. (2022). Lärande genom temporär organisering: projekt, piloter och experiment i Malmö stad. Kunskapsunderlag framtaget för Malmö Tillväxtkommission.",
   "Rohrbeck, R. & Kum, M. E. (2018). Corporate foresight and its impact on firm performance: A longitudinal analysis. Technological Forecasting and Social Change, 129, 105-116.",
   "Zahra, S. A. & George, G. (2002). Absorptive capacity: A review, reconceptualization, and extension. Academy of Management Review, 27(2), 185-203.",
   "Weiner, B. J. (2009). A theory of organizational readiness for change. Implementation Science, 4, 67.",

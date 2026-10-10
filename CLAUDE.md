@@ -6,7 +6,9 @@ Arbetsbeskrivning för den som utvecklar verktygen vidare, människa eller Claud
 
 - Verktygen stödjer The Learning Curve Approach (Sense, See, Shift) i projektet Smart Built Boost (Smart Built Environment).
 - Upphov: Dan Engström, Engströms Mickla AB. Dan äger allt innehåll; Claude föreslår, Dan beslutar.
-- **See** är modulen *Dialogverktyget* (självskattning av mottagningsförmåga och agency). Den ligger i `see/`.
+- Tjänsten heter **Dialogverktyg -- Learning Curve Approach** (Dans namnval, även i rubriker). Modulerna heter Sense, See och Shift.
+- **See** (självskattning av mottagningsförmåga och agency, tidigare kallad Dialogverktyget) ligger i `see/`.
+- Micklas logotyp (`img/mickla.png`, ormen) visas diskret i sidfoten på alla sidor och i PDF-rapportens sidfot.
 - Landningssidan ligger i roten och länkar till modulerna. Byggordning: See (klar), landningssida, Sense, Shift, slutsida.
 - Modulerna ska kunna köras i valfri ordning och var för sig, och ge en egen rapport. Körs alla tre i rätt ordning ger slutsidan en samlad analys med slutrekommendationer.
 
@@ -42,7 +44,7 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 - Sista skedet är **Collision Map**: 1 till 3 prioriterade kollisioner, var och en med *tryck*, *tempo* (mot beslutshorisonten), *synlighet* (hur mycket den redan uppmärksammas) och *utmanat antagande* (Dewar, assumption-based planning). Elasticitet tas bort, eftersom inre förmåga bedöms i See.
 - Hela processen ingår. Används i grupp med Dan som facilitator, gärna i Teams med delad skärm.
 
-### See (Dialogverktyget)
+### See
 - Ligger i `see/`. Tolv förmågor (elva blev tolv när agency lades till).
 - Den separata självskattningen av framtidsberedskap från v1.0 utgår.
 
@@ -88,7 +90,7 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 - Ett steg per skärm, tydlig Nästa och Tillbaka, fungerar på telefon.
 - PDF-rapport skapas med jsPDF och svg2pdf i `vendor/`.
 
-## Dialogverktyget (See) i korthet
+## See i korthet
 
 - Tolv förmågor i fyra fält: Upptäcka, Välja, Pröva, Förändra (`boost.kvadranter`). Skala 0 till 4 med halvsteg.
 - Gränsvärden 1,8 / 2,6 / 3,2 för rekommendationer och åtgärdsförslag.

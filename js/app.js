@@ -60,7 +60,7 @@
     h += '<section class="split"><div><h2 class="section">' + esc(O.rubrik) + '</h2><p>' + esc(O.text) + '</p><p>' + esc(O.slut) + ' <span class="muted">' + esc(O.slutStatus) + '</span></p></div>' +
       '<div class="card"><h3 style="margin-top:0">' + esc(S.rubrik) + '</h3><p class="small muted">' + esc(S.text) + '</p><button class="btn ghost" data-act="open">' + esc(S.knapp) + '</button></div></section>';
     h += openedHTML();
-    h += '<section><h2 class="section">' + esc(C.kallorRubrik) + '</h2><ul class="refs">' + C.kallor.map(function (k) { return '<li>' + esc(k) + '</li>'; }).join('') + '</ul></section>';
+    h += '<section><h2 class="section">' + esc(C.kallorRubrik) + '</h2><ul class="refs">' + C.kallor.map(function (k, i) { return '<li>' + esc(k) + (i === 0 && C.fredLank ? ' <a href="' + esc(C.fredLank) + '" rel="noopener">Länk</a>' : '') + '</li>'; }).join('') + '</ul></section>';
     h += '<p class="note small">' + esc(C.integritet) + '</p>';
     app.innerHTML = h;
   }
@@ -80,6 +80,6 @@
     });
   });
 
-  document.getElementById('footer').innerHTML = '<span>' + esc(C.upphov) + '</span><span>' + esc(C.titel) + ' · version ' + esc(C.version) + '</span>';
+  document.getElementById('footer').innerHTML = '<span class="maker"><img src="img/mickla.png" alt="Mickla" width="22" height="22">' + esc(C.upphov) + '</span><span>' + esc(C.titel) + ' · version ' + esc(C.version) + '</span>';
   render();
 })();
