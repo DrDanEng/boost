@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dialogverktyget</title>
+<meta name="description" content="Självskattning av mottagningsförmåga och agency inför förändring. Utvecklat av Engströms Mickla AB.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='16,3 28,12 24,27 8,27 4,12' fill='none' stroke='%232f6b5e' stroke-width='3'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="crumb" href="../" title="Till The Learning Curve Approach">LCA</a>
+    <a class="brand" href="#" id="brand">Dialogverktyget</a>
+    <div class="progress" id="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+  </div>
+</header>
+<main class="wrap" id="app" tabindex="-1">
+  <noscript><p>Verktyget behöver JavaScript för att fungera.</p></noscript>
+</main>
+<footer class="wrap footer" id="footer"></footer>
+<input type="file" id="file-load" accept=".json,application/json" hidden>
+<input type="file" id="file-compare" accept=".json,application/json" hidden>
+<input type="file" id="file-facil" accept=".json,application/json" multiple hidden>
+<script src="../vendor/jspdf.umd.min.js"></script>
+<script src="../vendor/svg2pdf.umd.min.js"></script>
+<script src="../js/lca.js"></script>
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
