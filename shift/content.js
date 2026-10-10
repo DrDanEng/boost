@@ -1,7 +1,7 @@
 // Innehållsfil för Shift. Texter kan redigeras här utan att röra koden.
 // Bygger på Learning Direction Canvas och Trim Tab Canvas (Dan Engström), uppdelad i trimförsök och kursavläsning.
 window.CONTENT = {
- "version": "0.2 prototyp",
+ "version": "0.3 prototyp",
  "titel": "Shift",
  "verktyg": "Dialogverktyg — Learning Curve Approach",
  "undertitel": "Från insikt till rörelse: små trimförsök som ger momentum",
@@ -178,7 +178,9 @@ window.CONTENT = {
   "forslagAvlas": "Kursavläsning",
   "forslagAvlasText": "Gör kursavläsning för {lista} så snart tidsramen har gått ut.",
   "nastaRubrik": "Slutrapporten",
-  "nastaText": "När Sense, See och Shift är gjorda väger slutrapporten samman omvärldens tryck, organisationens förmåga och den rörelse som har kommit igång. Spara sparfilen; den bär med sig hela kedjan."
+  "nastaText": "Ni har gjort Sense, See och Shift i följd. Slutsidan väger samman omvärldens tryck, organisationens förmåga och den rörelse som har kommit igång, värderar om ni har kommit upp på er lärandekurva och ger en slutrapport att ladda ner.",
+  "slutSaknas": "Slutsidan förutsätter att Sense, See och Shift är gjorda i följd. När en eller två faser är gjorda räcker modulrapporterna.",
+  "tillSlut": "Till slutsidan"
  },
  "parkering": {
   "rubrik": "Parkering",

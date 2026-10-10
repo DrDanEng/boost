@@ -1,7 +1,7 @@
 // Innehållsfil för landningssidan. Texter kan redigeras här utan att röra koden.
 // Status per modul: "oppen" (länkas) eller "kommer" (visas som under utveckling).
 window.CONTENT = {
- "version": "0.5 prototyp",
+ "version": "0.6 prototyp",
  "fredLank": "https://www.researchgate.net/profile/Dalia-Mukhtar-Landgren/publication/366482837_Larande_genom_temporar_organisering_-_projekt_piloter_och_experiment_i_Malmo_stad/links/63a3341cc3c9bb1647fb905d/Laerande-genom-temporaer-organisering-projekt-piloter-och-experiment-i-Malmoe-stad.pdf",
  "upphov": "© Engströms Mickla AB 2026",
  "eyebrow": "Smart Built Boost",
@@ -61,7 +61,8 @@ window.CONTENT = {
   "rubrik": "I vilken ordning som helst",
   "text": "Faserna är tänkta att göras i ordning, men varje modul fungerar för sig och ger en egen rapport. Efter varje modul sparar ni en sparfil. Läs in den i nästa modul, så följer underlaget med. Har ni hoppat över en fas frågar modulen kort efter det som saknas.",
   "slut": "Gör ni alla tre faserna får ni en slutrapport som väger samman omvärldens tryck med er förmåga att ta emot det, och ger rekommendationer för fortsättningen.",
-  "slutStatus": "Slutrapporten är under utveckling."
+  "slutStatus": "",
+  "slutKnapp": "Till slutsidan"
  },
  "sparfil": {
   "rubrik": "Har ni en sparfil?",

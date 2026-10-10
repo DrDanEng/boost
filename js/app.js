@@ -46,7 +46,7 @@
     if (nasta) {
       if (C.moduler[nasta].status === 'oppen') h += '<button class="btn" data-act="go" data-mod="' + nasta + '">' + esc(fill(S.vidare, { modul: LCA.NAMN[nasta] })) + ' →</button>';
       else h += '<p class="small muted" style="margin:0">' + esc(fill(S.vantar, { modul: LCA.NAMN[nasta] })) + '</p>';
-    } else h += '<p class="small muted" style="margin:0">' + esc(C.ordning.slutStatus) + '</p>';
+    } else if (env.kedja && env.kedja.sense && env.kedja.see) h += '<button class="btn" data-act="go" data-mod="slut">' + esc(C.ordning.slutKnapp) + ' →</button>';
     return h + '</div></div>';
   }
 
@@ -57,7 +57,7 @@
     h += '<section><h2 class="section">' + esc(P.rubrik) + '</h2>' + P.text.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') +
       '<blockquote class="quote"><p>' + esc(P.citat) + '</p><cite>' + esc(P.kalla) + '</cite></blockquote></section>';
     h += '<section><h2 class="section">' + esc(C.modulerRubrik) + '</h2><div class="modgrid">' + ORDNING.map(moduleHTML).join('') + '</div></section>';
-    h += '<section class="split"><div><h2 class="section">' + esc(O.rubrik) + '</h2><p>' + esc(O.text) + '</p><p>' + esc(O.slut) + ' <span class="muted">' + esc(O.slutStatus) + '</span></p></div>' +
+    h += '<section class="split"><div><h2 class="section">' + esc(O.rubrik) + '</h2><p>' + esc(O.text) + '</p><p>' + esc(O.slut) + '</p><p><a class="btn ghost" href="slut/">' + esc(O.slutKnapp) + ' →</a></p></div>' +
       '<div class="card"><h3 style="margin-top:0">' + esc(S.rubrik) + '</h3><p class="small muted">' + esc(S.text) + '</p><button class="btn ghost" data-act="open">' + esc(S.knapp) + '</button></div></section>';
     h += openedHTML();
     h += '<section><h2 class="section">' + esc(C.teoriRubrik) + '</h2><p>' + esc(C.teoriText) + '</p><a class="btn ghost" href="teori/">' + esc(C.teoriKnapp) + ' →</a></section>';
@@ -69,7 +69,7 @@
     var t = e.target.closest('button'); if (!t) return;
     var act = t.getAttribute('data-act');
     if (act === 'open') { document.getElementById('file-load').click(); return; }
-    if (act === 'go' && opened) { LCA.handOff(opened); window.location.href = C.moduler[t.getAttribute('data-mod')].lank; }
+    if (act === 'go' && opened) { var mod = t.getAttribute('data-mod'); LCA.handOff(opened); window.location.href = mod === 'slut' ? 'slut/' : C.moduler[mod].lank; }
   });
   document.getElementById('file-load').addEventListener('change', function (e) {
     var f = e.target.files[0]; e.target.value = ''; if (!f) return;

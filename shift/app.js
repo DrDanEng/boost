@@ -358,7 +358,7 @@
     return {
       riktning: state.fragor.map(function (q) { var r = rorelse(q), b = behov(q.kalla); return { fraga: q.text, rubrik: q.rubrik, vi: q.vi, behov: b ? b.namn : '', axel: q.axel, kollision: q.kollision, fore: r.fore, efter: r.efter }; }),
       forsok: state.forsok.map(function (f) { var q = fraga(f.fraga); return { titel: f.titel, fraga: q ? q.text : '', typ: f.typ, hypotes: 'Om vi ' + f.om + ' så tror vi att ' + f.tror, forutsagelse: f.forutsagelse, start: f.nar, status: status(f),
-        jamfort: f.av && f.av.jamfort != null ? C.avlasning.jamforelser[f.av.jamfort] : null, beslut: f.av ? f.av.beslut : null, vag: f.av ? f.av.vag : null, effekter: f.av ? f.av.effekter : [], axelEfter: f.av ? f.av.axelNu : null, nasta: f.av ? f.av.nasta : '' }; }),
+        jamfort: f.av && f.av.jamfort != null ? C.avlasning.jamforelser[f.av.jamfort] : null, beslut: f.av ? f.av.beslut : null, vag: f.av ? f.av.vag : null, effekter: f.av ? f.av.effekter : [], axelEfter: f.av ? f.av.axelNu : null, nasta: f.av ? f.av.nasta : '', fortsatt: state.forsok.some(function (x) { return x.fore === f.id; }) }; }),
       rorelse: state.fragor.map(function (q) { var r = rorelse(q), b = behov(q.kalla); return { fraga: q.text, behov: b ? b.namn : '', axel: q.axel, fore: r.fore, efter: r.efter }; }),
       larandekurva: (function () { var av = avlasta(); return { avlasningar: av.length, delade: av.filter(function (f) { return f.av.vag >= 1; }).length, inforda: av.filter(function (f) { return f.av.vag === 2; }).length }; })(),
       period: { avslutad: state.period.avslutad, monster: state.period.monster, nasta: state.period.nasta },
@@ -387,7 +387,8 @@
     h += '<h3>Trimförsök och kursavläsningar</h3>' + state.forsok.map(forsokDetalj).join('');
     if (state.period.monster || state.period.skala) h += '<h3>' + esc(C.period.rubrik) + '</h3><div class="card tight">' + (state.period.monster ? '<p class="small"><b>Mönster:</b> ' + esc(state.period.monster) + '</p>' : '') + state.fragor.map(function (q) { var v = state.period.fragaVal[q.id]; return v ? '<p class="small" style="margin-bottom:4px">' + esc(C.period.fragaVal[v]) + ': ' + esc(q.text) + '</p>' : ''; }).join('') + (state.period.nasta ? '<p class="small" style="margin:0"><b>Nästa lärperiod:</b> ' + esc(state.period.nasta) + '</p>' : '') + '</div>';
     if (state.parkering.trim()) h += '<h3>Parkerade frågor</h3><p class="small" style="white-space:pre-wrap">' + esc(state.parkering) + '</p>';
-    h += '<div class="card tight next"><div class="eyebrow">' + esc(R.nastaRubrik) + '</div><p class="small" style="margin:0">' + esc(R.nastaText) + '</p></div>';
+    var hel = sense() && see();
+    h += '<div class="card tight next"><div class="eyebrow">' + esc(R.nastaRubrik) + '</div><p class="small"' + (hel ? '' : ' style="margin:0"') + '>' + esc(hel ? R.nastaText : R.slutSaknas) + '</p>' + (hel ? '<div class="actions" style="margin-top:8px"><button class="btn" data-act="toslut">' + esc(R.tillSlut) + ' →</button></div>' : '') + '</div>';
     h += LCA.teoriHTML();
     return h + '<div class="actions"><button class="btn quiet" data-act="restart">Börja om med en ny körning</button></div>';
   }
@@ -434,6 +435,7 @@
     if (act === 'savefile') { var env = envelope(); LCA.download(env, LCA.fileName(env)); toast('Sparfilen är nedladdad.'); return; }
     if (act === 'pdf') { makePDF(); return; }
     if (act === 'tooversikt') { go('oversikt'); return; }
+    if (act === 'toslut') { LCA.handOff(envelope()); window.location.href = '../slut/'; return; }
     if (act === 'restart') { if (confirmReset()) { state = fresh(); save(); go('start'); } return; }
     if (act === 'addbehov') { state.eget.behov.push({ id: nid('b'), text: '', axel: null, niva: null }); save(); rerender(); return; }
     if (act === 'addfraga') { var fs = forslagFragor(); addFraga(d('data-i') != null ? fs[+d('data-i')] : null); save(); rerender(); return; }

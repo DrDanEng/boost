@@ -9,7 +9,7 @@ Arbetsbeskrivning för den som utvecklar verktygen vidare, människa eller Claud
 - Tjänsten heter **Dialogverktyg — Learning Curve Approach** (Dans namnval, även i rubriker; det långa tankstrecket i namnet är ett uttryckligt undantag från regeln om tankstreck). Modulerna heter Sense, See och Shift.
 - **See** (självskattning av mottagningsförmåga och agency, tidigare kallad Dialogverktyget) ligger i `see/`.
 - Micklas logotyp (`img/mickla.png`, ormen) visas diskret i sidfoten på alla sidor och i PDF-rapportens sidfot.
-- Landningssidan ligger i roten och länkar till modulerna. Byggordning: See (klar), landningssida (klar), Sense (publicerad), Shift (version 0.1), slutsida.
+- Landningssidan ligger i roten och länkar till modulerna. Byggordning: See (klar), landningssida (klar), Sense (publicerad), Shift (version 0.1), slutsida (version 0.1).
 - Modulerna ska kunna köras i valfri ordning och var för sig, och ge en egen rapport. Körs alla tre i rätt ordning ger slutsidan en samlad analys med slutrekommendationer.
 
 ## Fasta principer
@@ -71,6 +71,13 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 - Perspektiv i kursavläsningen, grundade i litteraturen om lärandekurvor: effekt i vardagen (tid, kvalitet, energi, trivsel, intäkter, från Trim Tab Canvas), **lärdomens väg** (stannar hos oss, delad med kollegor, införd i rutin eller beslut; Zollo & Winter 2002: erfarenhet, artikulering, kodifiering), förutsägelse mot utfall, beslut och nästa lilla försök. Organisationer med samma erfarenhet lär i olika takt beroende på reflektion och delning (Pisano, Bohmer & Edmondson 2001; Edmondson m.fl. 2001). "Lärande" läggs därför inte till som ett sjätte effektvärde.
 - Översikten visar försöken som kedjor per lärandefråga, **er lärandekurva** (kumulativt antal lärdomar, delade och införda) och rörelsen per axel.
 - Steg: underlag (sparfil från See, eller två korta frågor om See och Sense saknas), Learning Direction Canvas (tryck och beredskap förifyllda, förslag på lärandefrågor ur kollision × förmåga × svagaste axel), kommunikationsram och stöd (inklusive vilket hinder ledningen tar bort; Edmondson 1999), första trimförsöket per fråga, översikt, kursavläsning, lärperiodens slut (pröva frågorna: behåll, justera, byt; Argyris & Schön 1978).
+
+## Slutsidan, version 0.1 (byggd 2026-10-10)
+- `slut/` visas bara när Sense, See och Shift är gjorda i följd (Shift-filen bär kedjan). Annars förklarar sidan vad som saknas; modulrapporterna räcker när en eller två faser är gjorda.
+- Nås från Shift-rapporten (knapp när kedjan är hel), från startsidan och genom att öppna en Shift-sparfil. Senaste slutsida sparas i `lca.slut.v1`.
+- **Framtidsberedskap** (Rohrbeck & Kum 2018, relativt mått): tryck från Sense (starkaste kollisionen; högt = tryck minst 4 och tempo högst 1 till 3 år; måttligt = tryck minst 4, eller minst 3 med tempo högst 3 till 10 år) mot förmåga från See (lärandeindex under 1,8 låg, under 2,6 måttlig, annars hög). Lägen: mer förberedd än trycket kräver, vaksam, sårbar, i fara.
+- **Lärandekurvan** värderas med fyra tecken från Shift (0, 1 eller 2 vardera): uppföljda försök, rörelse i axlarna, lärdomarnas fäste (delade, införda), prövad riktning. Omdömen: för tidigt att säga (inga kursavläsningar), ni har börjat, ni är på väg uppför (minst 3), ni har tagit er uppför (minst 6). Positionen visas på en S-kurva från oro via insikt och rörelse till fäste.
+- Följer den fasta rapportmallen; slutrapporten laddas ner som PDF.
 
 ## Fast rapportmall (alla moduler och slutrapporten)
 - Varje rapport börjar med **Sammanfattning**, **Analys** och **Förslag**, därefter rubriken **Detaljer**. Mallen finns i `LCA.reportBlock` och `LCA.reportPDF` i `js/lca.js`.
