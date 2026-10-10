@@ -10,7 +10,7 @@ window.CONTENT = {
  "integritet": "Allt ni skriver sparas bara i er webbläsare och i de filer ni själva laddar ner. Ingenting skickas till oss eller någon annan.",
  "intro": [
   "Sense är en strukturerad omvärldsövning. Målet är inte att förutsäga framtiden, utan att tillsammans förstå vad som håller på att förändras och vilka antaganden det utmanar.",
-  "Resultatet är en Collision Map: de framtidskollisioner där omvärldens tryck möter det som i dag skapar värde i er verksamhet. Den blir underlaget för See."
+  "Resultatet är en Collision Map: de framtidskollisioner där omvärldens tryck möter det som i dag bär er verksamhet. Den blir underlaget för See."
  ],
  "skeden": [
   { "nr": 0, "namn": "Fokus", "tid": "15 min" },
@@ -18,7 +18,7 @@ window.CONTENT = {
   { "nr": 2, "namn": "Påverkan och säkerhet", "tid": "20 min" },
   { "nr": 3, "namn": "Hur trenderna driver varandra", "tid": "20 min" },
   { "nr": 4, "namn": "Scenarier", "tid": "35 min" },
-  { "nr": 5, "namn": "Verksamhetens värden", "tid": "20 min" },
+  { "nr": 5, "namn": "Det som bär verksamheten", "tid": "20 min" },
   { "nr": 6, "namn": "Vindtunnel", "tid": "35 min" },
   { "nr": 7, "namn": "Syntes", "tid": "20 min" },
   { "nr": 8, "namn": "Collision Map", "tid": "20 min" }
@@ -31,7 +31,7 @@ window.CONTENT = {
   "egenEtikett": "Egen utmaning (frivilligt)",
   "fragaEtikett": "Er fokusfråga",
   "fragaHjalp": "Verktyget föreslår en fråga utifrån era val. Skriv om den så att den låter som ni.",
-  "fragaMall": "Hur kan {lista} förändra vad som skapar värde för {org} fram till {ar}?",
+  "fragaMall": "Hur kan {lista} påverka det som bär {org} fram till {ar}?",
   "horisontEtikett": "Hur långt fram tittar ni?",
   "horisontHjalp": "Längre horisont ger större osäkerhet och friare tänkande. Tio år är ett vanligt val.",
   "horisonter": [5, 10, 15]
@@ -130,11 +130,11 @@ window.CONTENT = {
   "berattelse": "Kort berättelse"
  },
  "varden": {
-  "rubrik": "Vad skapar värde för er i dag?",
-  "text": "Markera de områden som är viktigast för hur er verksamhet skapar värde. Skriv kort vad det är hos er, och vilket antagande det vilar på: vad måste vara sant för att det ska fortsätta skapa värde?",
+  "rubrik": "Vad bär er verksamhet i dag?",
+  "text": "Markera de delar som är viktigast för att er verksamhet ska fungera och lyckas. Skriv kort vad det är hos er, och vilket bärande antagande det vilar på: vad måste vara sant för att den här delen ska fortsätta bära?",
   "hosOss": "Hos oss",
-  "antagande": "Antagande",
-  "minText": "Markera minst tre områden.",
+  "antagande": "Bärande antagande",
+  "minText": "Markera minst tre bärande delar.",
   "lista": [
    { "id": "erbjudande", "namn": "Erbjudande och kundvärde", "text": "Det ni levererar och varför kunderna väljer er.", "exempel": "Kunderna betalar för det vi levererar i dag" },
    { "id": "kunder", "namn": "Kunder och marknad", "text": "Vilka ni skapar värde för.", "exempel": "Våra kunder finns kvar och har samma behov" },
@@ -145,35 +145,34 @@ window.CONTENT = {
    { "id": "data", "namn": "Data och digital infrastruktur", "text": "Information, system och verktyg.", "exempel": "Vår data räcker för att fatta bra beslut" },
    { "id": "ekonomi", "namn": "Ekonomi och finansiering", "text": "Intäkter, kostnader och kapital.", "exempel": "Finansiering går att få till rimliga villkor" },
    { "id": "fortroende", "namn": "Förtroende och varumärke", "text": "Hur andra ser på er.", "exempel": "Vårt namn står för kvalitet" },
-   { "id": "hallbarhet", "namn": "Hållbarhet och regelefterlevnad", "text": "Krav ni lever upp till.", "exempel": "Vi klarar kraven utan stora förändringar" },
-   { "id": "larande", "namn": "Lärande och förnyelse", "text": "Förmågan att pröva nytt och anpassa sig.", "exempel": "Vi hinner anpassa oss när det behövs" }
+   { "id": "hallbarhet", "namn": "Hållbarhet och regelefterlevnad", "text": "Krav ni lever upp till.", "exempel": "Vi klarar kraven utan stora förändringar" }
   ]
  },
  "vind": {
   "rubrik": "Vindtunnel",
-  "text": "Pröva era värden mot framtiden. Allt står sig tills ni säger något annat. Markera det som försvagas eller stärks, och skriv kort varför.",
+  "text": "Pröva de bärande delarna mot framtiden. Allt står sig tills ni säger något annat. Markera det som försvagas eller stärks, och skriv kort varför.",
   "lagen": ["Försvagas", "Står sig", "Stärks"],
   "orsak": "Varför?",
-  "utvecklingFraga": "Hur utvecklas verksamhetens samlade värde i den här framtiden?",
-  "utveckling": ["Minskar", "Stabilt", "Ökar"],
-  "atgarder": "Möjliga åtgärder för att minska riskerna eller stärka värdet i den här framtiden"
+  "utvecklingFraga": "Hur står sig verksamheten som helhet i den här framtiden?",
+  "utveckling": ["Försämras", "Står sig", "Förbättras"],
+  "atgarder": "Möjliga åtgärder för att minska riskerna eller stärka verksamheten i den här framtiden"
  },
  "syntes": {
   "rubrik": "Vad återkommer oavsett framtid?",
   "text": "Målet är inte att förutsäga, utan att se vad som gäller i flera framtider. Det som försvagas i flera scenarier är en sårbarhet oavsett hur det blir.",
   "sarbarheter": "Försvagas i flera framtider",
   "styrkor": "Stärks i flera framtider",
-  "inga": "Inget värde försvagas i mer än en framtid.",
+  "inga": "Ingen bärande del försvagas i mer än en framtid.",
   "monster": "Gemensamma mönster: återkommande drivkrafter, risker och möjligheter",
   "robusta": "Robusta åtgärder: sådant som är klokt i flera framtider (en per rad)",
   "signalerRubrik": "Signaler att bevaka",
   "signalerText": "Vilka tecken skulle visa att utvecklingen går mot respektive framtid?",
-  "samlad": "Samlad bedömning: hur utvecklas verksamhetens värde på längre sikt?",
+  "samlad": "Samlad bedömning: hur står sig verksamheten på längre sikt?",
   "osakert": "Det här är vi fortfarande osäkra på"
  },
  "karta": {
   "rubrik": "Collision Map",
-  "text": "En framtidskollision är där omvärldens tryck möter ett antagande som verksamheten vilar på. Välj en till tre kollisioner att ta vidare. Verktyget föreslår utifrån de värden som försvagas.",
+  "text": "En framtidskollision är där omvärldens tryck möter ett antagande som verksamheten vilar på. Välj en till tre kollisioner att ta vidare. Verktyget föreslår utifrån de bärande delar som försvagas.",
   "forslag": "Förslag",
   "laggTill": "Ta med",
   "egen": "Lägg till egen kollision",
@@ -214,14 +213,14 @@ window.CONTENT = {
    "grund": "Arbetet utgick från {n} trender. Två av dem är både osäkra och drivande, och de bildar axlarna i fyra möjliga framtider: axel A, ”{a}”, och axel B, ”{b}”.",
    "forutbestamda": "Oavsett vilken framtid som blir verklighet räknar organisationen med att {lista} fortsätter.",
    "framtiderRubrik": "Fyra framtider och vad de betyder för {org}",
-   "utveckling": { "-1": "minskar verksamhetens samlade värde", "0": "står verksamhetens samlade värde sig", "1": "ökar verksamhetens samlade värde" },
-   "utvecklingSaknas": "är värdeutvecklingen inte bedömd",
+   "utveckling": { "-1": "försämras verksamhetens ställning", "0": "står verksamheten sig", "1": "förbättras verksamhetens ställning" },
+   "utvecklingSaknas": "är verksamhetens ställning inte bedömd",
    "framtid": "I ”{namn}” (A {a}, B {b}) {utv}.",
-   "forsvagas": "Försvagas: {lista}.",
-   "starks": "Stärks: {lista}.",
-   "sarbar": "Det som försvagas i flera framtider, och därför är en sårbarhet oavsett hur det blir, är {lista}.",
-   "ingenSarbar": "Inget av verksamhetens värden försvagas i mer än en framtid. Det kan tyda på en robust position, men också på att bedömningen behöver prövas igen.",
-   "styrka": "Det som stärks i flera framtider, och därför kan bära verksamheten, är {lista}.",
+   "forsvagas": "Bär sämre: {lista}.",
+   "starks": "Bär bättre: {lista}.",
+   "sarbar": "Det som bär sämre i flera framtider, och därför är en sårbarhet oavsett hur det blir, är {lista}.",
+   "ingenSarbar": "Ingen av verksamhetens bärande delar försvagas i mer än en framtid. Det kan tyda på en robust position, men också på att bedömningen behöver prövas igen.",
+   "styrka": "Det som bär bättre i flera framtider är {lista}.",
    "kollisioner": "Den viktigaste slutsatsen är var framtiden krockar med verksamhetens antaganden. Gruppen har pekat ut {antal}.",
    "vidare": "Framtiden ”{scen}” tas vidare till See, där organisationen bedömer hur redo den är att ta emot den.",
    "slutsatserRubrik": "De viktigaste slutsatserna",

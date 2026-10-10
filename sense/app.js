@@ -26,7 +26,7 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function fill(t, map) { return t.replace(/\{(\w+)\}/g, function (m, k) { return map[k] != null ? map[k] : m; }); }
   function toast(msg) { var t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(function () { t.remove(); }, 2800); }
-  function lista(a) { if (a.some(function (x) { return / och /.test(x); })) return a.join('; '); return a.length > 1 ? a.slice(0, -1).join(', ') + ' och ' + a[a.length - 1] : (a[0] || ''); }
+  function lista(a) { var och = a.some(function (x) { return / och /.test(x) && !/^”/.test(x); }) ? ' samt ' : ' och '; return a.length > 1 ? a.slice(0, -1).join(', ') + och + a[a.length - 1] : (a[0] || ''); }
   function short(t, n) { t = String(t || ''); n = n || 26; return t.length > n ? t.slice(0, n - 1).trim() + '…' : t; }
   function getPath(o, p) { return p.split('.').reduce(function (x, k) { return x == null ? x : x[k]; }, o); }
   function setPath(o, p, v) { var k = p.split('.'), last = k.pop(); var t = k.reduce(function (x, kk) { if (x[kk] == null) x[kk] = {}; return x[kk]; }, o); t[last] = v; }
@@ -399,7 +399,7 @@
     h += '<div class="card tight"><div class="eyebrow">Framtid ' + (i + 1) + ' av 4</div><p class="small muted" style="margin-bottom:4px">' + esc(kombText(i)) + '</p>' + (state.scen[i].text ? '<p style="margin:0">' + esc(state.scen[i].text) + '</p>' : '') + '</div>';
     valdaVarden().forEach(function (v) {
       var l = lage(i, v.id);
-      h += '<div class="card tight vind"><div class="vind-head"><b>' + esc(v.namn) + '</b>' + seg('data-lage', function (k) { return k - 1; }, Vn.lagen, l, ' data-v="' + v.id + '"') + '</div>' + (vd(v.id).ant ? '<p class="small muted" style="margin:6px 0 0">Antagande: ' + esc(vd(v.id).ant) + '</p>' : '') +
+      h += '<div class="card tight vind"><div class="vind-head"><b>' + esc(v.namn) + '</b>' + seg('data-lage', function (k) { return k - 1; }, Vn.lagen, l, ' data-v="' + v.id + '"') + '</div>' + (vd(v.id).ant ? '<p class="small muted" style="margin:6px 0 0">Bärande antagande: ' + esc(vd(v.id).ant) + '</p>' : '') +
         (l !== 0 ? '<label class="field" style="margin:10px 0 0"><span>' + esc(Vn.orsak) + '</span><input type="text" data-path="vind.' + i + '.orsak.' + v.id + '" value="' + esc(s.orsak[v.id] || '') + '"></label>' : '') + '</div>';
     });
     h += '<h3>' + esc(Vn.utvecklingFraga) + '</h3>' + seg('data-utv', function (k) { return k - 1; }, Vn.utveckling, s.utv);
@@ -411,7 +411,7 @@
     var h = head('syntes', Sy.rubrik, Sy.text);
     h += '<div class="card tight"><div class="eyebrow" style="color:#b8532c">' + esc(Sy.sarbarheter) + '</div>' + (neg.length ? neg.map(function (s) { return '<p class="small" style="margin-bottom:4px"><b>' + esc(s.v.namn) + '</b> <span class="muted">(' + s.neg.length + ' av 4: ' + esc(lista(s.neg.map(scenNamn))) + ')</span></p>'; }).join('') : '<p class="small muted" style="margin:0">' + esc(Sy.inga) + '</p>') +
       (pos.length ? '<div class="eyebrow" style="margin-top:12px">' + esc(Sy.styrkor) + '</div>' + pos.map(function (s) { return '<p class="small" style="margin-bottom:4px"><b>' + esc(s.v.namn) + '</b> <span class="muted">(' + s.pos.length + ' av 4)</span></p>'; }).join('') : '') + '</div>';
-    h += '<div class="tablewrap" style="margin-bottom:18px"><table class="facil"><thead><tr><th>Framtid</th><th>Värdet</th><th>Åtgärder</th></tr></thead><tbody>' + [0, 1, 2, 3].map(function (i) { var u = state.vind[i].utv; return '<tr><td><b>' + esc(scenNamn(i)) + '</b></td><td>' + (u === null ? '' : esc(C.vind.utveckling[u + 1])) + '</td><td>' + esc(state.vind[i].atg) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    h += '<div class="tablewrap" style="margin-bottom:18px"><table class="facil"><thead><tr><th>Framtid</th><th>Verksamheten</th><th>Åtgärder</th></tr></thead><tbody>' + [0, 1, 2, 3].map(function (i) { var u = state.vind[i].utv; return '<tr><td><b>' + esc(scenNamn(i)) + '</b></td><td>' + (u === null ? '' : esc(C.vind.utveckling[u + 1])) + '</td><td>' + esc(state.vind[i].atg) + '</td></tr>'; }).join('') + '</tbody></table></div>';
     h += '<label class="field"><span>' + esc(Sy.monster) + '</span><textarea rows="3" data-path="syntes.monster">' + esc(state.syntes.monster) + '</textarea></label>';
     h += '<label class="field"><span>' + esc(Sy.robusta) + '</span><textarea rows="4" data-path="syntes.robusta">' + esc(state.syntes.robusta) + '</textarea></label>';
     h += '<h3>' + esc(Sy.signalerRubrik) + '</h3><p class="muted small">' + esc(Sy.signalerText) + '</p>' + [0, 1, 2, 3].map(function (i) { return '<label class="field"><span>' + esc(scenNamn(i)) + '</span><input type="text" data-path="syntes.signaler.' + i + '" value="' + esc(state.syntes.signaler[i]) + '"></label>'; }).join('');
@@ -499,7 +499,7 @@
     h += '<div class="eyebrow">' + esc(R.rubrik) + ' · Sense</div><h2>' + esc(m.foretag || 'Er organisation') + '</h2><p class="muted">' + esc(m.datum) + ' · ' + (m.typ === 'grupp' ? 'Grupparbete' : 'Individuellt arbete') + (m.namn ? ' · ' + esc(m.namn) : '') + ' · Tidshorisont ' + state.fokus.horisont + ' år</p>';
     h += '<div class="actions" style="margin:0 0 18px"><button class="btn" data-act="pdf">Ladda ner rapport (PDF)</button><button class="btn ghost" data-act="savefile">Spara sparfil</button></div>';
     h += sammanfattningHTML();
-    h += '<h3>Fyra framtider</h3><div class="scen-grid report">' + [0, 1, 2, 3].map(function (i) { var u = state.vind[i].utv; return '<div class="card tight' + (state.seeScen === i ? ' chosen' : '') + '">' + (state.seeScen === i ? '<div class="eyebrow">Till See</div>' : '') + '<b>' + esc(scenNamn(i)) + '</b><p class="small muted" style="margin:4px 0">' + esc(kombText(i)) + '</p><p class="small" style="margin:0">' + esc(state.scen[i].text) + '</p>' + (u !== null ? '<p class="small" style="margin:6px 0 0"><b>Värdet:</b> ' + esc(C.vind.utveckling[u + 1].toLowerCase()) + '</p>' : '') + '</div>'; }).join('') + '</div>';
+    h += '<h3>Fyra framtider</h3><div class="scen-grid report">' + [0, 1, 2, 3].map(function (i) { var u = state.vind[i].utv; return '<div class="card tight' + (state.seeScen === i ? ' chosen' : '') + '">' + (state.seeScen === i ? '<div class="eyebrow">Till See</div>' : '') + '<b>' + esc(scenNamn(i)) + '</b><p class="small muted" style="margin:4px 0">' + esc(kombText(i)) + '</p><p class="small" style="margin:0">' + esc(state.scen[i].text) + '</p>' + (u !== null ? '<p class="small" style="margin:6px 0 0"><b>Verksamheten:</b> ' + esc(C.vind.utveckling[u + 1].toLowerCase()) + '</p>' : '') + '</div>'; }).join('') + '</div>';
     h += '<h3>Collision Map</h3><div class="card tight chartcard"><div class="chart">' + kartaSVG() + '</div></div>';
     state.kollisioner.forEach(function (k, i) { h += '<div class="card tight"><b>' + (i + 1) + '. ' + esc(k.namn) + '</b><p class="small" style="margin:4px 0">Utmanat antagande: ' + esc(k.ant || '(ej angivet)') + '</p><p class="small muted" style="margin:0">Tryck ' + k.tryck + ' av 5 (' + esc((K.tryckSkala[k.tryck - 1] || '').toLowerCase()) + ') · Tempo: ' + esc((K.tempoSkala[k.tempo] || '').toLowerCase()) + ' · Synlighet ' + k.syn + ' av 5 (' + esc((K.synlighetSkala[k.syn - 1] || '').toLowerCase()) + ')</p></div>'; });
     if (state.seeMotivering && state.seeScen !== seeForslag()) h += '<p class="small"><b>Motivering till val av framtid:</b> ' + esc(state.seeMotivering) + '</p>';
@@ -507,12 +507,12 @@
     var sig = state.syntes.signaler.map(function (s, i) { return s.trim() ? '<li><b>' + esc(scenNamn(i)) + ':</b> ' + esc(s) + '</li>' : ''; }).join('');
     if (sig) h += '<h3>Signaler att bevaka</h3><ul class="small">' + sig + '</ul>';
     if (state.syntes.monster.trim()) h += '<p><b>Gemensamma mönster:</b> ' + esc(state.syntes.monster) + '</p>';
-    if (state.syntes.samlad !== null) h += '<p><b>Samlad bedömning:</b> verksamhetens värde ' + esc({ '-1': 'minskar', '0': 'är stabilt', '1': 'ökar' }[state.syntes.samlad]) + ' på längre sikt.</p>';
+    if (state.syntes.samlad !== null) h += '<p><b>Samlad bedömning:</b> verksamheten ' + esc({ '-1': 'försämras', '0': 'står sig', '1': 'förbättras' }[state.syntes.samlad]) + ' på längre sikt.</p>';
     if (state.syntes.osakert.trim()) h += '<p><b>Fortfarande osäkert:</b> ' + esc(state.syntes.osakert) + '</p>';
     h += '<h3>Vilka trender driver utvecklingen?</h3><div class="card tight chartcard"><div class="chart">' + matrisSVG() + '</div></div>';
     if (forutbestamda().length) h += '<p class="small"><b>Förutbestämda element:</b> ' + esc(forutbestamda().map(tname).join('; ')) + '</p>';
     if (state.axlar.motivering && axelBytt()) h += '<p class="small"><b>Motivering till val av axlar:</b> ' + esc(state.axlar.motivering) + '</p>';
-    h += '<h3>Värden och antaganden</h3><div class="card tight">' + valdaVarden().map(function (v) { var d = vd(v.id); return '<p class="small" style="margin-bottom:6px"><b>' + esc(v.namn) + ':</b> ' + esc(d.hos || '') + (d.ant ? ' <span class="muted">Antagande: ' + esc(d.ant) + '</span>' : '') + '</p>'; }).join('') + '</div>';
+    h += '<h3>Bärande delar och antaganden</h3><div class="card tight">' + valdaVarden().map(function (v) { var d = vd(v.id); return '<p class="small" style="margin-bottom:6px"><b>' + esc(v.namn) + ':</b> ' + esc(d.hos || '') + (d.ant ? ' <span class="muted">Bärande antagande: ' + esc(d.ant) + '</span>' : '') + '</p>'; }).join('') + '</div>';
     if (state.parkering.trim()) h += '<h3>Parkerade frågor</h3><p class="small" style="white-space:pre-wrap">' + esc(state.parkering) + '</p>';
     h += '<div class="card tight next"><div class="eyebrow">' + esc(R.nastaRubrik) + '</div><p class="small">' + esc(R.nastaText) + '</p><div class="actions" style="margin-top:8px"><button class="btn" data-act="tosee">' + esc(R.tillSee) + ' →</button><button class="btn ghost" data-act="savefile">Spara sparfil</button></div></div>';
     h += '<h3>' + esc(R.kallorRubrik) + '</h3><ul class="refs">' + C.kallor.map(function (k) { return '<li>' + esc(k) + '</li>'; }).join('') + '</ul>';
@@ -674,7 +674,7 @@
     chart(kartaSVG(), 108).then(function () {
       state.kollisioner.forEach(function (k, i) { text((i + 1) + '. ' + k.namn, { bold: true, after: 0.5 }); text('Utmanat antagande: ' + (k.ant || '(ej angivet)'), { size: 9.5, after: 0.5 }); text('Tryck ' + k.tryck + ' av 5 · Tempo: ' + (K.tempoSkala[k.tempo] || '').toLowerCase() + ' · Synlighet ' + k.syn + ' av 5', { size: 9, color: MUT, after: 3 }); });
       rule(); label('Fyra framtider');
-      [0, 1, 2, 3].forEach(function (i) { var u = state.vind[i].utv; text(scenNamn(i) + (state.seeScen === i ? ' (tas vidare till See)' : ''), { bold: true, after: 0.5, color: state.seeScen === i ? ACC : INK }); text(kombText(i), { size: 8.5, color: MUT, after: 0.5 }); if (state.scen[i].text) text(state.scen[i].text, { size: 9.5, after: 0.5 }); if (u !== null) text('Värdet ' + C.vind.utveckling[u + 1].toLowerCase() + '. ' + (state.vind[i].atg ? 'Åtgärder: ' + state.vind[i].atg : ''), { size: 9.5, after: 3 }); else y += 2; });
+      [0, 1, 2, 3].forEach(function (i) { var u = state.vind[i].utv; text(scenNamn(i) + (state.seeScen === i ? ' (tas vidare till See)' : ''), { bold: true, after: 0.5, color: state.seeScen === i ? ACC : INK }); text(kombText(i), { size: 8.5, color: MUT, after: 0.5 }); if (state.scen[i].text) text(state.scen[i].text, { size: 9.5, after: 0.5 }); if (u !== null) text('Verksamheten: ' + C.vind.utveckling[u + 1].toLowerCase() + '. ' + (state.vind[i].atg ? 'Åtgärder: ' + state.vind[i].atg : ''), { size: 9.5, after: 3 }); else y += 2; });
       if (state.seeMotivering && state.seeScen !== seeForslag()) text('Motivering till val av framtid: ' + state.seeMotivering, { size: 9.5, italic: true });
       rule(); label('Syntes');
       if (robusta().length) { text('Robusta åtgärder', { bold: true, after: 0.5 }); robusta().forEach(function (r) { text('• ' + r, { size: 9.5, after: 0.5 }); }); y += 2; }
@@ -690,8 +690,8 @@
       text('Axlar: ' + axlar().map(function (id) { return tname(id) + ' (svag: ' + andp(id).svag + '; stark: ' + andp(id).stark + ')'; }).join(' · '), { size: 9.5 });
       if (state.axlar.motivering && axelBytt()) text('Motivering till val av axlar: ' + state.axlar.motivering, { size: 9.5, italic: true });
       rule(); label('Fokus'); text(state.fokus.fraga, { bold: true });
-      rule(); label('Värden och antaganden');
-      valdaVarden().forEach(function (v) { var d = vd(v.id); text(v.namn + ': ' + (d.hos || '') + (d.ant ? ' Antagande: ' + d.ant : ''), { size: 9.5, after: 1 }); });
+      rule(); label('Bärande delar och antaganden');
+      valdaVarden().forEach(function (v) { var d = vd(v.id); text(v.namn + ': ' + (d.hos || '') + (d.ant ? ' Bärande antagande: ' + d.ant : ''), { size: 9.5, after: 1 }); });
       rule(); label('Alla trender');
       validTrends().forEach(function (t) { var k = klass(t.id); text(tnr(t.id) + '. ' + t.trend + (k ? ' (' + C.bedomning.klasser[k].namn.toLowerCase() + ')' : '') + (t.signal ? '. Signal: ' + t.signal : ''), { size: 8.5, after: 0.8 }); });
       if (state.parkering.trim()) { rule(); label('Parkerade frågor'); text(state.parkering, { size: 9.5 }); }

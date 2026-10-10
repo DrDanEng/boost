@@ -9,7 +9,7 @@ Arbetsbeskrivning för den som utvecklar verktygen vidare, människa eller Claud
 - Tjänsten heter **Dialogverktyg -- Learning Curve Approach** (Dans namnval, även i rubriker). Modulerna heter Sense, See och Shift.
 - **See** (självskattning av mottagningsförmåga och agency, tidigare kallad Dialogverktyget) ligger i `see/`.
 - Micklas logotyp (`img/mickla.png`, ormen) visas diskret i sidfoten på alla sidor och i PDF-rapportens sidfot.
-- Landningssidan ligger i roten och länkar till modulerna. Byggordning: See (klar), landningssida (klar), Sense (version 0.1), Shift, slutsida.
+- Landningssidan ligger i roten och länkar till modulerna. Byggordning: See (klar), landningssida (klar), Sense (version 0.1, publicerad), Shift, slutsida.
 - Modulerna ska kunna köras i valfri ordning och var för sig, och ge en egen rapport. Körs alla tre i rätt ordning ger slutsidan en samlad analys med slutrekommendationer.
 
 ## Fasta principer
@@ -43,10 +43,11 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 - Övningarna om värden (5 till 7) skrivs om till verksamhetens värden.
 - Sista skedet är **Collision Map**: 1 till 3 prioriterade kollisioner, var och en med *tryck*, *tempo* (mot beslutshorisonten), *synlighet* (hur mycket den redan uppmärksammas) och *utmanat antagande* (Dewar, assumption-based planning). Elasticitet tas bort, eftersom inre förmåga bedöms i See.
 - Hela processen ingår. Används i grupp med Dan som facilitator, gärna i Teams med delad skärm.
-- Version 0.1 byggd i `sense/` (2026-10-10). Skede 2 sorterar trender i kritiska osäkerheter och förutbestämda element (Wack; Burt & Wright 2006). Skede 4: verktyget föreslår två axlar (mest drivande osäkra trender), gruppen väljer och motiverar vid byte; varningar för säker trend och för beroende axlar (svar 3 i matrisen). Fyra scenarier i ett 2×2-kors. Skede 5 bygger på affärsmodellens byggstenar med ett antagande per värde (Dewar). Skede 6 och 7 i förlagan är sammanslagna till vindtunneln (van der Heijden). Scenariot till See föreslås som det där kollisionerna är störst.
+- Version 0.1 byggd i `sense/` (2026-10-10). Skede 2 sorterar trender i kritiska osäkerheter och förutbestämda element (Wack; Burt & Wright 2006). Skede 4: verktyget föreslår två axlar (mest drivande osäkra trender), gruppen väljer och motiverar vid byte; varningar för säker trend och för beroende axlar (svar 3 i matrisen). Fyra scenarier i ett 2×2-kors. Skede 5 bygger på affärsmodellens byggstenar med ett bärande antagande per del (Dewar). Skede 6 och 7 i förlagan är sammanslagna till vindtunneln (van der Heijden). Scenariot till See föreslås som det där kollisionerna är störst.
 - Individuellt förarbete finns som alternativ (grupparbete är huvudspåret): deltagare gör skede 0 och 1 själva och sparar en fil; facilitatorn läser in filerna i skede 1, trender läggs till och dubbletter hoppas över. Deltagarnas fokusval slås inte ihop.
 - Rapporten börjar, som i See, med en sammanfattning: fokusfråga, axlar, förutbestämda element, de fyra framtiderna och vad de betyder för verksamhetens värden, sårbarheter och styrkor, samt de viktigaste slutsatserna (kollisionerna och robusta åtgärder). Texterna ligger i `rapport.sammanfattning` i `sense/content.js`.
-- Öppen fråga till Dan: ska värdet "Lärande och förnyelse" strykas ur skede 5, eftersom det är en förmåga som bedöms i See?
+- Begrepp (Dans beslut): skede 5 heter *Det som bär verksamheten*; affärsmodellens byggstenar kallas **bärande delar**, var och en med ett **bärande antagande** (Dewar: load-bearing assumptions). Ordet "värden" används inte, eftersom det förväxlas med värderingar eller pengar. I vindtunneln bedöms *verksamhetens ställning* (försämras, står sig, förbättras).
+- "Lärande och förnyelse" är struken ur skede 5 eftersom det är en förmåga som bedöms i See. Tio bärande delar.
 - Senare versioner: femtrendsvariant med max och min som tillval.
 
 ### See
