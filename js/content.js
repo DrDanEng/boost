@@ -29,7 +29,7 @@ window.CONTENT = {
  "modulerRubrik": "Modulerna",
  "moduler": {
   "sense": {
-   "status": "kommer",
+   "status": "oppen",
    "lank": "sense/",
    "rubrik": "Sense: Collision Compass",
    "underrubrik": "Hur vi uppfattar förändring i tid",
