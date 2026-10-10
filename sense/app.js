@@ -50,16 +50,16 @@
     if (!namn.length) return '';
     return fill(C.fokus.fragaMall, { lista: lista(namn.slice(0, 3)), org: state.meta.foretag || 'oss', ar: new Date().getFullYear() + state.fokus.horisont });
   }
+  function exempel(oid) { var o = omrade(oid); return o.exempel || [{ signal: o.signal || '', trend: o.trend || '' }]; }
   function seedTrender() {
     fokusOmraden().forEach(function (oid) {
       if (state.seedade.indexOf(oid) >= 0) return;
-      var o = omrade(oid); state.seedade.push(oid);
-      state.trender.push({ id: 't' + state.nextId++, omrade: oid, signal: o.signal, trend: o.trend });
+      state.seedade.push(oid); exempel(oid).slice(0, 1).forEach(function (e) { state.trender.push({ id: 't' + state.nextId++, omrade: oid, signal: e.signal, trend: e.trend }); });
     });
   }
   function addRow(oid, blank) {
-    var o = omrade(oid); if (state.seedade.indexOf(oid) < 0) state.seedade.push(oid);
-    state.trender.push({ id: 't' + state.nextId++, omrade: oid, signal: blank ? '' : o.signal, trend: blank ? '' : o.trend });
+    if (state.seedade.indexOf(oid) < 0) state.seedade.push(oid);
+    (blank ? [{ signal: '', trend: '' }] : exempel(oid).slice(0, 1)).forEach(function (e) { state.trender.push({ id: 't' + state.nextId++, omrade: oid, signal: e.signal, trend: e.trend }); });
   }
 
   /* ---------- skede 2 ---------- */
@@ -178,6 +178,32 @@
     if (st === 'karta') return state.kollisioner.length >= 1 && state.kollisioner.every(kollKlar) && state.seeScen !== null && (state.seeScen === seeForslag() || state.seeMotivering.trim().length > 2);
     return true;
   }
+  /* Vad som saknas för att gå vidare, i klartext under Nästa. */
+  function saknas(st) {
+    st = st || view.step; var m = [];
+    if (st === 'fokus') { if (!state.fokus.utmaningar.length && !state.fokus.egen.trim()) m.push('Kryssa minst en utmaning eller skriv en egen.'); if (!state.fokus.fraga.trim()) m.push('Skriv en fokusfråga.'); }
+    if (st === 'signaler' && validTrends().length < 5) m.push('Ha minst fem trender med (nu ' + validTrends().length + ').');
+    if (st === 'bedomning') { var ej = validTrends().filter(function (t) { return !klass(t.id); }).map(function (t) { return tnr(t.id); }); if (ej.length) m.push('Bedöm både påverkan och säkerhet för trend ' + lista(ej.map(String)) + '.'); }
+    if (st === 'urval') { var n = urval().length; if (n < 3 || n > 5) m.push('Välj tre till fem trender (nu ' + n + ').'); }
+    if (/^q-/.test(st) && !canNext(st)) m.push('Välj ett svar.');
+    if (st === 'axlar') {
+      var v = axlar(); if (v.length !== 2) m.push('Välj två axlar (nu ' + v.length + ').');
+      else { if (v.some(function (id) { var a = andp(id); return !a.svag.trim() || !a.stark.trim(); })) m.push('Beskriv svag och stark utveckling för båda axlarna.'); if (axelBytt() && state.axlar.motivering.trim().length <= 2) m.push('Motivera varför ni valde andra axlar än förslaget.'); }
+    }
+    if (st === 'scenarier') { var tom = [0, 1, 2, 3].filter(function (i) { return !state.scen[i].namn.trim(); }); if (tom.length) m.push('Ge alla fyra framtider ett namn (' + tom.length + ' saknas).'); }
+    if (st === 'varden' && valdaVarden().length < 3) m.push('Markera minst tre bärande delar (nu ' + valdaVarden().length + ').');
+    if (/^vind-/.test(st) && state.vind[+st.slice(5)].utv === null) m.push('Bedöm hur verksamheten står sig i den här framtiden.');
+    if (st === 'karta') {
+      if (!state.kollisioner.length) m.push('Ta med minst en kollision.');
+      state.kollisioner.forEach(function (k, i) {
+        var f = []; if (!(k.namn || '').trim()) f.push('namn'); if (typeof k.tryck !== 'number') f.push('tryck'); if (typeof k.tempo !== 'number') f.push('tempo'); if (typeof k.syn !== 'number') f.push('synlighet');
+        if (f.length) m.push('Kollision ' + (i + 1) + ' saknar ' + lista(f) + '.');
+      });
+      if (state.seeScen === null) m.push('Välj vilken framtid ni tar med till See.');
+      else if (state.seeScen !== seeForslag() && state.seeMotivering.trim().length <= 2) m.push('Motivera varför ni valde en annan framtid än förslaget.');
+    }
+    return m;
+  }
   function go(step) { view.step = step; render(); window.scrollTo(0, 0); app.focus({ preventScroll: true }); }
   function nav(d) { var s = steps(), i = s.indexOf(view.step); go(s[Math.max(0, Math.min(s.length - 1, i + d))]); }
   function resumeStep() { var s = steps(); for (var i = 1; i < s.length - 1; i++) if (!canNext(s[i])) return s[i]; return 'rapport'; }
@@ -215,7 +241,7 @@
       var b = state.bed[t.id]; if (!b || typeof b.p !== 'number' || typeof b.s !== 'number') return;
       var key = b.p + '-' + b.s, k = cell[key] = (cell[key] || 0) + 1;
       var dx = ((k - 1) % 4) * 22 - 33, dy = Math.floor((k - 1) / 4) * 22 - 6;
-      g += '<circle cx="' + (x(b.s) + dx) + '" cy="' + (y(b.p) + dy) + '" r="10" fill="#1d2733"/><text x="' + (x(b.s) + dx) + '" y="' + (y(b.p) + dy + 4) + '" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">' + tnr(t.id) + '</text>';
+      g += '<circle cx="' + (x(b.s) + dx) + '" cy="' + (y(b.p) + dy) + '" r="10" fill="#1d2733"><title>' + esc(tnr(t.id) + '. ' + t.trend) + '</title></circle><text x="' + (x(b.s) + dx) + '" y="' + (y(b.p) + dy + 4) + '" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">' + tnr(t.id) + '</text>';
     });
     return g + '</svg>';
   }
@@ -238,7 +264,7 @@
     ids.forEach(function (id) {
       var r = S.r[id], key = r.aktiv + '-' + r.passiv, k = used[key] = (used[key] || 0) + 1;
       var ang = (k - 1) * 1.3, rad = k > 1 ? 24 : 0, cx = x(r.passiv) + Math.cos(ang) * rad, cy = y(r.aktiv) - Math.sin(ang) * rad;
-      g += '<circle cx="' + cx + '" cy="' + cy + '" r="13" fill="' + cols[r.kat] + '" stroke="#fff" stroke-width="2"/><text x="' + cx + '" y="' + (cy + 4.5) + '" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">' + tnr(id) + '</text>';
+      g += '<circle cx="' + cx + '" cy="' + cy + '" r="13" fill="' + cols[r.kat] + '" stroke="#fff" stroke-width="2"><title>' + esc(tnr(id) + '. ' + tname(id)) + '</title></circle><text x="' + cx + '" y="' + (cy + 4.5) + '" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">' + tnr(id) + '</text>';
     });
     return g + '</svg>';
   }
@@ -291,6 +317,7 @@
     h += '<label class="field"><span>' + esc(Fk.fragaEtikett) + '</span><textarea data-path="fokus.fraga" data-fraga="1" rows="2">' + esc(f.fraga) + '</textarea></label><p class="hint" style="margin-top:-8px">' + esc(Fk.fragaHjalp) + '</p>';
     return h;
   }
+  function legendHTML(ids) { return '<ul class="tlegend">' + ids.map(function (id) { return '<li><span class="tnr">' + tnr(id) + '</span>' + esc(tname(id)) + '</li>'; }).join('') + '</ul>'; }
   function trendRow(t) {
     return '<div class="trow"><span class="tnr">' + tnr(t.id) + '</span><label><span>Signal</span><textarea rows="2" data-trend="' + t.id + '" data-f="signal">' + esc(t.signal) + '</textarea></label><label><span>Indikerar trend</span><textarea rows="2" data-trend="' + t.id + '" data-f="trend">' + esc(t.trend) + '</textarea></label><button class="del" data-act="deltrend" data-id="' + t.id + '" aria-label="Ta bort">×</button>' + (t.fran && t.fran.length ? '<span class="from small muted">' + esc(C.forarbete.fran) + ': ' + esc(t.fran.join(', ')) + '</span>' : '') + '</div>';
   }
@@ -299,7 +326,10 @@
     var shown = state.seedade.slice().sort(function (a, b) { var ia = fo.indexOf(a), ib = fo.indexOf(b); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); });
     shown.forEach(function (oid) {
       var rows = state.trender.filter(function (t) { return t.omrade === oid; });
-      h += '<div class="card tight area"><div class="area-head"><b>' + esc(omrade(oid).namn) + '</b>' + (fo.indexOf(oid) >= 0 ? '<span class="tag strong">fokus</span>' : '') + '</div>' + rows.map(trendRow).join('') + '<button class="btn quiet small-btn" data-act="addrow" data-om="' + oid + '">+ Lägg till rad</button></div>';
+      var fler = exempel(oid).filter(function (e) { return !state.trender.some(function (t) { return t.trend === e.trend; }); });
+      h += '<div class="card tight area"><div class="area-head"><b>' + esc(omrade(oid).namn) + '</b>' + (fo.indexOf(oid) >= 0 ? '<span class="tag strong">fokus</span>' : '') + '</div>' + rows.map(trendRow).join('') +
+        (fler.length ? '<div class="chips ex"><span class="small muted">Fler exempel:</span>' + fler.map(function (e) { return '<button class="chip" data-act="addex" data-om="' + oid + '" data-ex="' + esc(e.trend) + '" title="' + esc('Signal: ' + e.signal) + '">+ ' + esc(e.trend) + '</button>'; }).join('') + '</div>' : '') +
+        '<button class="btn quiet small-btn" data-act="addrow" data-om="' + oid + '">+ Lägg till egen rad</button></div>';
     });
     var rest = C.omraden.filter(function (o) { return state.seedade.indexOf(o.id) < 0; });
     if (rest.length) h += '<h3>' + esc(S.ovrigaRubrik) + '</h3><div class="chips">' + rest.map(function (o) { return '<button class="chip" data-act="addarea" data-om="' + o.id + '">+ ' + esc(o.namn) + '</button>'; }).join('') + '</div>';
@@ -311,7 +341,7 @@
   }
   function renderBedomning() {
     var Bd = C.bedomning, h = head('bedomning', Bd.rubrik, Bd.text);
-    h += '<div class="card tight chartcard"><div class="chart">' + bedSVG() + '</div></div>';
+    h += '<div class="card tight chartcard"><div class="chart">' + bedSVG() + '</div>' + legendHTML(validTrends().map(function (t) { return t.id; })) + '</div>';
     validTrends().forEach(function (t) {
       var b = state.bed[t.id] || {}, k = klass(t.id);
       h += '<div class="card tight rate"><div class="rate-head"><span class="tnr">' + tnr(t.id) + '</span><b>' + esc(t.trend) + '</b>' + (k ? '<span class="tag' + (k === 'forutbestamd' ? ' strong' : k === 'kritisk' ? '' : ' plain') + '">' + esc(Bd.klasser[k].namn) + '</span>' : '') + '</div>' +
@@ -346,7 +376,7 @@
   }
   function renderMatris() {
     var M = C.matris, S = sums(), h = head('matris', M.rubrik, M.text);
-    h += '<div class="card tight chartcard"><div class="chart">' + matrisSVG() + '</div></div>';
+    h += '<div class="card tight chartcard"><div class="chart">' + matrisSVG() + '</div>' + legendHTML(urval()) + '</div>';
     h += '<div class="card tight">' + urval().slice().sort(function (a, b) { return S.r[b].aktiv - S.r[a].aktiv; }).map(function (id) { var k = S.r[id].kat; return '<p class="small" style="margin-bottom:8px"><span class="tnr inline">' + tnr(id) + '</span><span class="tag cat-' + k + '">' + esc(M.kategorier[k].namn) + '</span> ' + esc(fill(M.kategorier[k].text, { trend: '”' + tname(id) + '”' })) + ' <span class="muted">(aktiv ' + S.r[id].aktiv + ', passiv ' + S.r[id].passiv + ')</span></p>'; }).join('') + '</div>';
     return h + matrisTabell();
   }
@@ -509,7 +539,7 @@
     if (state.syntes.monster.trim()) h += '<p><b>Gemensamma mönster:</b> ' + esc(state.syntes.monster) + '</p>';
     if (state.syntes.samlad !== null) h += '<p><b>Samlad bedömning:</b> verksamheten ' + esc({ '-1': 'försämras', '0': 'står sig', '1': 'förbättras' }[state.syntes.samlad]) + ' på längre sikt.</p>';
     if (state.syntes.osakert.trim()) h += '<p><b>Fortfarande osäkert:</b> ' + esc(state.syntes.osakert) + '</p>';
-    h += '<h3>Vilka trender driver utvecklingen?</h3><div class="card tight chartcard"><div class="chart">' + matrisSVG() + '</div></div>';
+    h += '<h3>Vilka trender driver utvecklingen?</h3><div class="card tight chartcard"><div class="chart">' + matrisSVG() + '</div>' + legendHTML(urval()) + '</div>';
     if (forutbestamda().length) h += '<p class="small"><b>Förutbestämda element:</b> ' + esc(forutbestamda().map(tname).join('; ')) + '</p>';
     if (state.axlar.motivering && axelBytt()) h += '<p class="small"><b>Motivering till val av axlar:</b> ' + esc(state.axlar.motivering) + '</p>';
     h += '<h3>Bärande delar och antaganden</h3><div class="card tight">' + valdaVarden().map(function (v) { var d = vd(v.id); return '<p class="small" style="margin-bottom:6px"><b>' + esc(v.namn) + ':</b> ' + esc(d.hos || '') + (d.ant ? ' <span class="muted">Bärande antagande: ' + esc(d.ant) + '</span>' : '') + '</p>'; }).join('') + '</div>';
@@ -541,12 +571,13 @@
     if (st !== 'start' && st !== 'rapport') {
       if (st !== 'uppgifter') html += parking();
       var nxt = s[i + 1] === 'rapport' ? 'Visa rapporten' : 'Nästa';
-      html += '<div class="navrow"><button class="btn quiet" data-act="back">← Tillbaka</button><button class="btn" data-act="next"' + (canNext() ? '' : ' disabled') + '>' + nxt + ' →</button></div>';
+      html += '<div class="navrow"><button class="btn quiet" data-act="back">← Tillbaka</button><button class="btn" data-act="next"' + (canNext() ? '' : ' disabled') + '>' + nxt + ' →</button></div><div class="missing" id="missing" aria-live="polite">' + missingHTML() + '</div>';
     }
     app.innerHTML = html;
     document.getElementById('progress-bar').style.width = (st === 'start' ? 0 : Math.round(i / (s.length - 1) * 100)) + '%';
   }
-  function refreshNext() { var b = app.querySelector('[data-act=next]'); if (b) b.disabled = !canNext(); }
+  function missingHTML() { var m = canNext() ? [] : saknas(); return m.length ? '<b>För att gå vidare:</b> ' + m.map(esc).join(' ') : ''; }
+  function refreshNext() { var b = app.querySelector('[data-act=next]'); if (b) b.disabled = !canNext(); var h = document.getElementById('missing'); if (h) h.innerHTML = missingHTML(); }
 
   /* ---------- händelser ---------- */
   app.addEventListener('click', function (e) {
@@ -567,6 +598,7 @@
     if (act === 'restart') { if (confirmReset()) { state = fresh(); save(); go('start'); } return; }
     if (act === 'deltrend') { state.trender = state.trender.filter(function (x) { return x.id !== d('data-id'); }); delete state.bed[d('data-id')]; if (state.urval) state.urval = state.urval.filter(function (x) { return x !== d('data-id'); }); save(); rerender(); return; }
     if (act === 'addrow') { addRow(d('data-om'), true); save(); rerender(); return; }
+    if (act === 'addex') { var ex = exempel(d('data-om')).filter(function (e) { return e.trend === d('data-ex'); })[0]; if (ex) { state.trender.push({ id: 't' + state.nextId++, omrade: d('data-om'), signal: ex.signal, trend: ex.trend }); save(); rerender(); } return; }
     if (act === 'addarea') { addRow(d('data-om'), false); save(); rerender(); return; }
     if (act === 'addvarde') { var inp = document.getElementById('egetvarde'); if (inp && inp.value.trim()) { var id = 'e' + (state.egnaVarden.length + 1); state.egnaVarden.push({ id: id, namn: inp.value.trim(), text: '', exempel: '' }); vd(id).med = true; save(); rerender(); } return; }
     if (act === 'addkoll') {

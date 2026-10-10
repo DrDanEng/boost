@@ -48,6 +48,7 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 - Rapporten börjar, som i See, med en sammanfattning: fokusfråga, axlar, förutbestämda element, de fyra framtiderna och vad de betyder för verksamhetens värden, sårbarheter och styrkor, samt de viktigaste slutsatserna (kollisionerna och robusta åtgärder). Texterna ligger i `rapport.sammanfattning` i `sense/content.js`.
 - Begrepp (Dans beslut): skede 5 heter *Det som bär verksamheten*; affärsmodellens byggstenar kallas **bärande delar**, var och en med ett **bärande antagande** (Dewar: load-bearing assumptions). Ordet "värden" används inte, eftersom det förväxlas med värderingar eller pengar. I vindtunneln bedöms *verksamhetens ställning* (försämras, står sig, förbättras).
 - "Lärande och förnyelse" är struken ur skede 5 eftersom det är en förmåga som bedöms i See. Tio bärande delar.
+- Version 0.2 (gren `sense-v0.2`): tre exempel per område (ett läggs in, fler hämtas som förslag), förklaring av siffrorna under diagrammen, och under Nästa visas vad som saknas för att gå vidare.
 - Senare versioner: femtrendsvariant med max och min som tillval.
 
 ### See

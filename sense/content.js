@@ -2,7 +2,7 @@
 // Strukturen bygger på Dans Collision Compass, generaliserad från fastighet till verksamhet.
 // Forskningsstöd per skede: se CLAUDE.md och "kallor" nedan.
 window.CONTENT = {
- "version": "0.1 prototyp",
+ "version": "0.2 prototyp",
  "titel": "Sense",
  "verktyg": "Dialogverktyg -- Learning Curve Approach",
  "undertitel": "Collision Compass: var möter framtiden er verksamhet?",
@@ -55,26 +55,79 @@ window.CONTENT = {
 
  "signaler": {
   "rubrik": "Signaler och trender",
-  "text": "En signal är något ni faktiskt kan se i omvärlden: ett beteende, en nyhet, ett beslut, en teknik eller en händelse. En trend är en möjlig riktning som flera signaler tillsammans pekar mot. Ändra, stryk och lägg till. Det viktiga är inte att få allt rätt, utan att börja se mönster.",
+  "text": "En signal är något ni faktiskt kan se i omvärlden: ett beteende, en nyhet, ett beslut, en teknik eller en händelse. En trend är en möjlig riktning som flera signaler tillsammans pekar mot. Ändra, stryk och lägg till. Under varje område finns fler exempel att hämta. Det viktiga är inte att få allt rätt, utan att börja se mönster.",
   "forslagRubrik": "Områden kopplade till er fokusfråga",
   "ovrigaRubrik": "Fler områden",
   "minText": "Ha minst fem trender med innan ni går vidare."
  },
  "omraden": [
-  { "id": "hallbarhet", "namn": "Hållbarhet och klimat", "signal": "Klimatdeklarationer, gränsvärden för klimatpåverkan, stigande försäkringspremier", "trend": "Klimatpåverkan blir avgörande för värde och lönsamhet" },
-  { "id": "energi", "namn": "Energi och försörjning", "signal": "Solceller, lokala elnät, energilagring, effektbrist i storstäder", "trend": "Från central till lokal energiförsörjning" },
-  { "id": "cirk", "namn": "Cirkularitet och material", "signal": "Återbrukskrav, byggdelshubbar, materialpass", "trend": "Återbruk blir standard" },
-  { "id": "digital", "namn": "Digitalisering och AI", "signal": "AI-stöd i projektering och drift, generativ design, digitala tvillingar", "trend": "Verksamheten blir datadriven och mer automatiserad" },
-  { "id": "mobilitet", "namn": "Mobilitet och plats", "signal": "Delad mobilitet, färre parkeringar, distansarbete", "trend": "Mobilitet som tjänst förändrar platsers värde" },
-  { "id": "flex", "namn": "Flexibilitet och användning", "signal": "Korta kontrakt, delade ytor, tjänster i stället för produkter", "trend": "Från ägande till användning" },
-  { "id": "ekonomi", "namn": "Ekonomi och geopolitik", "signal": "Ränteoro, materialbrist, handelshinder, krigshot", "trend": "Resiliens blir viktigare än effektivitet" },
-  { "id": "socialt", "namn": "Sociala och kulturella värden", "signal": "Krav på trygghet, platsidentitet och gemenskap", "trend": "Social hållbarhet blir en värdeskapare" },
-  { "id": "larande", "namn": "Lärande och innovation", "signal": "Testbäddar, samverkan med akademi, innovationsupphandling", "trend": "Förmågan att lära blir en konkurrensfaktor" },
-  { "id": "teknik", "namn": "Teknik och affärsmodeller", "signal": "Data säljs som tjänst, AI ersätter debiterbara timmar, plattformar i värdekedjan", "trend": "Affären blir digital och insiktsdriven" },
-  { "id": "demografi", "namn": "Demografi och livsstil", "signal": "Pensionsavgångar, åldrande befolkning, urbanisering, nya hushållsformer", "trend": "Brist på arbetskraft och nya behov av bostäder och lokaler" },
-  { "id": "halsa", "namn": "Hälsa och välbefinnande", "signal": "Fokus på inomhusmiljö, psykosocial arbetsmiljö, sjukskrivningstal", "trend": "Hälsa blir ett krav på miljöer och arbetsplatser" },
-  { "id": "politik", "namn": "Politik och styrning", "signal": "EU:s taxonomi, hållbarhetsrapportering, nya upphandlingskrav", "trend": "Styrning genom regler och rapportering ökar" }
+  { "id": "hallbarhet", "namn": "Hållbarhet och klimat", "exempel": [
+    { "signal": "Klimatdeklarationer för nya byggnader, diskussion om gränsvärden för klimatpåverkan", "trend": "Klimatpåverkan blir avgörande för värde och lönsamhet" },
+    { "signal": "Stigande försäkringspremier, krav på klimatriskanalyser", "trend": "Klimatrisker prissätts" },
+    { "signal": "Beställare kräver fossilfria arbetsplatser och transporter", "trend": "Fossilfrihet blir ett krav i upphandling" }
+  ] },
+  { "id": "energi", "namn": "Energi och försörjning", "exempel": [
+    { "signal": "Solceller, lokala elnät, energilagring, effektbrist i storstäder", "trend": "Från central till lokal energiförsörjning" },
+    { "signal": "Effektavgifter, elpriser som svänger kraftigt", "trend": "Flexibel elanvändning blir en kostnadsfråga" },
+    { "signal": "Eldrivna arbetsmaskiner och transporter", "trend": "Byggande och logistik elektrifieras" }
+  ] },
+  { "id": "cirk", "namn": "Cirkularitet och material", "exempel": [
+    { "signal": "Återbrukskrav, byggdelshubbar, materialpass", "trend": "Återbruk blir standard" },
+    { "signal": "Krav på demonterbarhet och livscykelanalyser", "trend": "Byggnader utformas för att kunna tas isär" },
+    { "signal": "Brist på råvaror, stigande materialpriser", "trend": "Material blir en strategisk resurs" }
+  ] },
+  { "id": "digital", "namn": "Digitalisering och AI", "exempel": [
+    { "signal": "AI-stöd i projektering och drift, generativ design, digitala tvillingar", "trend": "Verksamheten blir datadriven och mer automatiserad" },
+    { "signal": "Krav på informationsleveranser enligt standarder, BIM i förvaltning", "trend": "Information blir en leverans i sig" },
+    { "signal": "Cyberattacker mot beställare och leverantörer", "trend": "Informationssäkerhet blir en affärsrisk" }
+  ] },
+  { "id": "mobilitet", "namn": "Mobilitet och plats", "exempel": [
+    { "signal": "Delad mobilitet, färre parkeringar, distansarbete", "trend": "Mobilitet som tjänst förändrar platsers värde" },
+    { "signal": "Mobilitetsåtgärder i stället för parkeringsnormer", "trend": "Planering utgår från resor, inte bilar" },
+    { "signal": "Hemleveranser och fler lätta lastbilar i städerna", "trend": "Citylogistik blir en planeringsfråga" }
+  ] },
+  { "id": "flex", "namn": "Flexibilitet och användning", "exempel": [
+    { "signal": "Korta kontrakt, delade ytor, tjänster i stället för produkter", "trend": "Från ägande till användning" },
+    { "signal": "Tomma kontor, nya arbetsmönster", "trend": "Ombyggnad och omvandling ersätter nybyggnad" },
+    { "signal": "Krav på flexibla planlösningar", "trend": "Byggnader måste klara flera användningar över tid" }
+  ] },
+  { "id": "ekonomi", "namn": "Ekonomi och geopolitik", "exempel": [
+    { "signal": "Ränteoro, materialbrist, handelshinder, krigshot", "trend": "Resiliens blir viktigare än effektivitet" },
+    { "signal": "Färre byggstarter, pressade marginaler", "trend": "Lönsamheten pressas i hela värdekedjan" },
+    { "signal": "Gröna lån, hållbarhetskrav från banker och investerare", "trend": "Kapital styrs mot hållbara projekt" }
+  ] },
+  { "id": "socialt", "namn": "Sociala och kulturella värden", "exempel": [
+    { "signal": "Krav på trygghet, platsidentitet och gemenskap", "trend": "Social hållbarhet blir en värdeskapare" },
+    { "signal": "Segregation och otrygghet i utsatta områden", "trend": "Platsutveckling blir ett socialt uppdrag" },
+    { "signal": "Medborgardialoger, lokala protester mot projekt", "trend": "Acceptans blir en förutsättning för att bygga" }
+  ] },
+  { "id": "larande", "namn": "Lärande och innovation", "exempel": [
+    { "signal": "Testbäddar, samverkan med akademi, innovationsupphandling", "trend": "Förmågan att lära blir en konkurrensfaktor" },
+    { "signal": "Piloter och projekt vars resultat aldrig når den ordinarie verksamheten", "trend": "Förmågan att ta emot nytt avgör nyttan av utveckling" },
+    { "signal": "Ny kunskap utvecklas snabbare än utbildningarna hinner med", "trend": "Lärande i arbetet blir avgörande" }
+  ] },
+  { "id": "teknik", "namn": "Teknik och affärsmodeller", "exempel": [
+    { "signal": "Data säljs som tjänst, AI ersätter debiterbara timmar, plattformar i värdekedjan", "trend": "Affären blir digital och insiktsdriven" },
+    { "signal": "Mer prefabricering och industriellt byggande", "trend": "Byggandet industrialiseras" },
+    { "signal": "Robotar och automation på byggarbetsplatsen", "trend": "Tunga och farliga moment automatiseras" }
+  ] },
+  { "id": "demografi", "namn": "Demografi och livsstil", "exempel": [
+    { "signal": "Pensionsavgångar, åldrande befolkning, urbanisering", "trend": "Brist på arbetskraft och nya behov av bostäder och lokaler" },
+    { "signal": "Färre unga söker yrkesutbildningar inom bygg", "trend": "Kompetensförsörjningen blir en flaskhals" },
+    { "signal": "Fler ensamhushåll, äldre som bor kvar hemma", "trend": "Nya behov av bostäder och service" }
+  ] },
+  { "id": "halsa", "namn": "Hälsa och välbefinnande", "exempel": [
+    { "signal": "Fokus på inomhusmiljö, psykosocial arbetsmiljö, sjukskrivningstal", "trend": "Hälsa blir ett krav på miljöer och arbetsplatser" },
+    { "signal": "Värmeböljor och överhettade byggnader", "trend": "Klimatanpassning blir en hälsofråga" },
+    { "signal": "Krav på giftfria material", "trend": "Materialval granskas för sina hälsoeffekter" }
+  ] },
+  { "id": "politik", "namn": "Politik och styrning", "exempel": [
+    { "signal": "EU:s taxonomi, hållbarhetsrapportering, nya upphandlingskrav", "trend": "Styrning genom regler och rapportering ökar" },
+    { "signal": "Förslag om förenklade plan- och byggprocesser", "trend": "Snabbare processer men tydligare ansvar" },
+    { "signal": "Krav på beredskap och skydd av samhällsviktig verksamhet", "trend": "Försörjningsberedskap blir en del av uppdraget" }
+  ] }
  ],
+
 
  "bedomning": {
   "rubrik": "Påverkan och säkerhet",
