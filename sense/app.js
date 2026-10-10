@@ -1,4 +1,4 @@
-/* Dialogverktyg -- Learning Curve Approach: Sense (Collision Compass).
+/* Dialogverktyg — Learning Curve Approach: Sense (Collision Compass).
    Statisk app, all data stannar i webbläsaren. © Engströms Mickla AB 2026 */
 (function () {
   'use strict';
@@ -278,11 +278,10 @@
     for (var p = 1; p <= 5; p++) g += '<text x="' + (L - 8) + '" y="' + (y(p) + 4) + '" font-size="11" fill="#5d6773" text-anchor="end">' + p + '</text>';
     g += '<text x="' + (L + w / 2) + '" y="' + (H - 10) + '" font-size="12" font-weight="bold" fill="#1d2733" text-anchor="middle">Tempo</text><text x="16" y="' + (T + h / 2) + '" font-size="12" font-weight="bold" fill="#1d2733" text-anchor="middle" transform="rotate(-90 16 ' + (T + h / 2) + ')">Tryck</text>';
     state.kollisioner.filter(kollKlar).forEach(function (k, i) {
-      var cx = x(k.tempo) + i * 6, cy = y(k.tryck) + i * 6, dold = k.syn <= 2, r = 14 + k.tryck * 2;
-      g += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + (dold ? '#fff' : '#b8532c') + '" fill-opacity="' + (dold ? 1 : 0.25 + k.syn * 0.12) + '" stroke="#b8532c" stroke-width="2"' + (dold ? ' stroke-dasharray="5 4"' : '') + '/>';
+      var same = state.kollisioner.filter(kollKlar).slice(0, i).filter(function (o) { return o.tempo === k.tempo && o.tryck === k.tryck; }).length;
+      var cx = x(k.tempo) + same * 30, cy = y(k.tryck) - same * 10, dold = k.syn <= 2, r = 12 + k.tryck * 1.6;
+      g += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + (dold ? '#fff' : '#b8532c') + '" fill-opacity="' + (dold ? 1 : 0.25 + k.syn * 0.12) + '" stroke="#b8532c" stroke-width="2"' + (dold ? ' stroke-dasharray="5 4"' : '') + '><title>' + esc((i + 1) + '. ' + k.namn) + '</title></circle>';
       g += '<text x="' + cx + '" y="' + (cy + 5) + '" font-size="14" font-weight="bold" fill="#1d2733" text-anchor="middle">' + (i + 1) + '</text>';
-      var right = cx < L + w * 0.6;
-      g += '<text x="' + (cx + (right ? r + 6 : -r - 6)) + '" y="' + (cy + 4) + '" font-size="12" fill="#1d2733" text-anchor="' + (right ? 'start' : 'end') + '">' + esc(short(k.namn, 32)) + '</text>';
     });
     return g + '</svg>';
   }
@@ -317,6 +316,7 @@
     h += '<label class="field"><span>' + esc(Fk.fragaEtikett) + '</span><textarea data-path="fokus.fraga" data-fraga="1" rows="2">' + esc(f.fraga) + '</textarea></label><p class="hint" style="margin-top:-8px">' + esc(Fk.fragaHjalp) + '</p>';
     return h;
   }
+  function kollLegend() { return '<ul class="tlegend">' + state.kollisioner.map(function (k, i) { return kollKlar(k) ? '<li><span class="tnr koll-nr">' + (i + 1) + '</span>' + esc(k.namn) + '</li>' : ''; }).join('') + '</ul>'; }
   function legendHTML(ids) { return '<ul class="tlegend">' + ids.map(function (id) { return '<li><span class="tnr">' + tnr(id) + '</span>' + esc(tname(id)) + '</li>'; }).join('') + '</ul>'; }
   function trendRow(t) {
     return '<div class="trow"><span class="tnr">' + tnr(t.id) + '</span><label><span>Signal</span><textarea rows="2" data-trend="' + t.id + '" data-f="signal">' + esc(t.signal) + '</textarea></label><label><span>Indikerar trend</span><textarea rows="2" data-trend="' + t.id + '" data-f="trend">' + esc(t.trend) + '</textarea></label><button class="del" data-act="deltrend" data-id="' + t.id + '" aria-label="Ta bort">×</button>' + (t.fran && t.fran.length ? '<span class="from small muted">' + esc(C.forarbete.fran) + ': ' + esc(t.fran.join(', ')) + '</span>' : '') + '</div>';
@@ -462,7 +462,7 @@
         (k.tryck >= 4 && k.syn && k.syn <= 2 ? '<div class="note weak small" style="margin:12px 0 0">' + esc(K.doldNot) + '</div>' : '') + '</div>';
     });
     if (state.kollisioner.length < 3) h += '<button class="btn ghost" data-act="addkoll">' + esc(K.egen) + '</button>'; else h += '<p class="hint">' + esc(K.max) + '</p>';
-    if (state.kollisioner.some(kollKlar)) h += '<div class="card tight chartcard" style="margin-top:18px"><div class="chart">' + kartaSVG() + '</div><p class="small muted" style="margin:6px 0 0">Streckad ring: låg synlighet. Större cirkel: högre tryck.</p></div>';
+    if (state.kollisioner.some(kollKlar)) h += '<div class="card tight chartcard" style="margin-top:18px"><div class="chart">' + kartaSVG() + '</div>' + kollLegend() + '<p class="small muted" style="margin:6px 0 0">Streckad ring: låg synlighet. Större cirkel: högre tryck.</p></div>';
     var sf = seeForslag();
     h += '<h3>' + esc(K.scenarioRubrik) + '</h3><p class="muted small">' + esc(K.scenarioText) + '</p><div class="decisions">';
     [0, 1, 2, 3].forEach(function (i) { h += '<button class="choice" data-see="' + i + '" aria-pressed="' + (state.seeScen === i) + '"><span><b>' + esc(scenNamn(i)) + (i === sf ? '<span class="tag">föreslagen</span>' : '') + '</b><span class="desc">' + esc(state.scen[i].text) + '</span></span></button>'; });
@@ -530,7 +530,7 @@
     h += '<div class="actions" style="margin:0 0 18px"><button class="btn" data-act="pdf">Ladda ner rapport (PDF)</button><button class="btn ghost" data-act="savefile">Spara sparfil</button></div>';
     h += sammanfattningHTML();
     h += '<h3>Fyra framtider</h3><div class="scen-grid report">' + [0, 1, 2, 3].map(function (i) { var u = state.vind[i].utv; return '<div class="card tight' + (state.seeScen === i ? ' chosen' : '') + '">' + (state.seeScen === i ? '<div class="eyebrow">Till See</div>' : '') + '<b>' + esc(scenNamn(i)) + '</b><p class="small muted" style="margin:4px 0">' + esc(kombText(i)) + '</p><p class="small" style="margin:0">' + esc(state.scen[i].text) + '</p>' + (u !== null ? '<p class="small" style="margin:6px 0 0"><b>Verksamheten:</b> ' + esc(C.vind.utveckling[u + 1].toLowerCase()) + '</p>' : '') + '</div>'; }).join('') + '</div>';
-    h += '<h3>Collision Map</h3><div class="card tight chartcard"><div class="chart">' + kartaSVG() + '</div></div>';
+    h += '<h3>Collision Map</h3><div class="card tight chartcard"><div class="chart">' + kartaSVG() + '</div>' + kollLegend() + '</div>';
     state.kollisioner.forEach(function (k, i) { h += '<div class="card tight"><b>' + (i + 1) + '. ' + esc(k.namn) + '</b><p class="small" style="margin:4px 0">Utmanat antagande: ' + esc(k.ant || '(ej angivet)') + '</p><p class="small muted" style="margin:0">Tryck ' + k.tryck + ' av 5 (' + esc((K.tryckSkala[k.tryck - 1] || '').toLowerCase()) + ') · Tempo: ' + esc((K.tempoSkala[k.tempo] || '').toLowerCase()) + ' · Synlighet ' + k.syn + ' av 5 (' + esc((K.synlighetSkala[k.syn - 1] || '').toLowerCase()) + ')</p></div>'; });
     if (state.seeMotivering && state.seeScen !== seeForslag()) h += '<p class="small"><b>Motivering till val av framtid:</b> ' + esc(state.seeMotivering) + '</p>';
     if (robusta().length) h += '<h3>Robusta åtgärder</h3><ul>' + robusta().map(function (r) { return '<li>' + esc(r) + '</li>'; }).join('') + '</ul>';

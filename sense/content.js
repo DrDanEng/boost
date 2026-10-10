@@ -2,9 +2,9 @@
 // Strukturen bygger på Dans Collision Compass, generaliserad från fastighet till verksamhet.
 // Forskningsstöd per skede: se CLAUDE.md och "kallor" nedan.
 window.CONTENT = {
- "version": "0.2 prototyp",
+ "version": "0.3 prototyp",
  "titel": "Sense",
- "verktyg": "Dialogverktyg -- Learning Curve Approach",
+ "verktyg": "Dialogverktyg — Learning Curve Approach",
  "undertitel": "Collision Compass: var möter framtiden er verksamhet?",
  "upphov": "© Engströms Mickla AB 2026",
  "integritet": "Allt ni skriver sparas bara i er webbläsare och i de filer ni själva laddar ner. Ingenting skickas till oss eller någon annan.",

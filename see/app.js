@@ -1,4 +1,4 @@
-/* Dialogverktyg -- Learning Curve Approach: See. Statisk app, all data stannar i webbläsaren. © Engströms Mickla AB 2026 */
+/* Dialogverktyg — Learning Curve Approach: See. Statisk app, all data stannar i webbläsaren. © Engströms Mickla AB 2026 */
 (function () {
   'use strict';
   var C = window.CONTENT, B = C.boost, M = C.matchup, Q = B.kvadranter || null;

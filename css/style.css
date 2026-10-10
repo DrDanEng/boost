@@ -283,3 +283,4 @@ ul.futures li.till { font-weight: 500; }
 @media (max-width: 680px) { .missing { text-align: left; } }
 .chips.ex { align-items: center; margin: 10px 0 4px; }
 .chips.ex .chip { font-size: 13px; padding: 5px 10px; }
+.tnr.koll-nr { background: #b8532c; }

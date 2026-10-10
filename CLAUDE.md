@@ -6,7 +6,7 @@ Arbetsbeskrivning för den som utvecklar verktygen vidare, människa eller Claud
 
 - Verktygen stödjer The Learning Curve Approach (Sense, See, Shift) i projektet Smart Built Boost (Smart Built Environment).
 - Upphov: Dan Engström, Engströms Mickla AB. Dan äger allt innehåll; Claude föreslår, Dan beslutar.
-- Tjänsten heter **Dialogverktyg -- Learning Curve Approach** (Dans namnval, även i rubriker). Modulerna heter Sense, See och Shift.
+- Tjänsten heter **Dialogverktyg — Learning Curve Approach** (Dans namnval, även i rubriker; det långa tankstrecket i namnet är ett uttryckligt undantag från regeln om tankstreck). Modulerna heter Sense, See och Shift.
 - **See** (självskattning av mottagningsförmåga och agency, tidigare kallad Dialogverktyget) ligger i `see/`.
 - Micklas logotyp (`img/mickla.png`, ormen) visas diskret i sidfoten på alla sidor och i PDF-rapportens sidfot.
 - Landningssidan ligger i roten och länkar till modulerna. Byggordning: See (klar), landningssida (klar), Sense (version 0.1, publicerad), Shift, slutsida.
