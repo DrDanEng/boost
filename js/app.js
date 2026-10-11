@@ -59,7 +59,7 @@
 
   function render() {
     var P = C.perspektiv, O = C.ordning, S = C.sparfil;
-    var h = '<section class="hero"><div class="eyebrow">' + esc(C.eyebrow) + '</div><h1>' + esc(C.titel) + '</h1><p class="lead">' + esc(C.lead) + '</p>' + (C.fritt ? '<p class="fritt">' + [].concat(C.fritt).map(esc).join('<br>') + '</p>' : '') + C.intro.map(function (t, i) { return '<p>' + esc(t) + '</p>' + (i === 0 ? filmHTML() : ''); }).join('') + '</section>';
+    var h = '<section class="hero"><div class="eyebrow">' + esc(C.eyebrow) + '</div><h1>' + esc(C.titel) + '</h1><p class="lead">' + esc(C.lead) + '</p>' + (C.fritt ? '<p class="fritt">' + [].concat(C.fritt).map(function (t) { return '<span>' + esc(t) + '</span>'; }).join(' ') + '</p>' : '') + C.intro.map(function (t, i) { return '<p>' + esc(t) + '</p>' + (i === 0 ? filmHTML() : ''); }).join('') + '</section>';
     h += phasesHTML();
     h += '<section><h2 class="section">' + esc(P.rubrik) + '</h2>' + P.text.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') +
       '<blockquote class="quote"><p>' + esc(P.citat) + '</p><cite>' + esc(P.kalla) + '</cite></blockquote></section>';

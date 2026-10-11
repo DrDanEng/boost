@@ -381,3 +381,4 @@ table.vmatris th.n { font-size: 13px; font-weight: 600; }
 .tillgrid + .note { margin-top: 22px; }
 .landing .tillampningar p > a { color: var(--accent); font-weight: 600; }
 .backlink { color: var(--accent); font-weight: 600; text-decoration: none; }
+@media (max-width: 600px) { .landing .fritt span { display: block; } }
