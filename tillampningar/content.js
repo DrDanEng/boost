@@ -191,9 +191,10 @@ window.CONTENT = {
    "faktorer": [
     { "id": "pris", "namn": "Prissättning och intäktsmodell", "text": "Timpris, fastpris, abonnemang, licens eller betalning för resultat", "exempel": "Kunderna betalar för nedlagd tid" },
     { "id": "kundvarde", "namn": "Vad kunden köper", "text": "Svar, trygghet, genomförande eller att någon tar ansvar", "exempel": "Kunden köper vår tid och erfarenhet" },
-    { "id": "kundkannedom", "namn": "Kundkännedom och relationer", "text": "Hur väl ni förstår kundens verksamhet och vad den värderar", "exempel": "Långa relationer med några stora kunder" },
+    { "id": "kundkannedom", "namn": "Kundkännedom och relationer", "text": "Hur väl ni förstår kundens verksamhet och vad den värderar", "exempel": "Ramavtal med fasta timpriser" },
     { "id": "leverans", "namn": "Leveransmodell", "text": "Från personlig rådgivning till självbetjäning; vad AI gör och vad människor gör", "exempel": "Allt arbete görs av konsulter i projekt" },
     { "id": "omdome", "namn": "Omdöme, tolkning och ansvar", "text": "Det människor bidrar med när AI gör grovarbetet: att tolka, rekommendera och stå för resultatet", "exempel": "Kunden betalar för att en erfaren person står bakom" },
+    { "id": "styrning", "namn": "Styrning och incitament", "text": "Debiteringsgrad som styrmått; lön, bonus och karriär efter debiterade timmar", "exempel": "Den som debiterar mest gör karriär" },
     { "id": "pyramid", "namn": "Kompetenspyramid och hävstång", "text": "Kvoten mellan seniora och juniora och hur den bär lönsamheten", "exempel": "Juniora gör huvuddelen av de debiterade timmarna" },
     { "id": "larvag", "namn": "Vägen från junior till senior", "text": "Hur nya medarbetare lär sig yrket i arbetet", "exempel": "Juniora lär sig genom rutinuppgifter i projekt" },
     { "id": "rekrytering", "namn": "Rekrytering och attraktivitet", "text": "Förmågan att locka och behålla rätt kompetens", "exempel": "Vi anställer nyexaminerade och utbildar dem själva" },
