@@ -8,7 +8,7 @@ window.INFO = {
 
  "begrepp": {
   "rubrik": "Begrepp",
-  "ingress": "Korta förklaringar av de begrepp som används i Sense, See och Shift. Där ett begrepp kommer från forskningen anges källan.",
+  "ingress": "Korta förklaringar av de begrepp som används i Sense, See, Shift och Utvalda tillämpningar. Där ett begrepp kommer från forskningen anges källan.",
   "lista": [
    { "term": "Absorptionsförmåga", "fas": "Alla", "text": "En organisations förmåga att känna igen, ta till sig, omvandla och använda ny kunskap. Skiljer mellan potentiell förmåga (att ta in) och realiserad förmåga (att faktiskt använda). Grundtanken i Learning Curve Approach är att det är mottagarens förmåga som avgör om något nytt får fäste.", "kalla": "Cohen & Levinthal 1990; Zahra & George 2002" },
    { "term": "Agency", "fas": "See, Shift", "text": "Upplevelsen av att ha förmåga, mandat och vilja att påverka sin situation tillsammans med andra. I See skattas mandat, vilja och tilltro för de förmågor som behöver stärkas mest.", "kalla": "Emirbayer & Mische 1998; Michie m.fl. 2011" },
@@ -66,10 +66,11 @@ window.INFO = {
      "Faserna kan göras var för sig eller i följd. Görs alla tre väger slutrapporten samman omvärldens tryck, organisationens förmåga och den rörelse som har kommit igång."
    ] },
    { "rubrik": "Mål", "text": [
-     "Målet är inte att ha rätt om framtiden, utan att röra sig: att organisationen tar sig uppför sin lärandekurva och blir bättre på att ta emot och använda det nya. Små rörelser i vardagen förändrar mer än stora beslut."
+     "Målet är inte att ha rätt om framtiden, utan att röra sig: att organisationen tar sig uppför sin lärandekurva och blir bättre på att ta emot och använda det nya. Små rörelser i vardagen förändrar mer än stora beslut.",
+     "Tillämpningarna har ett närliggande mål: att förstå vad som driver utfallet i en särskild fråga under olika framtider och hitta åtgärder som håller oavsett hur framtiden blir."
    ] },
    { "rubrik": "Grund i forskningen", "text": [
-     "Varje del av verktygen bygger på forskning om strategisk framsyn, absorptionsförmåga, beteendeförändring och organisatoriskt lärande. Källorna anges i rapporterna och i begreppslistan. Verktygen är dialogverktyg, inte mätinstrument: resultaten är underlag för samtal, inte betyg."
+     "Varje del av verktygen bygger på forskning om strategisk framsyn, absorptionsförmåga, beteendeförändring och organisatoriskt lärande, och tillämpningarna dessutom på forskning inom sina egna områden, till exempel fastighetsekonomi. Resonemanget och hela litteraturlistan finns i Teoriplattformen, och begreppslistan anger källan till varje begrepp. Verktygen är dialogverktyg, inte mätinstrument: resultaten är underlag för samtal, inte betyg."
    ] },
    { "rubrik": "Upphovsman", "text": [
      "The Learning Curve Approach är utvecklad av Dan Engström, Engströms Mickla AB. Insikterna bakom metoden kommer ur tre decennier av arbete med verksamhetsutveckling, forskning och innovation, i företag, akademi och idéburna verksamheter. Metoden har prövats och förfinats i forsknings- och utvecklingsprojekt, utbildningar och workshoppar."
