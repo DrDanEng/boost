@@ -32,6 +32,7 @@ window.CONTENT = {
   "fragaEtikett": "Er fokusfråga",
   "fragaHjalp": "Verktyget föreslår en fråga utifrån era val. Skriv om den så att den låter som ni.",
   "fragaMall": "Hur kan {lista} påverka det som bär {org} fram till {ar}?",
+  "tillampningHjalp": "Ska ni använda framtiderna i en tillämpning, till exempel fastighetens värdeutveckling, skriv fokusfrågan om den: Hur kan … påverka värdet på [fastigheten] fram till [år]?",
   "horisontEtikett": "Hur långt fram tittar ni?",
   "horisontHjalp": "Längre horisont ger större osäkerhet och friare tänkande. Tio år är ett vanligt val.",
   "horisonter": [5, 10, 15]
@@ -50,6 +51,8 @@ window.CONTENT = {
   { "id": "kunder", "namn": "Kundernas behov och nya affärsmodeller", "omraden": ["teknik", "flex", "socialt"] },
   { "id": "demografi", "namn": "Demografi, boende och livsstil", "omraden": ["demografi", "flex", "mobilitet"] },
   { "id": "social", "namn": "Social hållbarhet och trygghet", "omraden": ["socialt", "halsa", "mobilitet"] },
+  { "id": "fastighet", "namn": "Fastigheters värde och användning", "omraden": ["flex", "hallbarhet", "ekonomi", "digital", "mobilitet"], "tillampning": "fastighet", "fragaMall": "Hur kan {lista} påverka värdet på fastigheten fram till {ar}?", "standard": "förändringar i omvärlden",
+    "forstaExempel": { "flex": "Efterfrågan på kontorsytor förändras", "hallbarhet": "Klimatrisker prissätts", "ekonomi": "Fastighetsvärden blir känsligare för ränta och risk", "digital": "Uppkoppling och digitala tjänster tas för givna" } },
   { "id": "samverkan", "namn": "Samverkan och industrialisering i värdekedjan", "omraden": ["teknik", "larande", "digital"] }
  ],
 
@@ -64,7 +67,8 @@ window.CONTENT = {
   { "id": "hallbarhet", "namn": "Hållbarhet och klimat", "exempel": [
     { "signal": "Klimatdeklarationer för nya byggnader, diskussion om gränsvärden för klimatpåverkan", "trend": "Klimatpåverkan blir avgörande för värde och lönsamhet" },
     { "signal": "Stigande försäkringspremier, krav på klimatriskanalyser", "trend": "Klimatrisker prissätts" },
-    { "signal": "Beställare kräver fossilfria arbetsplatser och transporter", "trend": "Fossilfrihet blir ett krav i upphandling" }
+    { "signal": "Beställare kräver fossilfria arbetsplatser och transporter", "trend": "Fossilfrihet blir ett krav i upphandling" },
+    { "signal": "EU:s byggnadsdirektiv kräver att de sämst presterande byggnaderna energieffektiviseras", "trend": "Energiprestanda skiljer ut byggnader som halkar efter" }
   ] },
   { "id": "energi", "namn": "Energi och försörjning", "exempel": [
     { "signal": "Solceller, lokala elnät, energilagring, effektbrist i storstäder", "trend": "Från central till lokal energiförsörjning" },
@@ -79,7 +83,8 @@ window.CONTENT = {
   { "id": "digital", "namn": "Digitalisering och AI", "exempel": [
     { "signal": "AI-stöd i projektering och drift, generativ design, digitala tvillingar", "trend": "Verksamheten blir datadriven och mer automatiserad" },
     { "signal": "Krav på informationsleveranser enligt standarder, BIM i förvaltning", "trend": "Information blir en leverans i sig" },
-    { "signal": "Cyberattacker mot beställare och leverantörer", "trend": "Informationssäkerhet blir en affärsrisk" }
+    { "signal": "Cyberattacker mot beställare och leverantörer", "trend": "Informationssäkerhet blir en affärsrisk" },
+    { "signal": "Hyresgäster förväntar sig fiber, wifi, digitala lås och bokning", "trend": "Uppkoppling och digitala tjänster tas för givna" }
   ] },
   { "id": "mobilitet", "namn": "Mobilitet och plats", "exempel": [
     { "signal": "Delad mobilitet, färre parkeringar, distansarbete", "trend": "Mobilitet som tjänst förändrar platsers värde" },
@@ -89,12 +94,14 @@ window.CONTENT = {
   { "id": "flex", "namn": "Flexibilitet och användning", "exempel": [
     { "signal": "Korta kontrakt, delade ytor, tjänster i stället för produkter", "trend": "Från ägande till användning" },
     { "signal": "Tomma kontor, nya arbetsmönster", "trend": "Ombyggnad och omvandling ersätter nybyggnad" },
-    { "signal": "Krav på flexibla planlösningar", "trend": "Byggnader måste klara flera användningar över tid" }
+    { "signal": "Krav på flexibla planlösningar", "trend": "Byggnader måste klara flera användningar över tid" },
+    { "signal": "Hybridarbete, lägre beläggning på kontor, fler mötesytor", "trend": "Efterfrågan på kontorsytor förändras" }
   ] },
   { "id": "ekonomi", "namn": "Ekonomi och geopolitik", "exempel": [
     { "signal": "Ränteoro, materialbrist, handelshinder, krigshot", "trend": "Resiliens blir viktigare än effektivitet" },
     { "signal": "Färre byggstarter, pressade marginaler", "trend": "Lönsamheten pressas i hela värdekedjan" },
-    { "signal": "Gröna lån, hållbarhetskrav från banker och investerare", "trend": "Kapital styrs mot hållbara projekt" }
+    { "signal": "Gröna lån, hållbarhetskrav från banker och investerare", "trend": "Kapital styrs mot hållbara projekt" },
+    { "signal": "Högre räntor och avkastningskrav, nedskrivna fastighetsvärden", "trend": "Fastighetsvärden blir känsligare för ränta och risk" }
   ] },
   { "id": "socialt", "namn": "Sociala och kulturella värden", "exempel": [
     { "signal": "Krav på trygghet, platsidentitet och gemenskap", "trend": "Social hållbarhet blir en värdeskapare" },

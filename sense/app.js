@@ -45,12 +45,22 @@
   }
   function forslagFraga() {
     function lc(x) { return /^[A-ZÅÄÖ][a-zåäö]/.test(x) ? x.charAt(0).toLowerCase() + x.slice(1) : x; }
-    var namn = state.fokus.utmaningar.map(function (u) { return lc(utmaning(u).namn); });
+    /* En utmaning med egen frågemall (till exempel för en tillämpning) styr frågan; de andra valen blir det som påverkar. */
+    var egenMall = state.fokus.utmaningar.map(utmaning).filter(function (u) { return u && u.fragaMall; })[0];
+    var namn = state.fokus.utmaningar.filter(function (u) { return !egenMall || u !== egenMall.id; }).map(function (u) { return lc(utmaning(u).namn); });
     if (state.fokus.egen.trim()) namn.push(lc(state.fokus.egen.trim()));
-    if (!namn.length) return '';
-    return fill(C.fokus.fragaMall, { lista: lista(namn.slice(0, 3)), org: state.meta.foretag || 'oss', ar: new Date().getFullYear() + state.fokus.horisont });
+    if (!namn.length && !egenMall) return '';
+    return fill(egenMall ? egenMall.fragaMall : C.fokus.fragaMall, { lista: namn.length ? lista(namn.slice(0, 3)) : egenMall.standard, org: state.meta.foretag || 'oss', ar: new Date().getFullYear() + state.fokus.horisont });
   }
-  function exempel(oid) { var o = omrade(oid); return o.exempel || [{ signal: o.signal || '', trend: o.trend || '' }]; }
+  function exempel(oid) {
+    var o = omrade(oid), ex = (o.exempel || [{ signal: o.signal || '', trend: o.trend || '' }]).slice();
+    /* En vald utmaning kan lyfta fram ett eget exempel först i ett område (till exempel för en tillämpning). */
+    state.fokus.utmaningar.map(utmaning).forEach(function (u) {
+      var t = u && u.forstaExempel && u.forstaExempel[oid], i = t ? ex.map(function (e) { return e.trend; }).indexOf(t) : -1;
+      if (i > 0) ex.unshift(ex.splice(i, 1)[0]);
+    });
+    return ex;
+  }
   function seedTrender() {
     fokusOmraden().forEach(function (oid) {
       if (state.seedade.indexOf(oid) >= 0) return;
@@ -315,7 +325,7 @@
     C.utmaningar.forEach(function (u) { h += '<label class="pick"><input type="checkbox" data-utm="' + u.id + '"' + (f.utmaningar.indexOf(u.id) >= 0 ? ' checked' : '') + '><span>' + esc(u.namn) + '</span><span></span></label>'; });
     h += '</div><label class="field"><span>' + esc(Fk.egenEtikett) + '</span><input type="text" data-path="fokus.egen" data-refokus="1" value="' + esc(f.egen) + '"></label>';
     h += '<span style="display:block;font-weight:600;font-size:15px;margin-bottom:6px">' + esc(Fk.horisontEtikett) + '</span>' + seg('data-horisont', function (i) { return Fk.horisonter[i]; }, Fk.horisonter.map(function (y) { return y + ' år (' + (new Date().getFullYear() + y) + ')'; }), f.horisont) + '<p class="hint" style="margin-top:6px">' + esc(Fk.horisontHjalp) + '</p>';
-    h += '<label class="field"><span>' + esc(Fk.fragaEtikett) + '</span><textarea data-path="fokus.fraga" data-fraga="1" rows="2">' + esc(f.fraga) + '</textarea></label><p class="hint" style="margin-top:-8px">' + esc(Fk.fragaHjalp) + '</p>';
+    h += '<label class="field"><span>' + esc(Fk.fragaEtikett) + '</span><textarea data-path="fokus.fraga" data-fraga="1" rows="2">' + esc(f.fraga) + '</textarea></label><p class="hint" style="margin-top:-8px">' + esc(Fk.fragaHjalp) + '</p>' + (Fk.tillampningHjalp ? '<p class="hint">' + esc(Fk.tillampningHjalp) + '</p>' : '');
     return h;
   }
   function kollLegend() { return '<ul class="tlegend">' + state.kollisioner.map(function (k, i) { return kollKlar(k) ? '<li><span class="tnr koll-nr">' + (i + 1) + '</span>' + esc(k.namn) + '</li>' : ''; }).join('') + '</ul>'; }
