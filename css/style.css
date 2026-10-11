@@ -368,3 +368,15 @@ ul.crit li:first-child { border-top: 0; }
 .landing .film a { color: var(--accent); font-weight: 600; }
 
 .landing .fritt { display: inline-block; font-weight: 600; font-size: 15px; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 6px 14px; margin: 0 0 16px; }
+
+/* Utvalda tillämpningar */
+.tillgrid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+table.vmatris td.n { font-size: 16px; }
+table.vmatris td.neg { color: var(--weak); background: var(--weak-soft); }
+table.vmatris td.pos { color: var(--accent); background: var(--accent-soft); }
+table.vmatris td.noll { color: var(--muted); }
+table.vmatris tr.sum td { font-size: 13px; background: var(--paper); }
+table.vmatris th.n { font-size: 13px; font-weight: 600; }
+.landing .tillampningar .modcard { background: transparent; }
+.tillgrid + .note { margin-top: 22px; }
+.landing .tillampningar p > a { color: var(--accent); font-weight: 600; }

@@ -294,6 +294,8 @@ window.CONTENT = {
   },
   "nastaRubrik": "Nästa steg: See",
   "nastaText": "I See bedömer ni hur redo organisationen är att ta emot den framtid ni valt: förmåga, mandat och vilja. Scenariot och kollisionerna följer med.",
-  "tillSee": "Gå vidare till See"
+  "tillSee": "Gå vidare till See",
+  "tillampningText": "Vill ni använda framtiderna för en särskild fråga, till exempel värdet på en fastighet, finns Utvalda tillämpningar. Resultatet följer med till See.",
+  "tillTillampning": "Utvalda tillämpningar"
  }
 };

@@ -43,7 +43,9 @@ window.INFO = {
    { "term": "Trim Tab Canvas", "fas": "Shift", "text": "Arbetsbladet för små försök i vardagen: vad skaver, vad kan vi pröva, vad hände och vad betyder det för fler. I verktyget är det uppdelat i trimförsök och kursavläsning." },
    { "term": "Trimförsök", "fas": "Shift", "text": "Planen för ett litet försök: vad som skaver, vad vi prövar, när och var vi startar, vad vi tror ska hända och hur vi märker det. Riktat mot den svagaste axeln.", "kalla": "Gollwitzer & Sheeran 2006; IHI" },
    { "term": "Trimroder (trim tab)", "fas": "Shift", "text": "Det lilla rodret på ett stort roder. En liten rörelse i trimrodret får hela fartyget att ändra kurs. Bilden kommer från Buckminster Fuller och står för små, riktade handlingar med stor verkan." },
-   { "term": "Vindtunnel", "fas": "Sense", "text": "Att pröva verksamhetens bärande delar mot varje framtid: försvagas, står sig eller stärks de?", "kalla": "van der Heijden 2005" }
+   { "term": "Utvalda tillämpningar", "fas": "Sense", "text": "Fördjupningar som använder de fyra framtiderna från Sense för en särskild fråga, till exempel värdet på en fastighet. Resultatet får en egen rapport och följer med i sparfilen till See, Shift och slutsidan." },
+   { "term": "Vindtunnel", "fas": "Sense", "text": "Att pröva verksamhetens bärande delar mot varje framtid: försvagas, står sig eller stärks de?", "kalla": "van der Heijden 2005" },
+   { "term": "Värdefaktor", "fas": "Utvalda tillämpningar", "text": "En egenskap som bär en fastighets värde, till exempel läge, tekniskt skick, flexibilitet eller klimatrisker på platsen. I tillämpningen om fastighetens värdeutveckling prövas värdefaktorerna mot varje framtid från Sense.", "kalla": "Rosen 1974; Sirmans m.fl. 2005" }
   ]
  },
 
@@ -60,6 +62,7 @@ window.INFO = {
      "Sense: vad håller på att förändras? Med Collision Compass identifieras framtidskollisioner, där omvärldens tryck möter verksamhetens bärande antaganden.",
      "See: vad betyder det för oss? En självskattning av mottagningsförmåga och agency visar hur redo organisationen är att ta emot förändringen, och vad som håller tillbaka.",
      "Shift: vad gör vi nu? Ledningen sätter en riktning för lärandet, och medarbetare gör små trimförsök som följs upp och leder till nästa lilla försök.",
+     "Utvalda tillämpningar använder framtiderna från Sense för en särskild fråga, till exempel värdet på en fastighet. De ligger vid sidan av huvudspåret, och resultatet följer med till See, Shift och slutrapporten.",
      "Faserna kan göras var för sig eller i följd. Görs alla tre väger slutrapporten samman omvärldens tryck, organisationens förmåga och den rörelse som har kommit igång."
    ] },
    { "rubrik": "Mål", "text": [
@@ -102,6 +105,13 @@ window.INFO = {
     "Små vinster sänker motståndet och gör nästa steg möjligt (Weick 1984), och upplevda framsteg är den starkaste drivkraften för engagemang i vardagen (Amabile & Kramer 2011). Därför leder varje kursavläsning till nästa lilla försök.",
     "Namnet Learning Curve Approach syftar på lärandekurvan. Forskningen om lärandekurvor visar att organisationer med samma erfarenhet lär sig i mycket olika takt (Argote & Epple 1990). När sjukhus införde samma nya operationsmetod förklarades skillnaden av hur medvetet teamen reflekterade efter varje ingrepp och hur tryggt det var att säga ifrån (Pisano, Bohmer & Edmondson 2001; Edmondson, Bohmer & Pisano 2001; Edmondson 1999). Zollo och Winter (2002) beskriver tre mekanismer för medvetet lärande: att samla erfarenhet, att sätta ord på den tillsammans och att föra in den i rutiner. Det är grunden för lärdomens väg i kursavläsningen och för den lärandekurva som Shift visar. Vid lärperiodens slut prövas också själva riktningen, inte bara försöken, det som Argyris och Schön (1978) kallar dubbelkretslärande."
    ] },
+   { "rubrik": "Utvalda tillämpningar: fastighetens värdeutveckling", "text": [
+    "Utvalda tillämpningar använder framtiderna från Sense för en särskild fråga. Logiken är densamma som i vindtunneln: i stället för verksamhetens bärande delar prövas något annat mot varje framtid (van der Heijden 2005), och de åtgärder som håller i flera framtider lyfts fram som robusta (Lempert, Popper & Bankes 2003). Ingen tillämpning försöker förutsäga utvecklingen; syftet är att förstå vad som driver utfallet under olika framtider.",
+    "Den första tillämpningen bygger på övningarna 5 till 8 i arbetsbladen för Collision Compass och gäller fastighetens värdeutveckling. Värdefaktorerna har stöd i forskningen om vad som bestämmer fastighetsvärden. Hedonisk prissättning delar upp ett pris i de egenskaper som bär det (Rosen 1974), och genomgångar av ett stort antal studier visar att läge, ålder och skick hör till de faktorer som återkommer (Sirmans, Macpherson & Zietz 2005). Närhet till järnvägsstationer höjer värdet på både bostäder och kommersiella fastigheter (Debrezion, Pels & Rietveld 2007).",
+    "Byggnader förlorar värde inte bara genom slitage, utan också när de inte längre motsvarar vad användarna efterfrågar (Baum 1991). Därför bedöms tekniskt skick, återstående livslängd och flexibilitet var för sig. Flexibilitet har ett värde som kan beräknas som en realoption (Geltner & de Neufville 2018), och möjligheten att ge en byggnad ny användning går att bedöma systematiskt (Langston m.fl. 2008).",
+    "Energieffektivitet och miljöcertifiering har i flera studier gett högre hyror och priser (Eichholtz, Kok & Quigley 2010; Fuerst & McAllister 2011). Fysiska klimatrisker prisas också in: bostäder som hotas av höjd havsnivå säljs med rabatt (Bernstein, Gustafson & Lewis 2019). Därför är klimatrisker på platsen en egen värdefaktor, skild från fastighetens miljöprofil. Platsens kvalitet påverkar hälsa och sociala och ekonomiska utfall (Carmona 2019), och kulturhistoriska byggnader höjer värdet i sin omgivning (Ahlfeldt & Maennig 2010).",
+    "Stödet är svagast för digital infrastruktur, där forskningen om värdepåverkan ännu är tunn. Faktorn finns med eftersom den förekommer i arbetsbladen och i branschens agendor. Innovations- och lärandeförmåga ur arbetsbladen är struken, eftersom förmågan att lära bedöms i See. Bedömningen är kvalitativ och ersätter inte en värdering."
+   ] },
    { "rubrik": "Slutrapporten: behov, förmåga och rörelse", "text": [
     "Slutrapporten väger samman de tre faserna. Framtidsberedskapen räknas fram som mötet mellan behovet från Sense, alltså kollisionernas tryck och tempo, och förmågan från See (Rohrbeck & Kum 2018). Rörelsen från Shift visar om den potentiella förmågan har börjat bli realiserad (Zahra & George 2002), och det är det som Freds perspektiv säger att man ska följa."
    ] },
@@ -111,19 +121,27 @@ window.INFO = {
   ],
   "kallorRubrik": "Litteraturlista",
   "kallor": [
+   "Ahlfeldt, G. M. & Maennig, W. (2010). Substitutability and complementarity of urban amenities: External effects of built heritage in Berlin. Real Estate Economics, 38(2), 285-323.",
    "Amabile, T. M. & Kramer, S. J. (2011). The power of small wins. Harvard Business Review, 89(5), 70-80.",
    "Appelbaum, E., Bailey, T., Berg, P. & Kalleberg, A. L. (2000). Manufacturing Advantage: Why High-Performance Work Systems Pay Off. Cornell University Press.",
    "Argote, L. & Epple, D. (1990). Learning curves in manufacturing. Science, 247, 920-924.",
    "Argyris, C. & Schön, D. A. (1978). Organizational Learning: A Theory of Action Perspective. Addison-Wesley.",
+   "Baum, A. (1991). Property Investment Depreciation and Obsolescence. Routledge.",
+   "Bernstein, A., Gustafson, M. T. & Lewis, R. (2019). Disaster on the horizon: The price effect of sea level rise. Journal of Financial Economics, 134(2), 253-272.",
    "Blumberg, M. & Pringle, C. D. (1982). The missing opportunity in organizational research: Some implications for a theory of work performance. Academy of Management Review, 7(4), 560-569.",
    "Burt, G. & Wright, G. (2006). Pre-determined elements in the business environment: Reflecting on the legacy of Pierre Wack. Futures, 38(7), 830-840.",
+   "Carmona, M. (2019). Place value: Place quality and its impact on health, social, economic and environmental outcomes. Journal of Urban Design, 24(1), 1-48.",
    "Cohen, W. M. & Levinthal, D. A. (1990). Absorptive capacity: A new perspective on learning and innovation. Administrative Science Quarterly, 35(1), 128-152.",
+   "Debrezion, G., Pels, E. & Rietveld, P. (2007). The impact of railway stations on residential and commercial property value: A meta-analysis. Journal of Real Estate Finance and Economics, 35(2), 161-180.",
    "Dewar, J. A. (2002). Assumption-Based Planning: A Tool for Reducing Avoidable Surprises. Cambridge University Press.",
    "Edmondson, A. C. (1999). Psychological safety and learning behavior in work teams. Administrative Science Quarterly, 44(2), 350-383.",
    "Edmondson, A. C., Bohmer, R. M. & Pisano, G. P. (2001). Disrupted routines: Team learning and new technology implementation in hospitals. Administrative Science Quarterly, 46(4), 685-716.",
+   "Eichholtz, P., Kok, N. & Quigley, J. M. (2010). Doing well by doing good? Green office buildings. American Economic Review, 100(5), 2492-2509.",
    "Emirbayer, M. & Mische, A. (1998). What is agency? American Journal of Sociology, 103(4), 962-1023.",
    "Eriksson, P. E. (2013). Exploration and exploitation in project-based organizations: Development and diffusion of knowledge at different organizational levels in construction companies. International Journal of Project Management, 31(3), 333-341.",
    "Fred, M. & Mukhtar-Landgren, D. (2022). Lärande genom temporär organisering: projekt, piloter och experiment i Malmö stad. Kunskapsunderlag framtaget för Malmö Tillväxtkommission.",
+   "Fuerst, F. & McAllister, P. (2011). Green noise or green value? Measuring the effects of environmental certification on office values. Real Estate Economics, 39(1), 45-69.",
+   "Geltner, D. & de Neufville, R. (2018). Flexibility and Real Estate Valuation under Uncertainty: A Practical Guide for Developers. Wiley-Blackwell.",
    "Gioia, D. A. & Chittipeddi, K. (1991). Sensemaking and sensegiving in strategic change initiation. Strategic Management Journal, 12(6), 433-448.",
    "Godet, M. (1994). From Anticipation to Action: A Handbook of Strategic Prospective. UNESCO.",
    "Gollwitzer, P. M. & Sheeran, P. (2006). Implementation intentions and goal achievement: A meta-analysis of effects and processes. Advances in Experimental Social Psychology, 38, 69-119.",
@@ -134,6 +152,7 @@ window.INFO = {
    "Jacobsson, M. & Linderoth, H. C. J. (2026). Vem är det som kör? Digital ambidexteritet i projektbaserad verksamhet. Smart Built Environment, rapport U9-2021-5.",
    "Jansen, J. J. P., Van den Bosch, F. A. J. & Volberda, H. W. (2005). Managing potential and realized absorptive capacity. Academy of Management Journal, 48(6), 999-1015.",
    "Kanter, R. M. (1977). Men and Women of the Corporation. Basic Books.",
+   "Langston, C., Wong, F. K. W., Hui, E. C. M. & Shen, L.-Y. (2008). Strategic assessment of building adaptive reuse opportunities in Hong Kong. Building and Environment, 43(10), 1709-1718.",
    "Lawson, B. & Samson, D. (2001). Developing innovation capability in organisations: A dynamic capabilities approach. International Journal of Innovation Management, 5(3), 377-400.",
    "Lempert, R. J., Popper, S. W. & Bankes, S. C. (2003). Shaping the Next One Hundred Years: New Methods for Quantitative, Long-Term Policy Analysis. RAND.",
    "Marín-García, J. A. & Martínez Tomás, J. (2016). Deconstructing AMO framework: A systematic review. Intangible Capital, 12(4), 1040-1087.",
@@ -145,6 +164,8 @@ window.INFO = {
    "Ramírez, R. & Wilkinson, A. (2016). Strategic Reframing: The Oxford Scenario Planning Approach. Oxford University Press.",
    "Reed, J. E. & Card, A. J. (2016). The problem with Plan-Do-Study-Act cycles. BMJ Quality & Safety, 25(3), 147-152.",
    "Rohrbeck, R. & Kum, M. E. (2018). Corporate foresight and its impact on firm performance: A longitudinal analysis. Technological Forecasting and Social Change, 129, 105-116.",
+   "Rosen, S. (1974). Hedonic prices and implicit markets: Product differentiation in pure competition. Journal of Political Economy, 82(1), 34-55.",
+   "Sirmans, G. S., Macpherson, D. A. & Zietz, E. N. (2005). The composition of hedonic pricing models. Journal of Real Estate Literature, 13(1), 3-43.",
    "Solberg, L. I., Mosser, G. & McDonald, S. (1997). The three faces of performance measurement: Improvement, accountability, and research. Joint Commission Journal on Quality Improvement, 23(3), 135-147.",
    "Spreitzer, G. M. (1995). Psychological empowerment in the workplace: Dimensions, measurement, and validation. Academy of Management Journal, 38(5), 1442-1465.",
    "Teece, D. J. (2007). Explicating dynamic capabilities. Strategic Management Journal, 28(13), 1319-1350.",

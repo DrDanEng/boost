@@ -188,13 +188,21 @@
       field('Organisation', 'meta.foretag', m.foretag) + field('Datum för start', 'meta.datum', m.datum, { type: 'date' }) +
       field('Kontaktperson eller facilitator som håller i filen (frivilligt)', 'meta.namn', m.namn, { style: 'margin:0' }) + '</div>';
   }
+  function tillampningar() { var t = state.kedja && state.kedja.tillampningar; return t ? Object.keys(t).map(function (k) { return t[k]; }) : []; }
+  function tillampningHTML() {
+    var U = C.underlag;
+    return tillampningar().map(function (t) {
+      return '<div class="card tight"><div class="eyebrow">' + esc(U.franTillampning) + '</div><p class="small" style="margin-bottom:6px"><b>' + esc(t.namn) + (t.objekt ? ': ' + esc(t.objekt) : '') + '</b>' + (t.samlad ? ' ' + esc(fill(U.tillampningSamlad, { samlad: lc(t.samlad) })) : '') + '</p>' +
+        ((t.robustaAtgarder || []).length ? '<p class="small muted" style="margin-bottom:4px">' + esc(U.tillampningRobusta) + '</p><ul class="plain">' + t.robustaAtgarder.map(function (r) { return '<li class="small">' + esc(r) + '</li>'; }).join('') + '</ul>' : '') + '</div>';
+    }).join('');
+  }
   function renderUnderlag() {
     var U = C.underlag, h = eyebrow('Underlag') + '<h2>' + esc(U.rubrik) + '</h2><p class="muted">' + esc(U.text) + '</p>';
     h += '<div class="actions" style="margin:0 0 16px"><button class="btn ghost" data-act="open">' + esc(U.lasIn) + '</button></div>';
     h += '<div class="card tight"><div class="eyebrow">' + esc(U.fran) + '</div>';
     if (sense()) h += (sense().scenario && sense().scenario.namn ? '<p class="small" style="margin-bottom:6px">Framtid: <b>' + esc(sense().scenario.namn) + '</b></p>' : '') + tryckHTML();
     else h += '<p class="small">' + esc(U.saknasSense) + '</p>' + field(U.saknasSenseEtikett, 'eget.utmaning', state.eget.utmaning, { area: true, style: 'margin:0' });
-    h += '</div><div class="card tight"><div class="eyebrow">' + esc(U.franSee) + '</div>';
+    h += '</div>' + tillampningHTML() + '<div class="card tight"><div class="eyebrow">' + esc(U.franSee) + '</div>';
     if (see()) h += (see().index != null ? '<p class="small" style="margin-bottom:6px">Lärandeindex ' + fmt(see().index) + ' av 4, ' + esc(lc(see().omdome || '')) + '.</p>' : '') + beredskapHTML();
     else {
       if (state.kedja && state.kedja._aldre) h += '<p class="note weak small">' + esc(U.aldre) + '</p>';
@@ -325,7 +333,7 @@
   /* ---------- rapport ---------- */
   function rapportBlock() {
     var R = C.rapport, org = state.meta.foretag || 'Organisationen', av = avlasta(), sam = [], analys = [], forslag = [];
-    var kalla = []; if (sense()) kalla.push(R.kedjaSense); if (see()) kalla.push(R.kedjaSee); if (!see()) kalla.push(R.kedjaEgen);
+    var kalla = []; if (sense()) kalla.push(R.kedjaSense); if (see()) kalla.push(R.kedjaSee); tillampningar().forEach(function (t) { kalla.push(fill(R.kedjaTillampning, { namn: lc(t.namn) })); }); if (!see()) kalla.push(R.kedjaEgen);
     sam.push(fill(R.inledning, { org: org, n: state.fragor.length, f: state.forsok.length, a: av.length }) + ' ' + fill(R.inledningKedja, { kalla: lista(kalla) }));
     if (av.length) {
       var c = [0, 0, 0, 0]; av.forEach(function (f) { c[f.av.jamfort]++; });

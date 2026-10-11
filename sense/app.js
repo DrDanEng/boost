@@ -560,7 +560,7 @@
     if (state.axlar.motivering && axelBytt()) h += '<p class="small"><b>Motivering till val av axlar:</b> ' + esc(state.axlar.motivering) + '</p>';
     h += '<h3>Bärande delar och antaganden</h3><div class="card tight">' + valdaVarden().map(function (v) { var d = vd(v.id); return '<p class="small" style="margin-bottom:6px"><b>' + esc(v.namn) + ':</b> ' + esc(d.hos || '') + (d.ant ? ' <span class="muted">Bärande antagande: ' + esc(d.ant) + '</span>' : '') + '</p>'; }).join('') + '</div>';
     if (state.parkering.trim()) h += '<h3>Parkerade frågor</h3><p class="small" style="white-space:pre-wrap">' + esc(state.parkering) + '</p>';
-    h += '<div class="card tight next"><div class="eyebrow">' + esc(R.nastaRubrik) + '</div><p class="small">' + esc(R.nastaText) + '</p><div class="actions" style="margin-top:8px"><button class="btn" data-act="tosee">' + esc(R.tillSee) + ' →</button><button class="btn ghost" data-act="savefile">Spara sparfil</button></div></div>';
+    h += '<div class="card tight next"><div class="eyebrow">' + esc(R.nastaRubrik) + '</div><p class="small">' + esc(R.nastaText) + '</p><div class="actions" style="margin-top:8px"><button class="btn" data-act="tosee">' + esc(R.tillSee) + ' →</button><button class="btn ghost" data-act="savefile">Spara sparfil</button></div>' + (R.tillampningText ? '<p class="small" style="margin:14px 0 0">' + esc(R.tillampningText) + '</p><div class="actions" style="margin-top:8px"><button class="btn ghost" data-act="totill">' + esc(R.tillTillampning) + ' →</button></div>' : '') + '</div>';
     h += LCA.teoriHTML();
     return h + '<div class="actions"><button class="btn quiet" data-act="restart">Börja om med en ny körning</button></div>';
   }
@@ -611,6 +611,7 @@
     if (act === 'savefile') { var env = envelope(); LCA.download(env, LCA.fileName(env)); toast('Sparfilen är nedladdad.'); return; }
     if (act === 'pdf') { makePDF(); return; }
     if (act === 'tosee') { LCA.handOff(envelope()); window.location.href = '../see/'; return; }
+    if (act === 'totill') { LCA.handOff(envelope()); window.location.href = '../tillampningar/'; return; }
     if (act === 'restart') { if (confirmReset()) { state = fresh(); save(); go('start'); } return; }
     if (act === 'deltrend') { state.trender = state.trender.filter(function (x) { return x.id !== d('data-id'); }); delete state.bed[d('data-id')]; if (state.urval) state.urval = state.urval.filter(function (x) { return x !== d('data-id'); }); save(); rerender(); return; }
     if (act === 'addrow') { addRow(d('data-om'), true); save(); rerender(); return; }

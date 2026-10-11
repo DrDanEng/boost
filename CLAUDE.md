@@ -79,6 +79,15 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 - **Lärandekurvan** värderas med fyra tecken från Shift (0, 1 eller 2 vardera): uppföljda försök, rörelse i axlarna, lärdomarnas fäste (delade, införda), prövad riktning. Omdömen: för tidigt att säga (inga kursavläsningar), ni har börjat, ni är på väg uppför (minst 3), ni har tagit er uppför (minst 6). Positionen visas på en S-kurva från oro via insikt och rörelse till fäste.
 - Följer den fasta rapportmallen; slutrapporten laddas ner som PDF.
 
+## Utvalda tillämpningar (byggd 2026-10-11)
+- `tillampningar/` innehåller fördjupningar som använder de fyra framtiderna från Sense för en särskild fråga. De ligger vid sidan av huvudspåret (Dans namnval: "Utvalda tillämpningar").
+- En gemensam motor (`tillampningar/app.js`) för alla fall. Varje fall är ett objekt i listan `fall` i `tillampningar/content.js`: faktorer, bedömningsord, rubriker och rapporttexter. Ett nytt fall kräver ingen ny kod, bara ett nytt objekt och en rad i `tillampningar` i `js/content.js` (startsidan).
+- Adress per fall: `tillampningar/?fall=<id>`. Lagring: `lca.tillampning.<id>.v1`. Sparfilens `modul` är `tillampning` och `data.fall` anger fallet.
+- Steg: uppgifter (inklusive vilket objekt det gäller), framtiderna (från Sense-filen, eller fyra inskrivna om Sense saknas), faktorer, bedömning per framtid (försvagas, opåverkad, stärks; trolig utveckling, orsaker, åtgärder), syntes (sårbarheter och styrkor räknas fram, mönster, robusta åtgärder, samlad bedömning, hur säkra man är, det som är osäkert), rapport enligt den fasta mallen.
+- Resultatet följer med (Dans beslut): `kedja.tillampningar.<id>` (se `LCA.chainFrom`). See läser en tillämpningsfil som en Sense-fil, Shift visar robusta åtgärder i underlaget, slutsidan tar med samlad bedömning, sårbarheter och robusta åtgärder i analys, förslag och detaljer.
+- **Fastighetens värdeutveckling** (`fastighet`), från övningarna 5 till 8 i arbetsbladen (Worksheets Chalmers 2025). Tolv värdefaktorer: "Innovations- och lärandeförmåga" är struken (Dans beslut; bedöms i See), "Klimatrisker på platsen" är tillagd som egen faktor (Bernstein m.fl. 2019). Litteraturstöd i Teoriplattformen (Rosen 1974; Sirmans m.fl. 2005; Debrezion m.fl. 2007; Baum 1991; Geltner & de Neufville 2018; Langston m.fl. 2008; Eichholtz m.fl. 2010; Fuerst & McAllister 2011; Carmona 2019; Ahlfeldt & Maennig 2010). Stödet för digital infrastruktur är tunt och sägs öppet.
+- Sense-rapporten länkar till Utvalda tillämpningar under Nästa steg.
+
 ## Fast rapportmall (alla moduler och slutrapporten)
 - Varje rapport börjar med **Sammanfattning**, **Analys** och **Förslag**, därefter rubriken **Detaljer**. Mallen finns i `LCA.reportBlock` och `LCA.reportPDF` i `js/lca.js`.
 
@@ -101,7 +110,7 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
 ## Struktur för flera moduler
 
 - Landningssidan ligger i roten: `index.html`, `js/app.js`, `js/content.js`.
-- Modulerna ligger i egna mappar: `sense/`, `see/`, `shift/`, med egen `index.html`, `app.js` och `content.js`. Slutsidan läggs i `slut/`.
+- Modulerna ligger i egna mappar: `sense/`, `see/`, `shift/`, med egen `index.html`, `app.js` och `content.js`. Slutsidan läggs i `slut/`, Utvalda tillämpningar i `tillampningar/`.
 - Gemensamt: `css/style.css`, `vendor/` och `js/lca.js` (sparformatet).
 - Alla moduler ligger på samma domän och delar webbläsarens lokala lagring. Nycklar: Sense `lca.sense.v1`, See `dialogverktyget.v1`, Shift `lca.shift.v1`, överlämning mellan sidor `lca.overlamning`.
 
@@ -115,13 +124,14 @@ LCA v2 bygger på Mats Freds forskning (Fred & Mukhtar-Landgren 2022): när exte
   "organisation": { "namn": "", "typ": "grupp|individ", "deltagare": "" },
   "data":   { … },   // modulens egen körning
   "lamnar": { … },   // det modulen lämnar vidare, fast format
-  "kedja":  { "sense": {…}, "see": {…} }   // tidigare modulers lamnar
+  "kedja":  { "sense": {…}, "tillampningar": { "<id>": {…} }, "see": {…} }   // tidigare modulers lamnar
 }
 ```
 
 - **Sense lämnar:** `scenario {namn, text}`, `kollisioner [{namn, tryck, tempo, synlighet, antagande}]`, `fokus []`, `robustaAtgarder []`.
 - **See lämnar:** `scenario`, `index`, `form`, `omdome`, `valda [{id, namn, niva, axlar {formaga, mandat, vilja, tilltro}, svagastAxel [], beslut, atgard}]`, `styrka`, `egnaAtgarder`.
 - **Shift lämnar:** `riktning [lärandefrågor]`, `tester [{testkort, larkort}]`.
+- **En tillämpning lämnar:** `id`, `namn`, `objekt`, `samlad`, `samladIndex`, `sakerhet`, `sarbara []`, `styrkor []`, `robustaAtgarder []`, `scenarier [{namn, utveckling}]`, `monster`, `osakert`.
 - Varje modul läser vilken tidigare fil som helst. Saknas underlag frågar modulen kort efter det, och rapporten anger vad som saknats.
 - Gamla sparfiler från See (`app: "dialogverktyget"`, utan kuvert) läses fortfarande.
 - Slutsidan behöver bara den sista filen i kedjan, eftersom `kedja` bär med sig allt tidigare.

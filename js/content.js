@@ -65,6 +65,14 @@ window.CONTENT = {
    "tid": "En lärperiod om ungefär fyra veckor."
   }
  },
+ "tillampningar": {
+  "rubrik": "Utvalda tillämpningar",
+  "text": "Underlaget från Sense går också att använda för analys och strategi i en särskild fråga. En tillämpning bygger på framtiderna från Sense, ger en egen rapport och följer med i sparfilen till See, Shift och slutsidan.",
+  "lista": [
+   { "namn": "Fastighetens värdeutveckling", "text": "Hur påverkar framtiderna värdet på en fastighet? Värdefaktorer, bedömning i fyra framtider, robusta åtgärder och en samlad värdebedömning.", "lank": "tillampningar/?fall=fastighet" }
+  ],
+  "knapp": "Alla tillämpningar"
+ },
  "statusText": { "oppen": "Öppna", "kommer": "Under utveckling" },
  "ordning": {
   "rubrik": "I vilken ordning som helst",

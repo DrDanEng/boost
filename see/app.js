@@ -59,7 +59,7 @@
     var s = sense(); if (!s || !s.kollisioner || !s.kollisioner.length) return '';
     return '<div class="note small" style="margin:16px 0 0"><b>' + esc(B.lca.kollisionerRubrik) + '</b><ul style="margin:6px 0 0;padding-left:20px">' + s.kollisioner.map(function (k) { return '<li>' + esc(k.namn) + (k.antagande ? '<span class="muted">. Utmanar: ' + esc(k.antagande) + '</span>' : '') + '</li>'; }).join('') + '</ul></div>';
   }
-  function handOffEnv() { var e = window.LCA ? LCA.takeHandOff() : null; return e && (e.modul === 'sense' || e.modul === 'see') ? e : null; }
+  function handOffEnv() { var e = window.LCA ? LCA.takeHandOff() : null; return e && (e.modul === 'sense' || e.modul === 'see' || e.modul === 'tillampning') ? e : null; }
   function weakestValda() { var v = (state.valda || []).slice().sort(function (a, b) { return state.nivaer[a] - state.nivaer[b]; }); return v[0]; }
   function agencyDone(id) { var a = state.agency[id] || {}; return B.pastaenden.every(function (p) { return typeof a[p.id] === 'number'; }); }
   function axes(id, s) {
@@ -147,7 +147,7 @@
     var has = load();
     var resume = has && has.nivaer && Object.keys(has.nivaer).length ? '<div class="card"><h3>Fortsätt där ni var</h3><p class="muted small">Det finns en påbörjad körning sparad i den här webbläsaren' + (has.meta && has.meta.foretag ? ' för ' + esc(has.meta.foretag) : '') + '.</p><button class="btn" data-act="resume">Fortsätt</button></div>' : '';
     var ho = handOffEnv(), hoCard = '';
-    if (ho && ho.modul === 'sense') { var sc = (ho.lamnar && ho.lamnar.scenario) || {}; hoCard = '<div class="note"><b>Underlag från Sense finns.</b> ' + esc(ho.organisation.namn || 'En organisation') + (sc.namn ? ', scenariot <b>' + esc(sc.namn) + '</b>' : '') + '. <span style="display:block;margin-top:10px"><button class="btn" data-act="fromhandoff">Starta med detta underlag</button> <button class="btn quiet" data-act="dropho">Nej tack</button></span></div>'; }
+    if (ho && (ho.modul === 'sense' || ho.modul === 'tillampning')) { var sc = senseScenario(ho); hoCard = '<div class="note"><b>Underlag från ' + (ho.modul === 'sense' ? 'Sense' : 'Sense och Utvalda tillämpningar') + ' finns.</b> ' + esc(ho.organisation.namn || 'En organisation') + (sc.namn ? ', scenariot <b>' + esc(sc.namn) + '</b>' : '') + '. <span style="display:block;margin-top:10px"><button class="btn" data-act="fromhandoff">Starta med detta underlag</button> <button class="btn quiet" data-act="dropho">Nej tack</button></span></div>'; }
     else if (ho && ho.modul === 'see') hoCard = '<div class="note"><b>En sparfil från See väntar.</b> <span style="display:block;margin-top:10px"><button class="btn" data-act="fromhandoff">Öppna den</button> <button class="btn quiet" data-act="dropho">Nej tack</button></span></div>';
     return hoCard + '<div class="eyebrow">Smart Built Boost · See</div><h1>' + esc(B.titel) + '</h1><p class="lead">' + esc(B.undertitel) + '</p>' +
       '<p>' + esc(M.intro[0]) + '</p><p>' + esc(M.intro[1]) + '</p>' +
@@ -430,14 +430,15 @@
   }
   function saveFile() { var env = envelope(); LCA.download(env, LCA.fileName(env)); toast('Sparfilen är nedladdad.'); }
   /* Läser in ett kuvert: en See-körning öppnas, en Sense-körning blir underlag för en ny körning. */
+  function senseScenario(env) { return (env.modul === 'sense' ? env.lamnar && env.lamnar.scenario : env.kedja && env.kedja.sense && env.kedja.sense.scenario) || {}; }
   function useEnv(env) {
     if (env.modul === 'see') { state = env.data; state.kedja = env.kedja || state.kedja || {}; save(); go(resumeStep()); return; }
-    if (env.modul === 'sense') {
-      var sc = (env.lamnar && env.lamnar.scenario) || {};
+    if (env.modul === 'sense' || env.modul === 'tillampning') {
+      var sc = senseScenario(env);
       state = fresh(); state.kedja = LCA.chainFrom(env);
       state.meta.foretag = env.organisation.namn || ''; state.meta.typ = env.organisation.typ || 'grupp'; state.meta.namn = env.organisation.deltagare || '';
       state.meta.scenarioNamn = sc.namn || ''; state.meta.scenarioText = sc.text || '';
-      save(); toast('Scenariot från Sense är inläst.'); go('uppgifter'); return;
+      save(); toast(env.modul === 'sense' ? 'Scenariot från Sense är inläst.' : 'Underlaget från Sense och Utvalda tillämpningar är inläst.'); go('uppgifter'); return;
     }
     toast(B.lca.felModul.replace('{modul}', LCA.NAMN[env.modul] || env.modul));
   }
@@ -453,7 +454,7 @@
       });
     });
   }
-  document.getElementById('file-load').addEventListener('change', function (e) { readFiles(e.target.files, function (d) { if (d[0]) { if (load() && load().nivaer && Object.keys(load().nivaer).length && d[0].modul === 'sense' && !confirmReset()) return; useEnv(d[0]); } }, true); e.target.value = ''; });
+  document.getElementById('file-load').addEventListener('change', function (e) { readFiles(e.target.files, function (d) { if (d[0]) { if (load() && load().nivaer && Object.keys(load().nivaer).length && d[0].modul !== 'see' && !confirmReset()) return; useEnv(d[0]); } }, true); e.target.value = ''; });
   document.getElementById('file-compare').addEventListener('change', function (e) { readFiles(e.target.files, function (d) { if (d[0]) { if (!allRated(d[0])) { toast('Den filen innehåller ingen fullständig skattning.'); return; } view.compare = d[0]; render(); } }); e.target.value = ''; });
   document.getElementById('file-facil').addEventListener('change', function (e) { readFiles(e.target.files, function (d) { view.facil = view.facil.concat(d.filter(function (x) { return allRated(x); })); render(); }); e.target.value = ''; });
 

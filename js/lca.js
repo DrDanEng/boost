@@ -3,10 +3,10 @@
 (function () {
   'use strict';
   var FORMAT = 1;
-  var MODULER = ['sense', 'see', 'shift'];
+  var MODULER = ['sense', 'see', 'shift', 'tillampning'];
   var NYCKLAR = { sense: 'lca.sense.v1', see: 'dialogverktyget.v1', shift: 'lca.shift.v1' };
   var OVERLAMNING = 'lca.overlamning';
-  var NAMN = { sense: 'Sense', see: 'See', shift: 'Shift' };
+  var NAMN = { sense: 'Sense', see: 'See', shift: 'Shift', tillampning: 'Utvalda tillämpningar' };
 
   function clone(x) { return x == null ? x : JSON.parse(JSON.stringify(x)); }
 
@@ -45,7 +45,10 @@
   /* Kedjan som nästa modul ska bära med sig: tidigare kedja plus denna moduls lamnar. */
   function chainFrom(env) {
     var k = clone(env.kedja) || {};
-    if (env.lamnar && Object.keys(env.lamnar).length) k[env.modul] = clone(env.lamnar);
+    if (!env.lamnar || !Object.keys(env.lamnar).length) return k;
+    /* Utvalda tillämpningar samlas per fall, så att flera kan följa med i samma kedja. */
+    if (env.modul === 'tillampning') { k.tillampningar = k.tillampningar || {}; k.tillampningar[env.lamnar.id || 'okand'] = clone(env.lamnar); }
+    else k[env.modul] = clone(env.lamnar);
     return k;
   }
 

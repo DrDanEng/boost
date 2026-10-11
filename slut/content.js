@@ -81,6 +81,11 @@ window.CONTENT = {
   "forslagRobust": "Robusta åtgärder från Sense",
   "forslagNyRunda": "Nästa varv",
   "forslagNyRundaText": "Gör om See om sex till tolv månader och jämför profilen med den här; See kan visa två körningar ovanpå varandra. Gör om Sense när de signaler ni bevakar ändras. Varje varv är ett nytt steg uppför lärandekurvan.",
+  "tillampningTitel": "{namn}",
+  "tillampningText": "{objekt}Samlad bedömning: {samlad}.{sarbara}",
+  "tillampningSarbara": " Sårbart i flera framtider: {lista}.",
+  "tillampningRobust": "Robusta åtgärder: {namn}",
+  "tillampningRubrik": "Utvalda tillämpningar",
   "forslagFaste": "Ge lärdomarna fäste",
   "forslagFasteText": "Avsätt tid för gemensam reflektion efter varje försök och bestäm var lärdomarna ska skrivas in: en rutin, en mall eller ett beslut."
  },

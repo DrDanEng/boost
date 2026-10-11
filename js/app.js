@@ -34,15 +34,17 @@
 
   function openedHTML() {
     if (!opened) return '';
-    var S = C.sparfil, env = opened, namn = LCA.NAMN[env.modul];
+    var S = C.sparfil, env = opened, till = env.modul === 'tillampning', namn = LCA.NAMN[env.modul];
     var kedja = ORDNING.filter(function (k) { return k !== env.modul && env.kedja && env.kedja[k]; }).map(function (k) { return LCA.NAMN[k]; });
-    var nasta = ORDNING[ORDNING.indexOf(env.modul) + 1];
+    if (env.kedja && env.kedja.tillampningar) Object.keys(env.kedja.tillampningar).forEach(function (k) { kedja.push(env.kedja.tillampningar[k].namn || LCA.NAMN.tillampning); });
+    var nasta = till ? 'see' : ORDNING[ORDNING.indexOf(env.modul) + 1];
     var h = '<div class="card opened"><div class="eyebrow">' + esc(fill(S.fran, { modul: namn })) + '</div><h3 style="margin-top:0">' + esc(env.organisation.namn || 'Namnlös organisation') + '</h3>' +
       '<p class="small muted">Senast ändrad ' + esc((env.andrad || '').slice(0, 10) || 'okänt datum') + (env.version ? ' · ' + esc(env.version) : '') + '</p>';
     if (kedja.length) h += '<p class="small">' + esc(fill(S.innehaller, { lista: lista(kedja) })) + '</p>';
     if (env.aldreFormat) h += '<p class="small muted">' + esc(S.aldre) + '</p>';
     h += '<div class="actions" style="margin-top:12px">';
-    if (C.moduler[env.modul].status === 'oppen') h += '<button class="btn ghost" data-act="go" data-mod="' + env.modul + '">' + esc(fill(S.fortsatt, { modul: namn })) + '</button>';
+    if (till) h += '<button class="btn ghost" data-act="go" data-mod="tillampning">' + esc(fill(S.fortsatt, { modul: (env.lamnar && env.lamnar.namn) || namn })) + '</button>';
+    else if (C.moduler[env.modul].status === 'oppen') h += '<button class="btn ghost" data-act="go" data-mod="' + env.modul + '">' + esc(fill(S.fortsatt, { modul: namn })) + '</button>';
     if (nasta) {
       if (C.moduler[nasta].status === 'oppen') h += '<button class="btn" data-act="go" data-mod="' + nasta + '">' + esc(fill(S.vidare, { modul: LCA.NAMN[nasta] })) + ' →</button>';
       else h += '<p class="small muted" style="margin:0">' + esc(fill(S.vantar, { modul: LCA.NAMN[nasta] })) + '</p>';
@@ -62,6 +64,8 @@
     h += '<section><h2 class="section">' + esc(P.rubrik) + '</h2>' + P.text.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') +
       '<blockquote class="quote"><p>' + esc(P.citat) + '</p><cite>' + esc(P.kalla) + '</cite></blockquote></section>';
     h += '<section><h2 class="section">' + esc(C.modulerRubrik) + '</h2><div class="modgrid">' + ORDNING.map(moduleHTML).join('') + '</div></section>';
+    var T = C.tillampningar;
+    if (T) h += '<section class="tillampningar"><h2 class="section">' + esc(T.rubrik) + '</h2><p>' + esc(T.text) + '</p><div class="modgrid tillgrid">' + T.lista.map(function (t) { return '<article class="card modcard"><h3 style="margin-top:0">' + esc(t.namn) + '</h3><p class="small">' + esc(t.text) + '</p><a class="btn ghost" href="' + esc(t.lank) + '">Öppna →</a></article>'; }).join('') + '</div><p style="margin-top:14px"><a href="tillampningar/">' + esc(T.knapp) + ' →</a></p></section>';
     h += '<section class="split"><div><h2 class="section">' + esc(O.rubrik) + '</h2><p>' + esc(O.text) + '</p><p>' + esc(O.slut) + '</p><p><a class="btn ghost" href="slut/">' + esc(O.slutKnapp) + ' →</a></p></div>' +
       '<div class="card"><h3 style="margin-top:0">' + esc(S.rubrik) + '</h3><p class="small muted">' + esc(S.text) + '</p><button class="btn ghost" data-act="open">' + esc(S.knapp) + '</button></div></section>';
     h += openedHTML();
@@ -74,7 +78,7 @@
     var t = e.target.closest('button'); if (!t) return;
     var act = t.getAttribute('data-act');
     if (act === 'open') { document.getElementById('file-load').click(); return; }
-    if (act === 'go' && opened) { var mod = t.getAttribute('data-mod'); LCA.handOff(opened); window.location.href = mod === 'slut' ? 'slut/' : C.moduler[mod].lank; }
+    if (act === 'go' && opened) { var mod = t.getAttribute('data-mod'); LCA.handOff(opened); window.location.href = mod === 'slut' ? 'slut/' : mod === 'tillampning' ? 'tillampningar/?fall=' + encodeURIComponent((opened.data && opened.data.fall) || '') : C.moduler[mod].lank; }
   });
   document.getElementById('file-load').addEventListener('change', function (e) {
     var f = e.target.files[0]; e.target.value = ''; if (!f) return;
