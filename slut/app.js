@@ -114,7 +114,7 @@
     var top = Object.keys(eff).sort(function (a, c) { return eff[c] - eff[a]; }).slice(0, 2);
     if (top.length) analys.push(fill(R.effekter, { lista: lista(top.map(function (x) { return x.toLowerCase(); })) }));
     tillampningar().forEach(function (t) {
-      analys.push({ titel: fill(R.tillampningTitel, { namn: t.namn }), text: fill(R.tillampningText, { objekt: t.objekt ? t.objekt + '. ' : '', samlad: lc(t.samlad || 'ej gjord'), sarbara: (t.sarbara || []).length ? fill(R.tillampningSarbara, { lista: lista(t.sarbara.map(lc)) }) : '' }) });
+      analys.push({ titel: fill(R.tillampningTitel, { namn: t.namn }), text: fill(R.tillampningText, { objekt: t.objekt ? t.objekt + '. ' : '', samlad: lc(t.samlad || 'ej gjord'), sarbara: ((t.sarbara || []).length ? fill(R.tillampningSarbara, { lista: lista(t.sarbara.map(lc)) }) : '') + ((t.fallor || []).length ? fill(R.tillampningFallor, { namn: t.fallorNamn || 'Fällor', lista: lista(t.fallor.map(lc)) }) : '') }) });
     });
     var forslag = [];
     var svag = (sh.rorelse || []).filter(function (r) { return r.efter == null || r.fore == null || r.efter <= r.fore; })[0];

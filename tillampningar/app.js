@@ -50,8 +50,12 @@
       return { f: f, neg: neg, pos: pos };
     });
   }
+  /* Nuläge (valfritt per fall): hur stark delen är i dag. Starkt i dag men försvagat i minst två framtider
+     pekas ut som en fälla (Christensen 1997; Leonard-Barton 1992) eller inkuransrisk (Baum 1991). */
+  function idag(id) { var v = fd(id).idag; return typeof v === 'number' ? v : null; }
+  function fallor() { return F.nulage ? stat().filter(function (s) { return idag(s.f.id) === 2 && s.neg.length >= 2; }) : []; }
   function robusta() { return state.syntes.robusta.split('\n').map(function (x) { return x.trim(); }).filter(Boolean); }
-  function objektRef() { return state.meta.objekt.trim() ? F.objekt.ref + ' ' + state.meta.objekt.trim() : F.objekt.ref; }
+  function objektRef() { var o = state.meta.objekt.trim(), r = F.objekt.ref || ''; return o ? (r ? r + ' ' + o : o) : (r || 'verksamheten'); }
 
   /* ---------- steg ---------- */
   function steps() { return ['start', 'uppgifter', 'underlag', 'faktorer', 'bed-0', 'bed-1', 'bed-2', 'bed-3', 'syntes', 'rapport']; }
@@ -69,7 +73,7 @@
     if (st === 'uppgifter' && !state.meta.objekt.trim()) m.push('Ange ' + lc(F.objekt.etikett.replace(/\?$/, '')) + '.');
     if (st === 'underlag') { var tom = [0, 1, 2, 3].filter(function (i) { return !(state.scen[i].namn || '').trim(); }).length; if (tom) m.push('Ge alla fyra framtider ett namn (' + tom + ' saknas).'); }
     if (st === 'faktorer' && valda().length < F.minFaktorer) m.push('Markera minst ' + F.minFaktorer + ' ' + F.faktorOrd.flera + ' (nu ' + valda().length + ').');
-    if (/^bed-/.test(st) && state.bed[+st.slice(4)].utv === null) m.push('Bedöm den troliga värdeutvecklingen i den här framtiden.');
+    if (/^bed-/.test(st) && state.bed[+st.slice(4)].utv === null) m.push(F.bedomning.saknas || 'Gör en samlad bedömning för den här framtiden.');
     if (st === 'syntes' && state.syntes.samlad === null) m.push('Gör en samlad bedömning.');
     return m;
   }
@@ -136,10 +140,11 @@
     allaFaktorer().forEach(function (f) {
       var d = fd(f.id);
       h += '<div class="card tight vrow' + (d.med ? ' on' : '') + '"><label class="vcheck"><input type="checkbox" data-faktor="' + f.id + '"' + (d.med ? ' checked' : '') + '><span><b>' + esc(f.namn) + '</b><span class="muted small"> ' + esc(f.text || '') + '</span></span></label>' +
-        (d.med ? field(F.hosOss, 'faktorer.' + f.id + '.hos', d.hos, { ph: f.exempel || '', style: 'margin:10px 0 0' }) : '') + '</div>';
+        (d.med ? field(F.hosOss, 'faktorer.' + f.id + '.hos', d.hos, { ph: f.exempel || '', style: 'margin:10px 0 0' }) +
+          (F.nulage ? '<span class="lbl">' + esc(F.nulage.fraga) + '</span>' + seg('data-idag', function (k) { return k; }, F.nulage.skala, idag(f.id), ' data-f="' + f.id + '"') : '') : '') + '</div>';
     });
     h += '<div class="actions" style="margin-top:6px"><input type="text" id="egenfaktor" placeholder="' + esc(F.egen) + '" style="max-width:320px"><button class="btn ghost" data-act="addfaktor">Lägg till</button></div>';
-    return h + '<p class="hint">' + valda().length + ' markerade.</p>';
+    return h + '<p class="hint">' + valda().length + ' markerade.' + (F.nulage ? ' ' + esc(F.nulage.hjalp || '') : '') + '</p>';
   }
   function renderBed(i) {
     var B = F.bedomning, s = state.bed[i], sc = state.scen[i];
@@ -160,6 +165,7 @@
     var h = eyebrow(Sy.rubrik) + '<h2>' + esc(Sy.rubrik) + '</h2><p class="muted">' + esc(Sy.text) + '</p>';
     h += '<div class="card tight"><div class="eyebrow" style="color:#b8532c">' + esc(Sy.sarbarheter) + '</div>' + (neg.length ? neg.map(function (s) { return '<p class="small" style="margin-bottom:4px"><b>' + esc(s.f.namn) + '</b> <span class="muted">(' + s.neg.length + ' av 4: ' + esc(lista(s.neg.map(scenNamn))) + ')</span></p>'; }).join('') : '<p class="small muted" style="margin:0">' + esc(Sy.inga) + '</p>') +
       (pos.length ? '<div class="eyebrow" style="margin-top:12px">' + esc(Sy.styrkor) + '</div>' + pos.map(function (s) { return '<p class="small" style="margin-bottom:4px"><b>' + esc(s.f.namn) + '</b> <span class="muted">(' + s.pos.length + ' av 4)</span></p>'; }).join('') : '') + '</div>';
+    if (F.nulage) { var fa = fallor(); h += '<div class="card tight fallor"><div class="eyebrow" style="color:#a57a12">' + esc(F.nulage.rubrik) + '</div><p class="small muted" style="margin-bottom:6px">' + esc(F.nulage.forklaring) + '</p>' + (fa.length ? fa.map(function (s) { return '<p class="small" style="margin-bottom:4px"><b>' + esc(s.f.namn) + '</b> <span class="muted">(stark i dag, ' + esc(lc(F.bedomning.lagen[0])) + ' i ' + esc(lista(s.neg.map(scenNamn))) + ')</span></p>'; }).join('') : '<p class="small" style="margin:0">' + esc(F.nulage.inga) + '</p>') + '</div>'; }
     h += '<div class="tablewrap" style="margin-bottom:18px"><table class="facil"><thead><tr>' + Sy.tabell.map(function (t) { return '<th>' + esc(t) + '</th>'; }).join('') + '</tr></thead><tbody>' + [0, 1, 2, 3].map(function (i) { var u = state.bed[i].utv; return '<tr><td><b>' + esc(scenNamn(i)) + '</b></td><td>' + (u === null ? '' : esc(F.bedomning.utveckling[u + 1])) + '</td><td>' + esc(state.bed[i].atg) + '</td></tr>'; }).join('') + '</tbody></table></div>';
     h += field(Sy.monster, 'syntes.monster', state.syntes.monster, { area: true, rows: 3 });
     h += field(Sy.robusta, 'syntes.robusta', state.syntes.robusta, { area: true, rows: 4 });
@@ -178,6 +184,7 @@
       sarbara: st.filter(function (s) { return s.neg.length >= 2; }).map(function (s) { return s.f.namn; }),
       styrkor: st.filter(function (s) { return s.pos.length >= 2; }).map(function (s) { return s.f.namn; }),
       robustaAtgarder: robusta(), monster: state.syntes.monster, osakert: state.syntes.osakert,
+      fallor: fallor().map(function (s) { return s.f.namn; }), fallorNamn: F.nulage ? F.nulage.rubrik : '',
       scenarier: [0, 1, 2, 3].map(function (i) { var u = state.bed[i].utv; return { namn: scenNamn(i), utveckling: u === null ? null : F.bedomning.utveckling[u + 1] }; }),
       lamnarSamlad: sam === null ? '' : R.lamnarSamlad[sam + 1]
     };
@@ -199,9 +206,12 @@
     });
     var negF = st.filter(function (s) { return s.neg.length >= 2; }), posF = st.filter(function (s) { return s.pos.length >= 2; });
     analys.push({ titel: R.sarbarTitel, text: negF.length ? fill(R.sarbar, { lista: namnLista(negF.map(function (s) { return s.f.namn; })) }) : R.ingenSarbar });
+    var fa = fallor();
+    if (F.nulage) analys.splice(5, 0, { titel: F.nulage.rubrik, text: fa.length ? fill(F.nulage.analys, { lista: namnLista(fa.map(function (s) { return s.f.namn; })) }) : F.nulage.inga });
     if (posF.length) analys.push({ titel: R.styrkaTitel, text: fill(R.styrka, { lista: namnLista(posF.map(function (s) { return s.f.namn; })) }) });
     if (state.syntes.monster.trim()) analys.push({ titel: R.monsterTitel, text: punkt(state.syntes.monster) });
     var forslag = [];
+    if (fa.length && F.nulage.forslag) forslag.push({ titel: F.nulage.forslagTitel, text: fill(F.nulage.forslag, { lista: lista(fa.map(function (s) { return lc(s.f.namn); })) }) });
     if (robusta().length) forslag.push({ titel: R.robustaTitel, text: robusta().map(punkt).join(' ') });
     var vik = [0, 1, 2, 3].filter(function (i) { return state.bed[i].utv === -1 && state.bed[i].atg.trim(); });
     if (vik.length) forslag.push({ titel: R.vikandeTitel, text: fill(R.vikande, { framtider: lista(vik.map(function (i) { return '”' + scenNamn(i) + '”'; })), atg: unika(vik.map(function (i) { return punkt(state.bed[i].atg); })).join(' ') }) });
@@ -212,9 +222,9 @@
   function symbol(l) { return l < 0 ? '▼' : l > 0 ? '▲' : '·'; }
   function matrisHTML() {
     var R = F.rapport;
-    return '<div class="tablewrap" style="margin-bottom:8px"><table class="facil vmatris"><thead><tr><th>' + esc(F.faktorOrd.flera.charAt(0).toUpperCase() + F.faktorOrd.flera.slice(1)) + '</th>' + [0, 1, 2, 3].map(function (i) { return '<th class="n">' + esc(scenNamn(i)) + '</th>'; }).join('') + '</tr></thead><tbody>' +
-      valda().map(function (f) { return '<tr><td>' + esc(f.namn) + '</td>' + [0, 1, 2, 3].map(function (i) { var l = lage(i, f.id); return '<td class="n ' + (l < 0 ? 'neg' : l > 0 ? 'pos' : 'noll') + '" title="' + esc(F.bedomning.lagen[l + 1]) + '">' + symbol(l) + '</td>'; }).join('') + '</tr>'; }).join('') +
-      '<tr class="sum"><td><b>' + esc(F.bedomning.utvecklingFraga.replace(/ i den här framtiden$/, '')) + '</b></td>' + [0, 1, 2, 3].map(function (i) { var u = state.bed[i].utv; return '<td class="n"><b>' + (u === null ? '' : esc(F.bedomning.utveckling[u + 1])) + '</b></td>'; }).join('') + '</tr>' +
+    return '<div class="tablewrap" style="margin-bottom:8px"><table class="facil vmatris"><thead><tr><th>' + esc(F.faktorOrd.flera.charAt(0).toUpperCase() + F.faktorOrd.flera.slice(1)) + '</th>' + (F.nulage ? '<th class="n">' + esc(F.nulage.kolumn) + '</th>' : '') + [0, 1, 2, 3].map(function (i) { return '<th class="n">' + esc(scenNamn(i)) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      valda().map(function (f) { var fl = fallor().some(function (s) { return s.f.id === f.id; }); return '<tr' + (fl ? ' class="falla"' : '') + '><td>' + esc(f.namn) + (fl ? ' <span class="tag strong">' + esc(F.nulage.markering) + '</span>' : '') + '</td>' + (F.nulage ? '<td class="n small">' + (idag(f.id) === null ? '–' : esc(F.nulage.skala[idag(f.id)])) + '</td>' : '') + [0, 1, 2, 3].map(function (i) { var l = lage(i, f.id); return '<td class="n ' + (l < 0 ? 'neg' : l > 0 ? 'pos' : 'noll') + '" title="' + esc(F.bedomning.lagen[l + 1]) + '">' + symbol(l) + '</td>'; }).join('') + '</tr>'; }).join('') +
+      '<tr class="sum"><td><b>' + esc(F.bedomning.utvecklingFraga.replace(/ i den här framtiden$/, '')) + '</b></td>' + (F.nulage ? '<td></td>' : '') + [0, 1, 2, 3].map(function (i) { var u = state.bed[i].utv; return '<td class="n"><b>' + (u === null ? '' : esc(F.bedomning.utveckling[u + 1])) + '</b></td>'; }).join('') + '</tr>' +
       '</tbody></table></div><p class="small muted">▲ ' + esc(lc(F.bedomning.lagen[2])) + ', ▼ ' + esc(lc(F.bedomning.lagen[0])) + ', · ' + esc(lc(F.bedomning.lagen[1])) + '.</p>';
   }
   function renderRapport() {
@@ -293,6 +303,7 @@
     if (act === 'addfaktor') { var inp = document.getElementById('egenfaktor'); if (inp && inp.value.trim()) { var id = 'e' + (state.egna.length + 1); state.egna.push({ id: id, namn: inp.value.trim(), text: '' }); fd(id).med = true; save(); rerender(); } return; }
     if (t.hasAttribute('data-lage')) { state.bed[+view.step.slice(4)].lage[d('data-f')] = +d('data-lage'); save(); rerender(); return; }
     if (t.hasAttribute('data-utv')) { state.bed[+view.step.slice(4)].utv = +d('data-utv'); save(); rerender(); return; }
+    if (t.hasAttribute('data-idag')) { fd(d('data-f')).idag = +d('data-idag'); save(); rerender(); return; }
     if (t.hasAttribute('data-samlad')) { state.syntes.samlad = +d('data-samlad'); save(); rerender(); return; }
     if (t.hasAttribute('data-sakerhet')) { state.syntes.sakerhet = +d('data-sakerhet'); save(); rerender(); return; }
   });
@@ -338,7 +349,8 @@
     rule(); label('Detaljer'); label(FR.matrisRubrik);
     valda().forEach(function (f) {
       var neg = [0, 1, 2, 3].filter(function (i) { return lage(i, f.id) < 0; }).map(scenNamn), pos = [0, 1, 2, 3].filter(function (i) { return lage(i, f.id) > 0; }).map(scenNamn);
-      text(f.namn + (fd(f.id).hos ? ' (' + fd(f.id).hos + ')' : ''), { bold: true, size: 9.5, after: 0.5 });
+      var fl = fallor().some(function (x) { return x.f.id === f.id; });
+      text(f.namn + (fd(f.id).hos ? ' (' + fd(f.id).hos + ')' : '') + (F.nulage && idag(f.id) !== null ? ' · ' + F.nulage.kolumn + ': ' + lc(F.nulage.skala[idag(f.id)]) : '') + (fl ? ' · ' + F.nulage.markering : ''), { bold: true, size: 9.5, after: 0.5 });
       text((neg.length ? F.bedomning.lagen[0] + ' i ' + lista(neg) + '. ' : '') + (pos.length ? F.bedomning.lagen[2] + ' i ' + lista(pos) + '. ' : '') + (!neg.length && !pos.length ? F.bedomning.lagen[1] + ' i alla framtider.' : ''), { size: 9, color: MUT, after: 2 });
     });
     rule(); label(C.rapport.fyraFramtider);

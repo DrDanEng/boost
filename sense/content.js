@@ -53,6 +53,8 @@ window.CONTENT = {
   { "id": "social", "namn": "Social hållbarhet och trygghet", "omraden": ["socialt", "halsa", "mobilitet"] },
   { "id": "fastighet", "namn": "Fastigheters värde och användning", "omraden": ["flex", "hallbarhet", "ekonomi", "digital", "mobilitet"], "tillampning": "fastighet", "fragaMall": "Hur kan {lista} påverka värdet på fastigheten fram till {ar}?", "standard": "förändringar i omvärlden",
     "forstaExempel": { "flex": "Efterfrågan på kontorsytor förändras", "hallbarhet": "Klimatrisker prissätts", "ekonomi": "Fastighetsvärden blir känsligare för ränta och risk", "digital": "Uppkoppling och digitala tjänster tas för givna" } },
+  { "id": "kunskap", "namn": "Kunskapsföretagets affärsmodell", "omraden": ["teknik", "digital", "demografi", "larande", "hallbarhet"], "tillampning": "kunskapsforetag", "fragaMall": "Hur kan {lista} påverka hur vi skapar och tar betalt för kundvärde fram till {ar}?", "standard": "AI och förändrade kundbehov",
+    "forstaExempel": { "teknik": "Betalning för värde ersätter betalning för tid", "digital": "Kunskapsarbete frikopplas från arbetstid", "demografi": "Vägen in i yrket smalnar", "hallbarhet": "Den dubbla omställningen blir kundens huvudfråga" } },
   { "id": "samverkan", "namn": "Samverkan och industrialisering i värdekedjan", "omraden": ["teknik", "larande", "digital"] }
  ],
 
@@ -68,7 +70,8 @@ window.CONTENT = {
     { "signal": "Klimatdeklarationer för nya byggnader, diskussion om gränsvärden för klimatpåverkan", "trend": "Klimatpåverkan blir avgörande för värde och lönsamhet" },
     { "signal": "Stigande försäkringspremier, krav på klimatriskanalyser", "trend": "Klimatrisker prissätts" },
     { "signal": "Beställare kräver fossilfria arbetsplatser och transporter", "trend": "Fossilfrihet blir ett krav i upphandling" },
-    { "signal": "EU:s byggnadsdirektiv kräver att de sämst presterande byggnaderna energieffektiviseras", "trend": "Energiprestanda skiljer ut byggnader som halkar efter" }
+    { "signal": "EU:s byggnadsdirektiv kräver att de sämst presterande byggnaderna energieffektiviseras", "trend": "Energiprestanda skiljer ut byggnader som halkar efter" },
+    { "signal": "Kunder behöver stöd med både klimatkrav och digitalisering", "trend": "Den dubbla omställningen blir kundens huvudfråga" }
   ] },
   { "id": "energi", "namn": "Energi och försörjning", "exempel": [
     { "signal": "Solceller, lokala elnät, energilagring, effektbrist i storstäder", "trend": "Från central till lokal energiförsörjning" },
@@ -84,7 +87,8 @@ window.CONTENT = {
     { "signal": "AI-stöd i projektering och drift, generativ design, digitala tvillingar", "trend": "Verksamheten blir datadriven och mer automatiserad" },
     { "signal": "Krav på informationsleveranser enligt standarder, BIM i förvaltning", "trend": "Information blir en leverans i sig" },
     { "signal": "Cyberattacker mot beställare och leverantörer", "trend": "Informationssäkerhet blir en affärsrisk" },
-    { "signal": "Hyresgäster förväntar sig fiber, wifi, digitala lås och bokning", "trend": "Uppkoppling och digitala tjänster tas för givna" }
+    { "signal": "Hyresgäster förväntar sig fiber, wifi, digitala lås och bokning", "trend": "Uppkoppling och digitala tjänster tas för givna" },
+    { "signal": "AI gör utredning, analys och projektering på timmar i stället för veckor", "trend": "Kunskapsarbete frikopplas från arbetstid" }
   ] },
   { "id": "mobilitet", "namn": "Mobilitet och plats", "exempel": [
     { "signal": "Delad mobilitet, färre parkeringar, distansarbete", "trend": "Mobilitet som tjänst förändrar platsers värde" },
@@ -116,12 +120,15 @@ window.CONTENT = {
   { "id": "teknik", "namn": "Teknik och affärsmodeller", "exempel": [
     { "signal": "Data säljs som tjänst, AI ersätter debiterbara timmar, plattformar i värdekedjan", "trend": "Affären blir digital och insiktsdriven" },
     { "signal": "Mer prefabricering och industriellt byggande", "trend": "Byggandet industrialiseras" },
-    { "signal": "Robotar och automation på byggarbetsplatsen", "trend": "Tunga och farliga moment automatiseras" }
+    { "signal": "Robotar och automation på byggarbetsplatsen", "trend": "Tunga och farliga moment automatiseras" },
+    { "signal": "Kunder efterfrågar fastpris, abonnemang och betalning för resultat", "trend": "Betalning för värde ersätter betalning för tid" },
+    { "signal": "Programvaruföretag, AI-bolag och frilansnätverk tar delar av uppdragen", "trend": "Uppdragen bryts upp i moduler" }
   ] },
   { "id": "demografi", "namn": "Demografi och livsstil", "exempel": [
     { "signal": "Pensionsavgångar, åldrande befolkning, urbanisering", "trend": "Brist på arbetskraft och nya behov av bostäder och lokaler" },
     { "signal": "Färre unga söker yrkesutbildningar inom bygg", "trend": "Kompetensförsörjningen blir en flaskhals" },
-    { "signal": "Fler ensamhushåll, äldre som bor kvar hemma", "trend": "Nya behov av bostäder och service" }
+    { "signal": "Fler ensamhushåll, äldre som bor kvar hemma", "trend": "Nya behov av bostäder och service" },
+    { "signal": "Färre ingångsjobb i de yrken som AI påverkar mest", "trend": "Vägen in i yrket smalnar" }
   ] },
   { "id": "halsa", "namn": "Hälsa och välbefinnande", "exempel": [
     { "signal": "Fokus på inomhusmiljö, psykosocial arbetsmiljö, sjukskrivningstal", "trend": "Hälsa blir ett krav på miljöer och arbetsplatser" },

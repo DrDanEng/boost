@@ -193,6 +193,7 @@
     var U = C.underlag;
     return tillampningar().map(function (t) {
       return '<div class="card tight"><div class="eyebrow">' + esc(U.franTillampning) + '</div><p class="small" style="margin-bottom:6px"><b>' + esc(t.namn) + (t.objekt ? ': ' + esc(t.objekt) : '') + '</b>' + (t.samlad ? ' ' + esc(fill(U.tillampningSamlad, { samlad: lc(t.samlad) })) : '') + '</p>' +
+        ((t.fallor || []).length ? '<p class="small" style="margin-bottom:6px">' + esc(fill(U.tillampningFallor, { namn: t.fallorNamn || 'Fällor', lista: lista(t.fallor.map(lc)) })) + '</p>' : '') +
         ((t.robustaAtgarder || []).length ? '<p class="small muted" style="margin-bottom:4px">' + esc(U.tillampningRobusta) + '</p><ul class="plain">' + t.robustaAtgarder.map(function (r) { return '<li class="small">' + esc(r) + '</li>'; }).join('') + '</ul>' : '') + '</div>';
     }).join('');
   }

@@ -29,6 +29,7 @@ window.CONTENT = {
   "franTillampning": "Från Utvalda tillämpningar",
   "tillampningSamlad": "Samlad bedömning: {samlad}.",
   "tillampningRobusta": "Robusta åtgärder att pröva i små försök:",
+  "tillampningFallor": "{namn}: {lista}.",
   "saknasSense": "Sense är inte gjord. Beskriv kort den förändring eller utmaning som försöken ska handla om.",
   "saknasSenseEtikett": "Förändringen eller utmaningen",
   "saknasSee": "See är inte gjord. Ange vad som behöver stärkas och vad som främst håller tillbaka, så kan försöken riktas rätt.",

@@ -84,6 +84,7 @@ window.CONTENT = {
   "tillampningTitel": "{namn}",
   "tillampningText": "{objekt}Samlad bedömning: {samlad}.{sarbara}",
   "tillampningSarbara": " Sårbart i flera framtider: {lista}.",
+  "tillampningFallor": " {namn}: {lista}.",
   "tillampningRobust": "Robusta åtgärder: {namn}",
   "tillampningRubrik": "Utvalda tillämpningar",
   "forslagFaste": "Ge lärdomarna fäste",

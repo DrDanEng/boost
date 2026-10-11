@@ -69,7 +69,8 @@ window.CONTENT = {
   "rubrik": "Utvalda tillämpningar",
   "text": "Underlaget från Sense går också att använda för analys och strategi i en särskild fråga. En tillämpning bygger på framtiderna från Sense, ger en egen rapport och följer med i sparfilen till See, Shift och slutsidan.",
   "lista": [
-   { "namn": "Fastighetens värdeutveckling", "text": "Hur påverkar framtiderna värdet på en fastighet? Värdefaktorer, bedömning i fyra framtider, robusta åtgärder och en samlad värdebedömning.", "lank": "tillampningar/?fall=fastighet" }
+   { "namn": "Fastighetens värdeutveckling", "text": "Hur påverkar framtiderna värdet på en fastighet? Värdefaktorer, bedömning i fyra framtider, robusta åtgärder och en samlad värdebedömning.", "lank": "tillampningar/?fall=fastighet" },
+   { "namn": "Kunskapsföretag bortom timmen", "text": "Hur står sig affärsmodellen i ett timdebiterande kunskapsföretag när AI frikopplar värde från tid? Bärande delar, framgångsfällor och robusta åtgärder.", "lank": "tillampningar/?fall=kunskapsforetag" }
   ],
   "knapp": "Alla tillämpningar"
  },
