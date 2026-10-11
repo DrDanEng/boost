@@ -7,7 +7,7 @@ window.CONTENT = {
  "eyebrow": "Smart Built Boost",
  "titel": "Dialogverktyg — Learning Curve Approach",
  "lead": "Förändring börjar med lärande. Tre faser som hjälper en organisation att se vad som förändras, förstå vad det betyder för den själv och ta ett första litet steg.",
- "fritt": "Ingen inloggning. Fritt att använda för alla.",
+ "fritt": ["Ingen inloggning. Fritt att använda för alla.", "Ingen information lämnar din dator."],
  "intro": [
   "Planer skrivs och strukturer förtydligas, men rörelsen uteblir. The Learning Curve Approach utgår från att verklig förändring följer ett annat mönster: först väcks en oro, sedan söker vi insikt, och om lärandet hålls levande uppstår rörelse. Små handlingar som förändrar mer än stora beslut.",
   "Verktygen här gör de tre faserna, Sense, See och Shift, till arbetsmaterial som en grupp kan använda tillsammans, gärna vid en gemensam skärm."
