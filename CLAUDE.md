@@ -16,7 +16,7 @@ Arbetsbeskrivning för den som utvecklar verktygen vidare, människa eller Claud
 
 - Allt på svenska. Inga tankstreck (varken — eller – som skiljetecken) i texter som skrivs nya.
 - Ingen data lämnar besökarens webbläsare: ingen server, ingen statistik, inga cookies, inga externa typsnitt eller CDN. Bibliotek läggs i `vendor/`.
-- Statisk sida på GitHub Pages (arkivet DrDanEng/boost, gren `main`, domänen boost.mickla.se via filen `CNAME`).
+- Statisk sida på GitHub Pages (arkivet EngstromsMickla/boost i organisationen EngstromsMickla, gren `main`, domänen boost.mickla.se via filen `CNAME`). Alla repon för mickla.se ligger i organisationen, aldrig på personliga konton.
 - Allt innehåll ligger i en innehållsfil (`js/content.js`), inte i koden, så att Dan kan redigera texter själv.
 - Upphovsrad: "© Engströms Mickla AB 2026". Raden om Smart Built Environment och Formas läggs till först när finansieringen är beslutad.
 - Verktygen är dialogverktyg, inte mätinstrument. Inga psykometriska anspråk.
